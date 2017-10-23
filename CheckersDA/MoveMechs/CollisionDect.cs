@@ -9,11 +9,13 @@ namespace CheckersDA.MoveMechs
     class CollisionDect
     {
         string player;
-        public bool moveComplete = false;
+        public bool moveComplete;
 
 
         public void CheckAndUpdate(char[,] gameBg, int row, int col, int moveRow, int moveCol)
         {
+            //resets move complete when method has been restarted
+            moveComplete = false;
             //take row and col passed in checks corrisponding location in array and sets the player as that location in array .ToString()
             player = gameBg[row, col].ToString();
 
@@ -25,28 +27,31 @@ namespace CheckersDA.MoveMechs
                     Console.WriteLine("\nSorry thats not a legal move press enter to try again");
                     Console.ReadKey();
                 }
-                //checks if the selected row is less than moveRow as the checker can only move one row at a time
+                //checks if the selected row is less than moveRow as the checker can only move one row at a time and the move is not backwards
                 else if (row - moveRow == 1 && row > moveRow)
                 {
                     //checks if move is left
                     if (moveCol < col && gameBg[row, col].ToString() == player && gameBg[moveRow, moveCol].ToString() == "O" && gameBg[moveRow - 1, moveCol - 1].ToString() != "O")
                     {
-                        gameBg[row, col] = ' ';
-                        gameBg[moveRow, moveCol] = ' ';
+                        gameBg[row, col] = '\0';
+                        gameBg[moveRow, moveCol] = '\0';
                         gameBg[moveRow - 1, moveCol - 2] = Convert.ToChar(player);
+                        moveComplete = true;
                     }
                     // checks if move is right
                     else if (moveCol > col && gameBg[row, col].ToString() == player && gameBg[moveRow, moveCol].ToString() == "O" && gameBg[moveRow - 1, moveCol + 1].ToString() != "O")
                     {
-                        gameBg[row, col] = ' ';
-                        gameBg[moveRow, moveCol] = ' ';
+                        gameBg[row, col] = '\0';
+                        gameBg[moveRow, moveCol] = '\0';
                         gameBg[moveRow - 1, moveCol + 1] = Convert.ToChar(player);
+                        moveComplete = true;
                     }
-                    // checks if the postion the player is moving to is not a null character in the array
-                    else if (gameBg[row, col].ToString() == player && gameBg[moveRow, moveCol].ToString() == "\0" | gameBg[moveRow, moveCol].ToString() == " ")
+                    // checks if the postion the player is moving to is a null character in the array
+                    else if (gameBg[row, col].ToString() == player && gameBg[moveRow, moveCol].ToString() == "\0")
                     {
-                        gameBg[row, col] = ' ';
+                        gameBg[row, col] = '\0';
                         gameBg[moveRow, moveCol] = Convert.ToChar(player);
+                        moveComplete = true;
                     }
                     else
                     {
@@ -56,7 +61,7 @@ namespace CheckersDA.MoveMechs
                 }
                 else
                 {
-                    Console.WriteLine("\nYou Can Only Move One Space at a Time");
+                    Console.WriteLine("\nyou can only move forward once per shot, and you can't move backwards");
                     Console.ReadKey();
                 }
             }
@@ -74,23 +79,27 @@ namespace CheckersDA.MoveMechs
                     //checks if move is left
                     if (moveCol < col && gameBg[row, col].ToString() == player && gameBg[moveRow, moveCol].ToString() == "X" && gameBg[moveRow + 1, moveCol - 1].ToString() != "X")
                     {
-                        gameBg[row, col] = ' ';
-                        gameBg[moveRow, moveCol] = ' ';
+                        gameBg[row, col] = '\0';
+                        gameBg[moveRow, moveCol] = '\0';
                         gameBg[moveRow + 1, moveCol - 1] = Convert.ToChar(player);
+                        moveComplete = true;
 
                     }
                     // checks if move is right
                     else if (moveCol > col && gameBg[row, col].ToString() == player && gameBg[moveRow, moveCol].ToString() == "X" && gameBg[moveRow + 1, moveCol + 1].ToString() != "X")
                     {
-                        gameBg[row, col] = ' ';
-                        gameBg[moveRow, moveCol] = ' ';
+                        gameBg[row, col] = '\0';
+                        gameBg[moveRow, moveCol] = '\0';
                         gameBg[moveRow + 1, moveCol + 1] = Convert.ToChar(player);
+                        moveComplete = true;
 
                     }
+                    // checks if the postion the player is moving to is a null character in the array
                     else if (gameBg[row, col].ToString() == player && gameBg[moveRow, moveCol].ToString() == "\0")
                     {
-                        gameBg[row, col] = ' ';
+                        gameBg[row, col] = '\0';
                         gameBg[moveRow, moveCol] = Convert.ToChar(player);
+                        moveComplete = true;
                     }
                     else
                     {
@@ -101,7 +110,7 @@ namespace CheckersDA.MoveMechs
                 }
                 else
                 {
-                    Console.WriteLine("\nYou Can Only Move One Space at a Time");
+                    Console.WriteLine("\nyou can only move forward once per shot, and you can't move backwards");
                     Console.ReadKey();
                 }
             }

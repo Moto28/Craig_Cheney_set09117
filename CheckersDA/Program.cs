@@ -5,11 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using CheckersDA.ViewModels;
 using CheckersDA.MoveConvertor;
+using CheckersDA.Players;
+
 
 namespace CheckersDA
 {
     class Program
     {
+
 
 
 
@@ -21,9 +24,9 @@ namespace CheckersDA
             MainMenu menu = new MainMenu();
             GameBackGround backGround = new GameBackGround();
             GameBoard game = new GameBoard();
-            Player playerOne = new Player();
             IsInputValid valid = new IsInputValid();
-
+            PlayerOne playerOne = new PlayerOne();
+            PlayerTwo playerTwo = new PlayerTwo();
 
             Console.Title = "Checkers";
 
@@ -32,14 +35,18 @@ namespace CheckersDA
                 case 1:
                     Console.Clear();
                     Console.WriteLine("\n\n\n\n\n                                            you have selected a 1 player game");
-                    playerOne.GetPlayerName();
                     backGround.Objects(gameBg);
-                    game.Draw(gameBg, win);
+                    playerOne.GetPlayerName();
+                    game.Draw(gameBg, win, playerOne, playerTwo);
                     Console.ReadKey();
                     Console.Clear();
                     break;
                 case 2:
                     Console.WriteLine("you have selected a 2 player game");
+                    backGround.Objects(gameBg);
+                    playerOne.GetPlayerName();
+                    playerTwo.GetPlayerName();
+                    game.Draw(gameBg, win, playerOne, playerTwo);
                     Console.ReadKey();
                     Console.Clear();
                     break;

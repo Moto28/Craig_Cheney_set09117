@@ -40,7 +40,6 @@ namespace CheckersDA.ViewModels
                     }
                 }
             }
-            gameBg[3, 2] = 'X';
         }
     }
 }

@@ -45,6 +45,8 @@
     <Compile Include="MoveConvertor\IsInputValid.cs" />
     <Compile Include="MoveMechs\CollisionDect.cs" />
     <Compile Include="Players\Player.cs" />
+    <Compile Include="Players\PlayerOne.cs" />
+    <Compile Include="Players\PlayerTwo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\GameBackGround.cs" />
