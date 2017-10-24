@@ -22,5 +22,8 @@ namespace CheckersDA
         //gets and store the players when its the players turn
         abstract public int GetPlayerTurnCount();
 
+        abstract public bool MyTurn();
+        abstract public bool YourTurn();
+
     }
 }

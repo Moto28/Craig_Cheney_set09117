@@ -14,12 +14,12 @@ namespace CheckersDA.Players
         private int playerScore;
         private int playerTimer;
         private int playerTurnCount;
-        private bool isItMyTurn;
+        private bool isItMyTurn = true;
 
         //constructor
         public PlayerOne()
         {
-            //creates refrences to private vairbales to allow access outside class
+            //creates refrences to private varibales to allow access outside class
             playerName = PlayerName;
             playerChecker = PlayerChecker;
             playerScore = PlayerScore;
@@ -43,6 +43,7 @@ namespace CheckersDA.Players
         {
             get
             {
+                playerChecker = "X";
                 return playerChecker;
             }
             set
@@ -87,6 +88,7 @@ namespace CheckersDA.Players
         {
             get
             {
+
                 return isItMyTurn;
             }
             set
@@ -99,9 +101,17 @@ namespace CheckersDA.Players
         //gets and store the player name
         override public string GetPlayerName()
         {
-            Console.WriteLine("PLAYER ONE ENTER YOUR NAME");
+            Console.WriteLine("\nPLAYER ONE ENTER YOUR NAME");
             playerName = Console.ReadLine();
+            if (playerName.Length <= 4)
+            {
+                Console.WriteLine("\nyour name must be more than 3 characters");
+                GetPlayerName();
+                Console.Clear();
+            }
+
             return playerName;
+
         }
         //gets and store the players checker
         override public string GetPlayerChecker()
@@ -116,7 +126,7 @@ namespace CheckersDA.Players
         //gets and store the players score turn time
         override public int SetPlayerTimer()
         {
-            return playerScore;
+            return playerTimer;
         }
         //gets and store the players when its the players turn
         override public int GetPlayerTurnCount()
@@ -124,5 +134,17 @@ namespace CheckersDA.Players
             playerTurnCount++;
             return playerTurnCount;
         }
+
+        public override bool MyTurn()
+        {
+            isItMyTurn = true;
+            return isItMyTurn;
+        }
+        public override bool YourTurn()
+        {
+            isItMyTurn = false;
+            return isItMyTurn;
+        }
+
     }
 }

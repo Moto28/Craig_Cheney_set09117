@@ -21,8 +21,13 @@ namespace CheckersDA.MoveMechs
 
             if (player == "X")
             {
+                if (player == "O")
+                {
+                    Console.WriteLine("you can only move your assigned checker e.g. Player one can only move X's on the board");
+                    Console.ReadKey();
+                }
                 //checks if the selected row and col in array is not the same and the move row and col and if the array has a N stored at that location
-                if (gameBg[row, col].ToString() == player && gameBg[moveRow, moveCol].ToString() == player | gameBg[moveRow, moveCol] == 'N')
+                else if (gameBg[row, col].ToString() == player && gameBg[moveRow, moveCol].ToString() == player | gameBg[moveRow, moveCol] == 'N')
                 {
                     Console.WriteLine("\nSorry thats not a legal move press enter to try again");
                     Console.ReadKey();
@@ -67,8 +72,13 @@ namespace CheckersDA.MoveMechs
             }
             else if (player == "O")
             {
+                if (player == "X")
+                {
+                    Console.WriteLine("you can only move your assigned checker e.g. Player two can only move O's on the board");
+                    Console.ReadKey();
+                }
                 //checks if the selected row and col in array is not the same and the move row and col and if the array has a N stored at that location
-                if (gameBg[row, col].ToString() == player && gameBg[moveRow, moveCol].ToString() == player | gameBg[moveRow, moveCol] == 'N')
+                else if (gameBg[row, col].ToString() == player && gameBg[moveRow, moveCol].ToString() == player | gameBg[moveRow, moveCol] == 'N')
                 {
                     Console.WriteLine("\nSorry thats not a legal move press enter to try again");
                     Console.ReadKey();

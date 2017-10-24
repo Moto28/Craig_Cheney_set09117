@@ -43,6 +43,7 @@ namespace CheckersDA.Players
         {
             get
             {
+                playerChecker = "O";
                 return playerChecker;
             }
             set
@@ -99,8 +100,15 @@ namespace CheckersDA.Players
         //gets and store the player name
         override public string GetPlayerName()
         {
-            Console.WriteLine("PLAYER TWO ENTER YOUR NAME");
+            Console.WriteLine("\nPLAYER TWO ENTER YOUR NAME");
             playerName = Console.ReadLine();
+            if (playerName.Length <= 4)
+            {
+                Console.WriteLine("\nyour name must be more than 3 characters, try again");
+                GetPlayerName();
+                Console.Clear();
+            }
+
             return playerName;
         }
         //gets and store the players checker
@@ -124,6 +132,15 @@ namespace CheckersDA.Players
             playerTurnCount++;
             return playerTurnCount;
         }
-
+        public override bool MyTurn()
+        {
+            isItMyTurn = true;
+            return isItMyTurn;
+        }
+        public override bool YourTurn()
+        {
+            isItMyTurn = false;
+            return isItMyTurn;
+        }
     }
 }
