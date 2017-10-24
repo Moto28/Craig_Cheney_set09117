@@ -161,7 +161,7 @@ namespace CheckersDA.MoveConvertor
                 CreateDictionary();
             }
 
-            if (row == 'a' | row == 'b' | row == 'c' | row == 'd' | row == 'e' | row == 'f' | row == 'g' | row == 'h' && col == '1' | col == '2' | col == '3' | col == '4' | col == '5' | col == '6' | col == '7')
+            if (row == 'a' | row == 'b' | row == 'c' | row == 'd' | row == 'e' | row == 'f' | row == 'g' | row == 'h' && col == '1' | col == '2' | col == '3' | col == '4' | col == '5' | col == '6' | col == '7' | col == '8')
             {
                 if (convertor.ContainsKey(row.ToString()))
                 {
@@ -189,7 +189,7 @@ namespace CheckersDA.MoveConvertor
         }
         public void IsItValidSecondMove(char moveRow, char moveCol, bool moveValid)
         {
-            if (moveRow == 'a' | moveRow == 'b' | moveRow == 'c' | moveRow == 'd' | moveRow == 'e' | moveRow == 'f' | moveRow == 'g' | moveRow == 'h' && moveCol == '1' | moveCol == '2' | moveCol == '3' | moveCol == '4' | moveCol == '5' | moveCol == '6' | moveCol == '7')
+            if (moveRow == 'a' | moveRow == 'b' | moveRow == 'c' | moveRow == 'd' | moveRow == 'e' | moveRow == 'f' | moveRow == 'g' | moveRow == 'h' && moveCol == '1' | moveCol == '2' | moveCol == '3' | moveCol == '4' | moveCol == '5' | moveCol == '6' | moveCol == '7' | moveCol == '8')
             {
                 if (convertor.ContainsKey(moveRow.ToString()))
                 {

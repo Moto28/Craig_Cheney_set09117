@@ -16,8 +16,9 @@ namespace CheckersDA
 
 
 
-        static char[,] gameBg = new char[8, 8];
+        static char[,] gameBg = new char[9, 9];
         static bool win;
+
 
         static void Main(string[] args)
         {
@@ -37,7 +38,7 @@ namespace CheckersDA
                     Console.WriteLine("\n\n\n\n\n                                            you have selected a 1 player game");
                     backGround.Objects(gameBg);
                     playerOne.GetPlayerName();
-                    game.Draw(gameBg, win, playerOne, playerTwo);
+                    game.Draw(gameBg, playerOne, playerTwo);
                     Console.ReadKey();
                     Console.Clear();
                     break;
@@ -46,7 +47,7 @@ namespace CheckersDA
                     backGround.Objects(gameBg);
                     playerOne.GetPlayerName();
                     playerTwo.GetPlayerName();
-                    game.Draw(gameBg, win, playerOne, playerTwo);
+                    game.Draw(gameBg, playerOne, playerTwo);
                     Console.ReadKey();
                     Console.Clear();
                     break;

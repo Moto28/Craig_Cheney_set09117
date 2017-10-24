@@ -19,6 +19,8 @@ namespace CheckersDA.ViewModels
         private char pickCol;
         private char moveRow;
         private char moveCol;
+        private bool win;
+
 
         public GameBoard()
         {
@@ -26,6 +28,7 @@ namespace CheckersDA.ViewModels
             pickCol = PickCol;
             moveRow = MoveRow;
             moveCol = MoveCol;
+            win = win;
         }
         public char PickRow
         {
@@ -71,9 +74,20 @@ namespace CheckersDA.ViewModels
                 moveCol = value;
             }
         }
+        public bool Win
+        {
+            get
+            {
+                return win;
+            }
+            set
+            {
+                win = value;
+            }
+        }
 
 
-        public void Draw(char[,] gameBg, bool win, PlayerOne playerOne, PlayerTwo playerTwo)
+        public void Draw(char[,] gameBg, PlayerOne playerOne, PlayerTwo playerTwo)
         {
             Console.WriteLine("{0}: it's your move first", playerOne.PlayerName);
             //creates a while loop that draws the board until the win condition is met. it then takes user input to passes it to IsInputValid then CollisionDect if the input is valid passes move to next player 
@@ -89,7 +103,7 @@ namespace CheckersDA.ViewModels
                 Console.WriteLine("             |            |           |           |           |           |           |           |           |");
                 Console.WriteLine("          H  |            |     {0}     |           |    {1}      |           |     {2}     |           |     {3}     | H               {4}'s Stats         ", gameBg[0, 1], gameBg[0, 3], gameBg[0, 5], gameBg[0, 7], playerOne.PlayerName);
                 Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|                 Score: {0}", "placeholder");
-                Console.WriteLine("             |            |           |           |           |           |           |           |           |                 Move Count: {0}     ", "placeholder");
+                Console.WriteLine("             |            |           |           |           |           |           |           |           |                 Move Count: {0}     ", playerOne.PlayerTurnCount);
                 Console.WriteLine("          G  |     {0}      |           |     {1}     |           |     {2}     |           |     {3}     |           | G               Move Timer: {4}     ", gameBg[1, 0], gameBg[1, 2], gameBg[1, 4], gameBg[1, 6], "placeholder");
                 Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|                 Checker: {0}        ", playerOne.PlayerChecker);
                 Console.WriteLine("             |            |           |           |           |           |           |           |           |");
@@ -104,7 +118,7 @@ namespace CheckersDA.ViewModels
                 Console.WriteLine("             |            |           |           |           |           |           |           |           |");
                 Console.WriteLine("          C  |     {0}      |           |     {1}     |           |     {2}     |           |     {3}     |           | C               {4}'s Stats         ", gameBg[5, 0], gameBg[5, 2], gameBg[5, 4], gameBg[5, 6], playerTwo.PlayerName);
                 Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|                 Score: {0}", "placeholder");
-                Console.WriteLine("             |            |           |           |           |           |           |           |           |                 Move Count: {0}     ", "placeholder");
+                Console.WriteLine("             |            |           |           |           |           |           |           |           |                 Move Count: {0}     ", playerTwo.PlayerTurnCount);
                 Console.WriteLine("          B  |            |     {0}     |           |    {1}      |           |     {2}     |           |     {3}     | B               Move Timer: {4}     ", gameBg[6, 1], gameBg[6, 3], gameBg[6, 5], gameBg[6, 7], "placeholder");
                 Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|                 Checker: {0}        ", playerTwo.PlayerChecker);
                 Console.WriteLine("             |            |           |           |           |           |           |           |           |");
@@ -133,7 +147,7 @@ namespace CheckersDA.ViewModels
                     {
                         Console.WriteLine("\n\nyou have elected to move\n    {0}{1}  To  {2}{3}", pickRow.ToString().ToUpper(), pickCol, moveRow.ToString().ToUpper(), moveCol);
                         Console.ReadKey();
-                        detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol);
+                        detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo, ga);
                     }
                     if (detection.moveComplete == true)
                     {
@@ -165,7 +179,7 @@ namespace CheckersDA.ViewModels
                     {
                         Console.WriteLine("\n\nyou have elected to move\n    {0}{1}  To  {2}{3}", pickRow.ToString().ToUpper(), pickCol, moveRow.ToString().ToUpper(), moveCol);
                         Console.ReadKey();
-                        detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol);
+                        detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
                     }
                     if (detection.moveComplete == true)
                     {
