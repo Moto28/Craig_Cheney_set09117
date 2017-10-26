@@ -10,9 +10,9 @@ namespace CheckersDA.ViewModels
     {
         public void Objects(char[,] gameBg)
         {
-            for (int x = 0; x < 3; x++)
+            for (int x = 1; x < 4; x++)
             {
-                for (int y = 0; y < 8; y++)
+                for (int y = 1; y < 9; y++)
                 {
                     if ((y % 2 == 0 && x % 2 != 0) || (y % 2 != 0 && x % 2 == 0))
                     {
@@ -20,9 +20,9 @@ namespace CheckersDA.ViewModels
                     }
                 }
             }
-            for (int x = 5; x < 8; x++)
+            for (int x = 6; x <= 9; x++)
             {
-                for (int y = 0; y < 8; y++)
+                for (int y = 1; y < 9; y++)
                 {
                     if ((y % 2 == 0 && x % 2 != 0) || (y % 2 != 0 && x % 2 == 0))
                     {
@@ -30,18 +30,19 @@ namespace CheckersDA.ViewModels
                     }
                 }
             }
-            for (int x = 0; x < 8; x++)
+            for (int x = 4; x < 6; x++)
             {
-                for (int y = 0; y < 8; y++)
+                for (int y = 1; y < 8; y++)
                 {
                     if ((y % 2 == 0 && x % 2 == 0) || (y % 2 != 0 && x % 2 != 0))
                     {
-                        gameBg[x, y] = 'N';
+                        gameBg[x, y] = '\0';
                     }
                 }
             }
-            gameBg[4, 1] = 'O';
-            gameBg[2, 1] = '\0';
+            gameBg[5, 2] = 'O';
+            gameBg[5, 4] = 'O';
+            gameBg[5, 6] = 'O';
         }
     }
 }
