@@ -139,6 +139,8 @@ namespace CheckersDA.ViewModels
                     //hererererererererere                   
                     if (valid.PickIsValid == true)
                     {
+                        detection.moveComplete = false;
+
                         if (forceMoves.MustPickRowAndCol.Count > 0)
                         {
                             int convertedPickCol = Convert.ToInt16(pickCol.ToString());
@@ -166,17 +168,20 @@ namespace CheckersDA.ViewModels
                             Console.WriteLine("\nEnter the Column you want to move to", playerOne.PlayerName);
                             moveCol = Console.ReadKey().KeyChar;
                             valid.IsItValidSecondMove(moveRow, moveCol, valid.PickIsValid);
-
                         }
+                    }
+                    else
+                    {
+                        Draw(gameBg, playerOne, playerTwo);
                     }
                     if (valid.MoveIsValid == true)
                     {
                         if (forceMoves.MustMoveRowAndCol.Count > 0)
                         {
                             int convertedMoveCol = Convert.ToInt16(moveCol.ToString());
-                            convertedMoveCol++;
 
-                            if (forceMoves.MustMoveRowAndCol.Contains(PickRow.ToString() + convertedMoveCol.ToString()) == true)
+
+                            if (forceMoves.MustMoveRowAndCol.Contains(moveRow.ToString() + convertedMoveCol.ToString()) == true)
                             {
                                 Console.WriteLine("\n\nyou have elected to move\n    {0}{1}  To  {2}{3}", pickRow.ToString().ToUpper(), pickCol, moveRow.ToString().ToUpper(), moveCol);
                                 Console.ReadKey();
@@ -195,6 +200,10 @@ namespace CheckersDA.ViewModels
                             Console.ReadKey();
                             detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
                         }
+                    }
+                    else
+                    {
+                        Draw(gameBg, playerOne, playerTwo);
                     }
                     if (detection.moveComplete == true)
                     {
@@ -238,6 +247,9 @@ namespace CheckersDA.ViewModels
                     Console.WriteLine("                     1           2           3           4           5           6           7          8");
                     valid.PickIsValid = false;
                     valid.MoveIsValid = false;
+
+                    //checks if any force move are present                    
+                    forceMoves.ForceJumpDown(gameBg);
                     Console.WriteLine("\n\n{0} Enter the Row of the Checker you want to Move", playerTwo.PlayerName.ToUpper());
                     pickRow = Console.ReadKey().KeyChar;
                     Console.WriteLine("\nEnter the Column of the Checker you want to Move");
@@ -247,17 +259,71 @@ namespace CheckersDA.ViewModels
 
                     if (valid.PickIsValid == true)
                     {
-                        Console.WriteLine("\nEnter the Row you want to move to");
-                        moveRow = Console.ReadKey().KeyChar;
-                        Console.WriteLine("\nEnter the Column you want to move to ");
-                        moveCol = Console.ReadKey().KeyChar;
-                        valid.IsItValidSecondMove(moveRow, moveCol, valid.PickIsValid);
+                        if (forceMoves.MustPickRowAndCol.Count > 0)
+                        {
+                            int convertedPickCol = Convert.ToInt16(pickCol.ToString());
+
+                            if (forceMoves.MustPickRowAndCol.Contains(PickRow.ToString() + convertedPickCol.ToString()) == true)
+                            {
+                                Console.WriteLine("\nEnter the Row you want to move to", playerTwo.PlayerName);
+                                moveRow = Console.ReadKey().KeyChar;
+                                Console.WriteLine("\nEnter the Column you want to move to", playerTwo.PlayerName);
+                                moveCol = Console.ReadKey().KeyChar;
+                                valid.IsItValidSecondMove(moveRow, moveCol, valid.PickIsValid);
+                            }
+                            else
+                            {
+                                Console.WriteLine("\nyou must must pick one of the moves in the list above");
+                                Console.ReadKey();
+                            }
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nEnter the Row you want to move to", playerTwo.PlayerName);
+                            moveRow = Console.ReadKey().KeyChar;
+                            Console.WriteLine("\nEnter the Column you want to move to", playerTwo.PlayerName);
+                            moveCol = Console.ReadKey().KeyChar;
+                            detection.moveComplete = false;
+                            valid.IsItValidSecondMove(moveRow, moveCol, valid.PickIsValid);
+
+                        }
+
+                    }
+                    else
+                    {
+                        Draw(gameBg, playerOne, playerTwo);
                     }
                     if (valid.MoveIsValid == true)
                     {
-                        Console.WriteLine("\n\nyou have elected to move\n    {0}{1}  To  {2}{3}", pickRow.ToString().ToUpper(), pickCol, moveRow.ToString().ToUpper(), moveCol);
-                        Console.ReadKey();
-                        detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
+                        if (forceMoves.MustMoveRowAndCol.Count > 0)
+                        {
+                            int convertedMoveCol = Convert.ToInt16(moveCol.ToString());
+                            convertedMoveCol++;
+
+                            if (forceMoves.MustMoveRowAndCol.Contains(PickRow.ToString() + convertedMoveCol.ToString()) == true)
+                            {
+                                Console.WriteLine("\n\nyou have elected to move\n    {0}{1}  To  {2}{3}", pickRow.ToString().ToUpper(), pickCol, moveRow.ToString().ToUpper(), moveCol);
+                                Console.ReadKey();
+                                detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
+                            }
+                            else
+                            {
+                                Console.WriteLine("you must select one of the moves above");
+                                Console.ReadKey();
+                                detection.moveComplete = false;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n\nyou have elected to move\n    {0}{1}  To  {2}{3}", pickRow.ToString().ToUpper(), pickCol, moveRow.ToString().ToUpper(), moveCol);
+                            Console.ReadKey();
+                            detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
+                        }
+                    }
+                    else
+                    {
+                        Draw(gameBg, playerOne, playerTwo);
                     }
                     if (detection.moveComplete == true)
                     {
