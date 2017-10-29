@@ -16,7 +16,7 @@ namespace CheckersDA
 
 
 
-        static char[,] gameBg = new char[10, 10];
+        static char[,] gameBg = new char[12, 12];
         static bool win;
 
 

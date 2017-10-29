@@ -10,9 +10,9 @@ namespace CheckersDA.ViewModels
     {
         public void Objects(char[,] gameBg)
         {
-            for (int x = 1; x < 4; x++)
+            for (int x = 2; x <= 4; x++)
             {
-                for (int y = 1; y < 9; y++)
+                for (int y = 2; y <= 9; y++)
                 {
                     if ((y % 2 == 0 && x % 2 != 0) || (y % 2 != 0 && x % 2 == 0))
                     {
@@ -20,9 +20,9 @@ namespace CheckersDA.ViewModels
                     }
                 }
             }
-            for (int x = 6; x <= 9; x++)
+            for (int x = 7; x <= 9; x++)
             {
-                for (int y = 1; y < 9; y++)
+                for (int y = 2; y <= 9; y++)
                 {
                     if ((y % 2 == 0 && x % 2 != 0) || (y % 2 != 0 && x % 2 == 0))
                     {
@@ -30,9 +30,9 @@ namespace CheckersDA.ViewModels
                     }
                 }
             }
-            for (int x = 4; x < 6; x++)
+            for (int x = 6; x <= 8; x++)
             {
-                for (int y = 1; y < 8; y++)
+                for (int y = 2; y <= 9; y++)
                 {
                     if ((y % 2 == 0 && x % 2 == 0) || (y % 2 != 0 && x % 2 != 0))
                     {
@@ -40,9 +40,40 @@ namespace CheckersDA.ViewModels
                     }
                 }
             }
-            gameBg[5, 2] = 'O';
-            gameBg[5, 4] = 'O';
-            gameBg[5, 6] = 'O';
+            for (int x = 0; x < 2; x++)
+            {
+                for (int y = 2; y <= 9; y++)
+                {
+                    gameBg[x, y] = ' ';
+                }
+            }
+            for (int x = 2; x < 10; x++)
+            {
+                for (int y = 0; y <= 1; y++)
+                {
+                    gameBg[x, y] = ' ';
+                }
+            }
+            for (int x = 10; x <= 11; x++)
+            {
+                for (int y = 2; y <= 9; y++)
+                {
+                    gameBg[x, y] = ' ';
+                }
+            }
+            for (int x = 10; x <= 11; x++)
+            {
+                for (int y = 0; y <= 1; y++)
+                {
+                    gameBg[x, y] = ' ';
+                }
+            }
+            //gameBg[5, 6] = 'X';
+            //gameBg[4, 5] = 'O';
+            //gameBg[3, 4] = '\0';
+            //gameBg[6, 3] = 'O';
+            //gameBg[6, 7] = 'O';
         }
+
     }
 }

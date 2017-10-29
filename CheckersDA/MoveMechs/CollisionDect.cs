@@ -44,7 +44,7 @@ namespace CheckersDA.MoveMechs
 
                         gameBg[row, col] = '\0';
                         gameBg[moveRow, moveCol] = '\0';
-                        gameBg[moveRow - 1, moveCol - 2] = Convert.ToChar(player);
+                        gameBg[moveRow - 1, moveCol - 1] = Convert.ToChar(player);
                         moveComplete = true;
                         playerOne.GetPlayerTurnCount();
 
@@ -53,14 +53,11 @@ namespace CheckersDA.MoveMechs
                     // checks if move is right
                     else if (moveCol > col && gameBg[row, col].ToString() == player && gameBg[moveRow, moveCol].ToString() == "O" && gameBg[moveRow - 1, moveCol + 1].ToString() != "O")
                     {
-
                         gameBg[row, col] = '\0';
                         gameBg[moveRow, moveCol] = '\0';
                         gameBg[moveRow - 1, moveCol + 1] = Convert.ToChar(player);
                         moveComplete = true;
                         playerOne.GetPlayerTurnCount();
-
-
                     }
                     // checks if the postion the player is moving to is a null character in the array
                     else if (gameBg[row, col].ToString() == player && gameBg[moveRow, moveCol].ToString() == "\0")

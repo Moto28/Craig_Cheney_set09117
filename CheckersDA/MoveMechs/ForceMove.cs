@@ -8,45 +8,125 @@ namespace CheckersDA.MoveMechs
 {
     class ForceMove
     {
-        List<int> forceMoveList = new List<int>();
-        int[,] force = new int[4, 4];
-        public void ForceJump(char[,] gameBg, int row, int col)
+        private List<string> mustPickRowAndCol = new List<string>();
+        private List<string> mustMoveRowAndCol = new List<string>();
+        private Dictionary<int, string> revert = new Dictionary<int, string>();
+        private int tempRow;
+        private int tempCol;
+        int counter = 0;
+        public bool forceMove;
+
+        public ForceMove()
         {
-            for (int x = 1; x < 9; x++)
+            mustPickRowAndCol = MustPickRowAndCol;
+            mustMoveRowAndCol = MustMoveRowAndCol;
+            revert = Revert;
+            tempRow = TempRow;
+            tempCol = TempCol;
+        }
+
+        public List<string> MustPickRowAndCol
+        {
+            get
             {
-                for (int y = 1; y < 9; y++)
-                {
-                    string test = gameBg[x, y].ToString();
-
-                    if (test.Contains("X") && gameBg[x - 1, y] == '\0')
-                    {
-
-                        forceMoveList.Add(x);
-                        forceMoveList.Sort();
-                    }
-                }
+                return mustPickRowAndCol;
             }
-            int testv = forceMoveList.First();
-
-            for (int y = 1; y < 9; y++)
+            set
             {
-                string test = gameBg[testv - 1, y].ToString();
-                if (test.Contains("O") && gameBg[testv - 2, y].ToString() == "\0")
-                {
-                    int gTR = testv - 1;
-                    int gTC = y;
-                    for (int x = 0; x < 5; x++)
-                    {
-                        force[x, y] = gTR;
-                        for (int z = 0; z < 5; y++)
-                        {
-                            force[x, z] = gTC;
-                        }
-                    }
-                }
+                mustPickRowAndCol = value;
+            }
+        }
 
+        public List<string> MustMoveRowAndCol
+        {
+            get
+            {
+                return mustMoveRowAndCol;
+            }
+            set
+            {
+                mustMoveRowAndCol = value;
+            }
+        }
+        public Dictionary<int, string> Revert
+        {
+            get
+            {
+                return revert;
+            }
+            set
+            {
+                revert = value;
             }
 
         }
+        public int TempRow
+        {
+            get
+            {
+                return tempRow;
+            }
+            set
+            {
+                tempRow = value;
+            }
+        }
+        public int TempCol
+        {
+            get
+            {
+                return tempCol;
+            }
+            set
+            {
+                tempCol = value;
+            }
+        }
+
+        public void CreateRevert()
+        {
+            revert.Add(9, "a");
+            revert.Add(8, "b");
+            revert.Add(7, "c");
+            revert.Add(6, "d");
+            revert.Add(5, "e");
+            revert.Add(4, "f");
+            revert.Add(3, "g");
+            revert.Add(2, "h");
+
+        }
+
+
+        public void ForceJumpUp(char[,] gameBg)
+        {
+            if (revert.Count == 0)
+            {
+                CreateRevert();
+            }
+            //checkers on map
+            for (int x = 9; x >= 2; x--)
+            {
+                for (int y = 2; y <= 9; y++)
+                {
+                    if (gameBg[x, y].ToString() == "X" && gameBg[x - 1, y - 1].ToString() == "O" && gameBg[x - 2, y - 2].ToString() == "\0")
+                    {
+                        Console.WriteLine("{0}{1} TO {2}{3}", revert[x].ToUpper(), y - 1, revert[x - 1].ToUpper(), y - 2);
+                        mustPickRowAndCol.Add(revert[x] + y.ToString());
+                        y++;
+                        y++;
+                        mustMoveRowAndCol.Add(revert[x - 1] + y.ToString());
+                    }
+                    else if (gameBg[x, y].ToString() == "X" && gameBg[x - 1, y + 1].ToString() == "O" && gameBg[x - 2, y + 2].ToString() == "\0")
+                    {
+                        Console.WriteLine("{0}{1} TO {2}{3}", revert[x].ToUpper(), y - 1, revert[x - 1].ToUpper(), y);
+                        mustPickRowAndCol.Add(revert[x] + y.ToString());
+                        mustMoveRowAndCol.Add(revert[x - 1] + y.ToString());
+                    }
+                }
+            }
+        }
     }
 }
+
+
+

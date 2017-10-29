@@ -99,59 +99,102 @@ namespace CheckersDA.ViewModels
                 if (playerOne.IsItMyTurn == true)
                 {
                     Console.Clear();
-                    Console.WriteLine();
-                    Console.WriteLine();
-                    Console.WriteLine();
-                    Console.WriteLine();
                     Console.WriteLine("                     1           2           3           4           5           6           7          8");
                     Console.WriteLine("              ________________________________________________________________________________________________");
                     Console.WriteLine("             |            |           |           |           |           |           |           |           |");
-                    Console.WriteLine("          H  |            |     {0}     |           |    {1}      |           |     {2}     |           |     {3}     | H               {4}'s Stats         ", gameBg[1, 2], gameBg[1, 4], gameBg[1, 6], gameBg[1, 8], playerOne.PlayerName);
+                    Console.WriteLine("          H  |     {0}      |     {1}     |      {2}    |     {3}     |      {4}    |     {5}     |     {6}     |     {7}     | H               {8}'s Stats         ", gameBg[2, 2], gameBg[2, 3], gameBg[2, 4], gameBg[2, 5], gameBg[2, 6], gameBg[2, 7], gameBg[2, 8], gameBg[2, 9], playerOne.PlayerName);
                     Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|                 Score: {0}", "placeholder");
                     Console.WriteLine("             |            |           |           |           |           |           |           |           |                 Move Count: {0}     ", playerOne.PlayerTurnCount);
-                    Console.WriteLine("          G  |     {0}      |           |     {1}     |           |     {2}     |           |     {3}     |           | G               Move Timer: {4}     ", gameBg[2, 1], gameBg[2, 3], gameBg[2, 5], gameBg[2, 7], "placeholder");
-                    Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|                 Checker: {0}        ", playerOne.PlayerChecker);
+                    Console.WriteLine("          G  |     {0}      |     {1}     |      {2}    |     {3}     |      {4}    |     {5}     |     {6}     |      {7}    | G               Move Timer: {8}     ", gameBg[3, 2], gameBg[3, 3], gameBg[3, 4], gameBg[3, 5], gameBg[3, 6], gameBg[3, 7], gameBg[3, 8], gameBg[3, 9], "placeholder");
+                    Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|                 Checker: {0} ", playerOne.PlayerChecker);
                     Console.WriteLine("             |            |           |           |           |           |           |           |           |");
-                    Console.WriteLine("          F  |            |     {0}     |           |    {1}      |           |     {2}     |           |     {3}     | F", gameBg[3, 2], gameBg[3, 4], gameBg[3, 6], gameBg[3, 8]);
+                    Console.WriteLine("          F  |     {0}      |     {1}     |      {2}    |     {3}     |      {4}    |     {5}     |     {6}     |     {7}     | F", gameBg[4, 2], gameBg[4, 3], gameBg[4, 4], gameBg[4, 5], gameBg[4, 6], gameBg[4, 7], gameBg[4, 8], gameBg[4, 9]);
                     Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|");
                     Console.WriteLine("             |            |           |           |           |           |           |           |           |");
-                    Console.WriteLine("          E  |     {0}      |           |     {1}     |           |     {2}     |           |     {3}     |           | E", gameBg[4, 1], gameBg[4, 3], gameBg[4, 5], gameBg[4, 7]);
+                    Console.WriteLine("          E  |     {0}      |     {1}     |      {2}    |     {3}     |      {4}    |     {5}     |     {6}     |      {7}    | E", gameBg[5, 2], gameBg[5, 3], gameBg[5, 4], gameBg[5, 5], gameBg[5, 6], gameBg[5, 7], gameBg[5, 8], gameBg[5, 9]);
                     Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|");
                     Console.WriteLine("             |            |           |           |           |           |           |           |           |");
-                    Console.WriteLine("          D  |            |     {0}     |           |    {1}      |           |     {2}     |           |     {3}     | D", gameBg[5, 2], gameBg[5, 4], gameBg[5, 6], gameBg[5, 8]);
-                    Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|");
-                    Console.WriteLine("             |            |           |           |           |           |           |           |           |");
-                    Console.WriteLine("          C  |     {0}      |           |     {1}     |           |     {2}     |           |     {3}     |           | C               {4}'s Stats         ", gameBg[6, 1], gameBg[6, 3], gameBg[6, 5], gameBg[6, 7], playerTwo.PlayerName);
+                    Console.WriteLine("          D  |     {0}      |     {1}     |      {2}    |     {3}     |      {4}    |     {5}     |     {6}     |     {7}     | D               {8}'s Stats         ", gameBg[6, 2], gameBg[6, 3], gameBg[6, 4], gameBg[6, 5], gameBg[6, 6], gameBg[6, 7], gameBg[6, 8], gameBg[6, 9], playerTwo.PlayerName);
                     Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|                 Score: {0}", "placeholder");
                     Console.WriteLine("             |            |           |           |           |           |           |           |           |                 Move Count: {0}     ", playerTwo.PlayerTurnCount);
-                    Console.WriteLine("          B  |            |     {0}     |           |    {1}      |           |     {2}     |           |     {3}     | B               Move Timer: {4}     ", gameBg[7, 2], gameBg[7, 4], gameBg[7, 6], gameBg[7, 8], "placeholder");
+                    Console.WriteLine("          C  |     {0}      |     {1}     |      {2}    |     {3}     |      {4}    |     {5}     |     {6}     |      {7}    | C               Move Timer: {8}     ", gameBg[7, 2], gameBg[7, 3], gameBg[7, 4], gameBg[7, 5], gameBg[7, 6], gameBg[7, 7], gameBg[7, 8], gameBg[7, 9], "placeholder");
                     Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|                 Checker: {0}        ", playerTwo.PlayerChecker);
                     Console.WriteLine("             |            |           |           |           |           |           |           |           |");
-                    Console.WriteLine("          A  |     {0}      |           |     {1}     |           |     {2}     |           |     {3}     |           | A", gameBg[8, 1], gameBg[8, 3], gameBg[8, 5], gameBg[8, 7]);
+                    Console.WriteLine("          B  |     {0}      |     {1}     |      {2}    |     {3}     |      {4}    |     {5}     |     {6}     |     {7}     | B", gameBg[8, 2], gameBg[8, 3], gameBg[8, 4], gameBg[8, 5], gameBg[8, 6], gameBg[8, 7], gameBg[8, 8], gameBg[8, 9]);
+                    Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|");
+                    Console.WriteLine("             |            |           |           |           |           |           |           |           |");
+                    Console.WriteLine("          A  |     {0}      |     {1}     |      {2}    |     {3}     |      {4}    |     {5}     |     {6}     |      {7}    | A", gameBg[9, 2], gameBg[9, 3], gameBg[9, 4], gameBg[9, 5], gameBg[9, 6], gameBg[9, 7], gameBg[9, 8], gameBg[9, 9]);
                     Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|");
                     Console.WriteLine("                     1           2           3           4           5           6           7          8");
                     valid.PickIsValid = false;
                     valid.MoveIsValid = false;
 
+                    //checks if any force move are present                    
+                    forceMoves.ForceJumpUp(gameBg);
                     Console.WriteLine("\n\n{0} Enter the Row of the Checker you want to Move", playerOne.PlayerName.ToUpper());
                     pickRow = Console.ReadKey().KeyChar;
                     Console.WriteLine("\nEnter the Column of the Checker you want to Move");
                     pickCol = Console.ReadKey().KeyChar;
                     valid.IsItValidFirstMove(gameBg, pickRow, pickCol, playerOne, playerTwo);
-
+                    //hererererererererere                   
                     if (valid.PickIsValid == true)
                     {
-                        Console.WriteLine("\nEnter the Row you want to move to", playerOne.PlayerName);
-                        moveRow = Console.ReadKey().KeyChar;
-                        Console.WriteLine("\nEnter the Column you want to move to", playerOne.PlayerName);
-                        moveCol = Console.ReadKey().KeyChar;
-                        valid.IsItValidSecondMove(moveRow, moveCol, valid.PickIsValid);
+                        if (forceMoves.MustPickRowAndCol.Count > 0)
+                        {
+                            int convertedPickCol = Convert.ToInt16(pickCol.ToString());
+                            convertedPickCol++;
+
+                            if (forceMoves.MustPickRowAndCol.Contains(PickRow.ToString() + convertedPickCol.ToString()) == true)
+                            {
+                                Console.WriteLine("\nEnter the Row you want to move to", playerOne.PlayerName);
+                                moveRow = Console.ReadKey().KeyChar;
+                                Console.WriteLine("\nEnter the Column you want to move to", playerOne.PlayerName);
+                                moveCol = Console.ReadKey().KeyChar;
+                                valid.IsItValidSecondMove(moveRow, moveCol, valid.PickIsValid);
+                            }
+                            else
+                            {
+                                Console.WriteLine("\nyou must must pick one of the moves in the list above");
+                                Console.ReadKey();
+                            }
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nEnter the Row you want to move to", playerOne.PlayerName);
+                            moveRow = Console.ReadKey().KeyChar;
+                            Console.WriteLine("\nEnter the Column you want to move to", playerOne.PlayerName);
+                            moveCol = Console.ReadKey().KeyChar;
+                            valid.IsItValidSecondMove(moveRow, moveCol, valid.PickIsValid);
+
+                        }
                     }
                     if (valid.MoveIsValid == true)
                     {
-                        Console.WriteLine("\n\nyou have elected to move\n    {0}{1}  To  {2}{3}", pickRow.ToString().ToUpper(), pickCol, moveRow.ToString().ToUpper(), moveCol);
-                        Console.ReadKey();
-                        detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
+                        if (forceMoves.MustMoveRowAndCol.Count > 0)
+                        {
+                            int convertedMoveCol = Convert.ToInt16(moveCol.ToString());
+                            convertedMoveCol++;
+
+                            if (forceMoves.MustMoveRowAndCol.Contains(PickRow.ToString() + convertedMoveCol.ToString()) == true)
+                            {
+                                Console.WriteLine("\n\nyou have elected to move\n    {0}{1}  To  {2}{3}", pickRow.ToString().ToUpper(), pickCol, moveRow.ToString().ToUpper(), moveCol);
+                                Console.ReadKey();
+                                detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
+                            }
+                            else
+                            {
+                                Console.WriteLine("you must select one of the moves above");
+                                Console.ReadKey();
+                                detection.moveComplete = false;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n\nyou have elected to move\n    {0}{1}  To  {2}{3}", pickRow.ToString().ToUpper(), pickCol, moveRow.ToString().ToUpper(), moveCol);
+                            Console.ReadKey();
+                            detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
+                        }
                     }
                     if (detection.moveComplete == true)
                     {
@@ -161,42 +204,38 @@ namespace CheckersDA.ViewModels
                             playerTwo.MyTurn();
                         }
                     }
+
                 }
                 else if (playerTwo.IsItMyTurn == true)
                 {
                     Console.Clear();
-                    Console.WriteLine();
-                    Console.WriteLine();
-                    Console.WriteLine();
-                    Console.WriteLine();
                     Console.WriteLine("                     1           2           3           4           5           6           7          8");
                     Console.WriteLine("              ________________________________________________________________________________________________");
                     Console.WriteLine("             |            |           |           |           |           |           |           |           |");
-                    Console.WriteLine("          H  |            |     {0}     |           |    {1}      |           |     {2}     |           |     {3}     | H               {4}'s Stats         ", gameBg[1, 2], gameBg[1, 4], gameBg[1, 6], gameBg[1, 8], playerOne.PlayerName);
+                    Console.WriteLine("          H  |     {0}      |     {1}     |      {2}    |     {3}     |      {4}    |     {5}     |     {6}     |     {7}     | H               {8}'s Stats         ", gameBg[2, 2], gameBg[2, 3], gameBg[2, 4], gameBg[2, 5], gameBg[2, 6], gameBg[2, 7], gameBg[2, 8], gameBg[2, 9], playerOne.PlayerName);
                     Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|                 Score: {0}", "placeholder");
                     Console.WriteLine("             |            |           |           |           |           |           |           |           |                 Move Count: {0}     ", playerOne.PlayerTurnCount);
-                    Console.WriteLine("          G  |     {0}      |           |     {1}     |           |     {2}     |           |     {3}     |           | G               Move Timer: {4}     ", gameBg[2, 1], gameBg[2, 3], gameBg[2, 5], gameBg[2, 7], "placeholder");
-                    Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|                 Checker: {0}        ", playerOne.PlayerChecker);
+                    Console.WriteLine("          G  |     {0}      |     {1}     |      {2}    |     {3}     |      {4}    |     {5}     |     {6}     |      {7}    | G               Move Timer: {8}     ", gameBg[3, 2], gameBg[3, 3], gameBg[3, 4], gameBg[3, 5], gameBg[3, 6], gameBg[3, 7], gameBg[3, 8], gameBg[3, 9], "placeholder");
+                    Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|                 Checker: {0} ", playerOne.PlayerChecker);
                     Console.WriteLine("             |            |           |           |           |           |           |           |           |");
-                    Console.WriteLine("          F  |            |     {0}     |           |    {1}      |           |     {2}     |           |     {3}     | F", gameBg[3, 2], gameBg[3, 4], gameBg[3, 6], gameBg[3, 8]);
+                    Console.WriteLine("          F  |     {0}      |     {1}     |      {2}    |     {3}     |      {4}    |     {5}     |     {6}     |     {7}     | F", gameBg[4, 2], gameBg[4, 3], gameBg[4, 4], gameBg[4, 5], gameBg[4, 6], gameBg[4, 7], gameBg[4, 8], gameBg[4, 9]);
                     Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|");
                     Console.WriteLine("             |            |           |           |           |           |           |           |           |");
-                    Console.WriteLine("          E  |     {0}      |           |     {1}     |           |     {2}     |           |     {3}     |           | E", gameBg[4, 1], gameBg[4, 3], gameBg[4, 5], gameBg[4, 7]);
+                    Console.WriteLine("          E  |     {0}      |     {1}     |      {2}    |     {3}     |      {4}    |     {5}     |     {6}     |      {7}    | E", gameBg[5, 2], gameBg[5, 3], gameBg[5, 4], gameBg[5, 5], gameBg[5, 6], gameBg[5, 7], gameBg[5, 8], gameBg[5, 9]);
                     Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|");
                     Console.WriteLine("             |            |           |           |           |           |           |           |           |");
-                    Console.WriteLine("          D  |            |     {0}     |           |    {1}      |           |     {2}     |           |     {3}     | D", gameBg[5, 2], gameBg[5, 4], gameBg[5, 6], gameBg[5, 8]);
-                    Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|");
-                    Console.WriteLine("             |            |           |           |           |           |           |           |           |");
-                    Console.WriteLine("          C  |     {0}      |           |     {1}     |           |     {2}     |           |     {3}     |           | C               {4}'s Stats         ", gameBg[6, 1], gameBg[6, 3], gameBg[6, 5], gameBg[6, 7], playerTwo.PlayerName);
+                    Console.WriteLine("          D  |     {0}      |     {1}     |      {2}    |     {3}     |      {4}    |     {5}     |     {6}     |     {7}     | D               {8}'s Stats         ", gameBg[6, 2], gameBg[6, 3], gameBg[6, 4], gameBg[6, 5], gameBg[6, 6], gameBg[6, 7], gameBg[6, 8], gameBg[6, 9], playerTwo.PlayerName);
                     Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|                 Score: {0}", "placeholder");
                     Console.WriteLine("             |            |           |           |           |           |           |           |           |                 Move Count: {0}     ", playerTwo.PlayerTurnCount);
-                    Console.WriteLine("          B  |            |     {0}     |           |    {1}      |           |     {2}     |           |     {3}     | B               Move Timer: {4}     ", gameBg[7, 2], gameBg[7, 4], gameBg[7, 6], gameBg[7, 8], "placeholder");
+                    Console.WriteLine("          C  |     {0}      |     {1}     |      {2}    |     {3}     |      {4}    |     {5}     |     {6}     |      {7}    | C               Move Timer: {8}     ", gameBg[7, 2], gameBg[7, 3], gameBg[7, 4], gameBg[7, 5], gameBg[7, 6], gameBg[7, 7], gameBg[7, 8], gameBg[7, 9], "placeholder");
                     Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|                 Checker: {0}        ", playerTwo.PlayerChecker);
                     Console.WriteLine("             |            |           |           |           |           |           |           |           |");
-                    Console.WriteLine("          A  |     {0}      |           |     {1}     |           |     {2}     |           |     {3}     |           | A", gameBg[8, 1], gameBg[8, 3], gameBg[8, 5], gameBg[8, 7]);
+                    Console.WriteLine("          B  |     {0}      |     {1}     |      {2}    |     {3}     |      {4}    |     {5}     |     {6}     |     {7}     | B", gameBg[8, 2], gameBg[8, 3], gameBg[8, 4], gameBg[8, 5], gameBg[8, 6], gameBg[8, 7], gameBg[8, 8], gameBg[8, 9]);
+                    Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|");
+                    Console.WriteLine("             |            |           |           |           |           |           |           |           |");
+                    Console.WriteLine("          A  |     {0}      |     {1}     |      {2}    |     {3}     |      {4}    |     {5}     |     {6}     |      {7}    | A", gameBg[9, 2], gameBg[9, 3], gameBg[9, 4], gameBg[9, 5], gameBg[9, 6], gameBg[9, 7], gameBg[9, 8], gameBg[9, 9]);
                     Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|");
                     Console.WriteLine("                     1           2           3           4           5           6           7          8");
-
                     valid.PickIsValid = false;
                     valid.MoveIsValid = false;
                     Console.WriteLine("\n\n{0} Enter the Row of the Checker you want to Move", playerTwo.PlayerName.ToUpper());
@@ -228,6 +267,7 @@ namespace CheckersDA.ViewModels
                             playerOne.MyTurn();
                         }
                     }
+
 
                 }
             }

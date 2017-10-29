@@ -25,6 +25,7 @@ namespace CheckersDA.MoveConvertor
 
         public IsInputValid()
         {
+            convertor = Convertor;
             convRow = ConvRow;
             convCol = ConvCol;
             newConvRow = NewConvRow;
@@ -35,6 +36,18 @@ namespace CheckersDA.MoveConvertor
             moveColIsVaild = MoveColIsVaild;
             pickIsValid = PickIsValid;
             moveIsValid = MoveIsValid;
+        }
+        public Dictionary<string, int> Convertor
+        {
+            get
+            {
+                return convertor;
+            }
+            set
+            {
+                convertor = value;
+            }
+
         }
 
         public int ConvRow
@@ -149,33 +162,34 @@ namespace CheckersDA.MoveConvertor
         }
 
 
-        public void CreateDictionary()
+        public void CreateConvertor()
         {
-            convertor.Add("a", 8);
-            convertor.Add("b", 7);
-            convertor.Add("c", 6);
-            convertor.Add("d", 5);
-            convertor.Add("e", 4);
-            convertor.Add("f", 3);
-            convertor.Add("g", 2);
-            convertor.Add("h", 1);
-            convertor.Add("8", 8);
-            convertor.Add("7", 7);
-            convertor.Add("6", 6);
-            convertor.Add("5", 5);
-            convertor.Add("4", 4);
-            convertor.Add("3", 3);
-            convertor.Add("2", 2);
-            convertor.Add("1", 1);
+            convertor.Add("a", 9);
+            convertor.Add("b", 8);
+            convertor.Add("c", 7);
+            convertor.Add("d", 6);
+            convertor.Add("e", 5);
+            convertor.Add("f", 4);
+            convertor.Add("g", 3);
+            convertor.Add("h", 2);
+            convertor.Add("8", 9);
+            convertor.Add("7", 8);
+            convertor.Add("6", 7);
+            convertor.Add("5", 6);
+            convertor.Add("4", 5);
+            convertor.Add("3", 4);
+            convertor.Add("2", 3);
+            convertor.Add("1", 2);
 
         }
+
 
 
         public void IsItValidFirstMove(char[,] gameBg, char row, char col, PlayerOne playerOne, PlayerTwo playerTwo)
         {
             if (convertor.Count == 0)
             {
-                CreateDictionary();
+                CreateConvertor();
             }
 
             pickIsValid = false;
@@ -199,14 +213,6 @@ namespace CheckersDA.MoveConvertor
                 if (colIsVaild == true && rowIsVaild == true)
                 {
                     pickIsValid = true;
-                }
-                if (playerOne.IsItMyTurn == true)
-                {
-                    forceMove.ForceJump(gameBg, convRow, convCol);
-                }
-                else if (playerTwo.IsItMyTurn == true)
-                {
-
                 }
             }
             else

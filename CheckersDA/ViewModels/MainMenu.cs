@@ -33,7 +33,7 @@ namespace CheckersDA.ViewModels
         {
             get
             {
-                switchMenuSel = Convert.ToInt32(menuSel);
+                switchMenuSel = Convert.ToInt16(menuSel);
                 return switchMenuSel;
             }
             set
