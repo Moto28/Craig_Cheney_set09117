@@ -44,32 +44,33 @@ namespace CheckersDA.ViewModels
             {
                 for (int y = 2; y <= 9; y++)
                 {
-                    gameBg[x, y] = ' ';
+                    gameBg[x, y] = 'N';
                 }
             }
-            for (int x = 2; x < 10; x++)
+            for (int x = 0; x < 11; x++)
             {
                 for (int y = 0; y <= 1; y++)
                 {
-                    gameBg[x, y] = ' ';
+                    gameBg[x, y] = 'N';
                 }
             }
             for (int x = 10; x <= 11; x++)
             {
-                for (int y = 2; y <= 9; y++)
+                for (int y = 0; y <= 11; y++)
                 {
-                    gameBg[x, y] = ' ';
+                    gameBg[x, y] = 'N';
                 }
             }
-            for (int x = 10; x <= 11; x++)
+            for (int x = 0; x <= 11; x++)
             {
-                for (int y = 0; y <= 1; y++)
+                for (int y = 10; y <= 11; y++)
                 {
-                    gameBg[x, y] = ' ';
+                    gameBg[x, y] = 'N';
                 }
             }
 
-            gameBg[5, 4] = 'X';
+            gameBg[6, 5] = 'O';
+            gameBg[3, 8] = '\0';
         }
 
     }

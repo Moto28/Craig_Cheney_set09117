@@ -13,17 +13,19 @@ namespace CheckersDA.MoveMechs
 
         string player;
         public bool moveComplete;
+        public bool checkerTaken;
 
 
         public void CheckAndUpdate(char[,] gameBg, int row, int col, int moveRow, int moveCol, PlayerOne playerOne, PlayerTwo playerTwo)
         {
-            //resets move complete when method has been restarted
+            //resets move complete when method is restarted
             moveComplete = false;
-            //take row and col passed in checks corrisponding location in array and sets the player as that location in array .ToString()
+            //take row and col passed in to check corrisponding location in array and sets the player as that location in array 
             player = gameBg[row, col].ToString();
 
             if (playerOne.PlayerChecker == "X" && playerOne.IsItMyTurn == true)
             {
+
                 if (gameBg[row, col].ToString() == "O")
                 {
                     Console.WriteLine("you can only move your assigned checker e.g. Player one can only move X's on the board");
@@ -45,7 +47,7 @@ namespace CheckersDA.MoveMechs
                         gameBg[row, col] = '\0';
                         gameBg[moveRow, moveCol] = '\0';
                         gameBg[moveRow - 1, moveCol - 1] = Convert.ToChar(player);
-                        moveComplete = true;
+                        checkerTaken = true;
                         playerOne.GetPlayerTurnCount();
 
 
@@ -56,7 +58,7 @@ namespace CheckersDA.MoveMechs
                         gameBg[row, col] = '\0';
                         gameBg[moveRow, moveCol] = '\0';
                         gameBg[moveRow - 1, moveCol + 1] = Convert.ToChar(player);
-                        moveComplete = true;
+                        checkerTaken = true;
                         playerOne.GetPlayerTurnCount();
                     }
                     // checks if the postion the player is moving to is a null character in the array
@@ -64,7 +66,7 @@ namespace CheckersDA.MoveMechs
                     {
                         gameBg[row, col] = '\0';
                         gameBg[moveRow, moveCol] = Convert.ToChar(player);
-                        moveComplete = true;
+                        checkerTaken = true;
                         playerOne.GetPlayerTurnCount();
                     }
                     else
@@ -80,6 +82,7 @@ namespace CheckersDA.MoveMechs
                     Console.ReadKey();
 
                 }
+
             }
             else if (playerTwo.PlayerChecker == "O" && playerTwo.IsItMyTurn == true)
             {
@@ -106,6 +109,7 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow, moveCol] = '\0';
                         gameBg[moveRow + 1, moveCol - 1] = Convert.ToChar(player);
                         moveComplete = true;
+                        checkerTaken = true;
                         playerTwo.GetPlayerTurnCount();
                     }
                     // checks if move is right
@@ -115,6 +119,7 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow, moveCol] = '\0';
                         gameBg[moveRow + 1, moveCol + 1] = Convert.ToChar(player);
                         moveComplete = true;
+                        checkerTaken = true;
                         playerTwo.GetPlayerTurnCount();
                     }
                     // checks if the postion the player is moving to is a null character in the array
@@ -123,6 +128,7 @@ namespace CheckersDA.MoveMechs
                         gameBg[row, col] = '\0';
                         gameBg[moveRow, moveCol] = Convert.ToChar(player);
                         moveComplete = true;
+                        checkerTaken = false;
                         playerTwo.GetPlayerTurnCount();
                     }
                     else
@@ -143,6 +149,5 @@ namespace CheckersDA.MoveMechs
                 Console.WriteLine("\n you must select a tile with an X for player 1 and O for player 2");
             }
         }
-
     }
 }

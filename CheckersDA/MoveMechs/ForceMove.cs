@@ -103,13 +103,15 @@ namespace CheckersDA.MoveMechs
             {
                 CreateRevert();
             }
+            mustPickRowAndCol.Clear();
+            mustMoveRowAndCol.Clear();
             //checkers on map
             for (int x = 9; x >= 2; x--)
             {
                 for (int y = 2; y <= 9; y++)
                 {
                     //checks left
-                    if (gameBg[x, y].ToString() == "X" && gameBg[x - 1, y - 1].ToString() == "O" && gameBg[x - 2, y - 2].ToString() == "\0")
+                    if (gameBg[x, y].ToString() == "X" && gameBg[x - 1, y - 1].ToString() == "O" && gameBg[x - 2, y - 2].ToString() == "\0" || gameBg[x, y].ToString() == "X" && gameBg[x - 1, y - 1].ToString() == "O" && gameBg[x - 2, y - 2].ToString() == "X")
                     {
                         Console.WriteLine("{0}{1} TO {2}{3}", revert[x].ToUpper(), y - 1, revert[x - 1].ToUpper(), y - 2);
                         mustPickRowAndCol.Add(revert[x] + y.ToString());
@@ -118,7 +120,7 @@ namespace CheckersDA.MoveMechs
                         mustMoveRowAndCol.Add(revert[x - 1] + temp.ToString());
                     }
                     //checks right
-                    else if (gameBg[x, y].ToString() == "X" && gameBg[x - 1, y + 1].ToString() == "O" && gameBg[x - 2, y + 2].ToString() == "\0")
+                    else if (gameBg[x, y].ToString() == "X" && gameBg[x - 1, y + 1].ToString() == "O" && gameBg[x - 2, y + 2].ToString() == "\0" || gameBg[x, y].ToString() == "X" && gameBg[x - 1, y + 1].ToString() == "O" && gameBg[x - 2, y + 2].ToString() == "X")
                     {
                         Console.WriteLine("{0}{1} TO {2}{3}", revert[x].ToUpper(), y - 1, revert[x - 1].ToUpper(), y);
                         mustPickRowAndCol.Add(revert[x] + y.ToString());
@@ -133,6 +135,8 @@ namespace CheckersDA.MoveMechs
             {
                 CreateRevert();
             }
+            mustPickRowAndCol.Clear();
+            mustMoveRowAndCol.Clear();
             //checkers on map
             for (int x = 2; x <= 9; x++)
             {
@@ -150,10 +154,10 @@ namespace CheckersDA.MoveMechs
                     else if (gameBg[x, y].ToString() == "O" && gameBg[x + 1, y + 1].ToString() == "X" && gameBg[x + 2, y + 2].ToString() == "\0")
                     {
                         Console.WriteLine("{0}{1} TO {2}{3}", revert[x].ToUpper(), y - 1, revert[x + 1].ToUpper(), y);
-                        int temp = y;
-                        temp++;
+                        int temp = y - 1;
                         mustPickRowAndCol.Add(revert[x] + temp.ToString());
-                        mustMoveRowAndCol.Add(revert[x] + temp.ToString());
+                        temp = +3;
+                        mustMoveRowAndCol.Add(revert[x + 1] + temp.ToString());
                     }
                 }
             }

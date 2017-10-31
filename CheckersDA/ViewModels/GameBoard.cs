@@ -15,6 +15,7 @@ namespace CheckersDA.ViewModels
         IsInputValid valid = new IsInputValid();
         CollisionDect detection = new CollisionDect();
         ForceMove forceMoves = new ForceMove();
+        UndoMove undo = new UndoMove();
 
         private char pickRow;
         private char pickCol;
@@ -90,8 +91,6 @@ namespace CheckersDA.ViewModels
 
         public void Draw(char[,] gameBg, PlayerOne playerOne, PlayerTwo playerTwo)
         {
-
-            Console.WriteLine("{0}: it's your move first", playerOne.PlayerName);
             //creates a while loop that draws the board until the win condition is met. it then takes user input to passes it to IsInputValid then CollisionDect if the input is valid passes move to next player 
             while (!win)
             {
@@ -128,9 +127,16 @@ namespace CheckersDA.ViewModels
                     Console.WriteLine("                     1           2           3           4           5           6           7          8");
                     valid.PickIsValid = false;
                     valid.MoveIsValid = false;
-
-                    //checks if any force move are present                    
                     forceMoves.ForceJumpUp(gameBg);
+                    if (detection.checkerTaken == true && forceMoves.MustMoveRowAndCol.Count == 0 || detection.checkerTaken == true && forceMoves.MustPickRowAndCol.Count == 0)
+                    {
+                        if (playerOne.IsItMyTurn == true)
+                        {
+                            playerOne.YourTurn();
+                            playerTwo.MyTurn();
+                            Draw(gameBg, playerOne, playerTwo);
+                        }
+                    }
                     Console.WriteLine("\n\n{0} Enter the Row of the Checker you want to Move", playerOne.PlayerName.ToUpper());
                     pickRow = Console.ReadKey().KeyChar;
                     Console.WriteLine("\nEnter the Column of the Checker you want to Move");
@@ -247,9 +253,19 @@ namespace CheckersDA.ViewModels
                     Console.WriteLine("                     1           2           3           4           5           6           7          8");
                     valid.PickIsValid = false;
                     valid.MoveIsValid = false;
-
-                    //checks if any force move are present                    
                     forceMoves.ForceJumpDown(gameBg);
+                    if (detection.checkerTaken == true && forceMoves.MustMoveRowAndCol.Count == 0 || detection.checkerTaken == true && forceMoves.MustPickRowAndCol.Count == 0)
+                    {
+                        if (detection.checkerTaken == false)
+                        {
+                            if (playerTwo.IsItMyTurn == true)
+                            {
+                                playerTwo.YourTurn();
+                                playerOne.MyTurn();
+                            }
+
+                        }
+                    }
                     Console.WriteLine("\n\n{0} Enter the Row of the Checker you want to Move", playerTwo.PlayerName.ToUpper());
                     pickRow = Console.ReadKey().KeyChar;
                     Console.WriteLine("\nEnter the Column of the Checker you want to Move");
@@ -270,6 +286,7 @@ namespace CheckersDA.ViewModels
                                 Console.WriteLine("\nEnter the Column you want to move to", playerTwo.PlayerName);
                                 moveCol = Console.ReadKey().KeyChar;
                                 valid.IsItValidSecondMove(moveRow, moveCol, valid.PickIsValid);
+
                             }
                             else
                             {
@@ -299,9 +316,9 @@ namespace CheckersDA.ViewModels
                         if (forceMoves.MustMoveRowAndCol.Count > 0)
                         {
                             int convertedMoveCol = Convert.ToInt16(moveCol.ToString());
-                            convertedMoveCol++;
 
-                            if (forceMoves.MustMoveRowAndCol.Contains(PickRow.ToString() + convertedMoveCol.ToString()) == true)
+
+                            if (forceMoves.MustMoveRowAndCol.Contains(moveRow.ToString() + convertedMoveCol.ToString()) == true)
                             {
                                 Console.WriteLine("\n\nyou have elected to move\n    {0}{1}  To  {2}{3}", pickRow.ToString().ToUpper(), pickCol, moveRow.ToString().ToUpper(), moveCol);
                                 Console.ReadKey();
@@ -327,11 +344,16 @@ namespace CheckersDA.ViewModels
                     }
                     if (detection.moveComplete == true)
                     {
-                        if (playerTwo.IsItMyTurn == true)
+                        if (detection.checkerTaken == false)
                         {
-                            playerTwo.YourTurn();
-                            playerOne.MyTurn();
+                            if (playerTwo.IsItMyTurn == true)
+                            {
+                                playerTwo.YourTurn();
+                                playerOne.MyTurn();
+                            }
+
                         }
+
                     }
 
 
