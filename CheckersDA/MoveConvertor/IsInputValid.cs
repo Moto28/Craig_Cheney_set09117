@@ -11,6 +11,7 @@ namespace CheckersDA.MoveConvertor
     class IsInputValid
     {
         ForceMove forceMove = new ForceMove();
+        CollisionDect collisionDect = new CollisionDect();
         private Dictionary<string, int> convertor = new Dictionary<string, int>();
         private int convRow;
         private int convCol;

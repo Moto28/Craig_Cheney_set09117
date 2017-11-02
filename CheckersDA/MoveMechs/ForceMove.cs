@@ -119,8 +119,9 @@ namespace CheckersDA.MoveMechs
                     if (gameBg[x, y].ToString() == "O" && gameBg[x + 1, y - 1].ToString() == "X" && gameBg[x + 2, y - 2].ToString() == "\0")
                     {
                         Console.WriteLine("{0}{1} TO {2}{3}", revert[x].ToUpper(), y - 1, revert[x + 1].ToUpper(), y - 2);
-                        int temp = y - 3;
+                        int temp = y - 1;
                         mustPickRowAndCol.Add(revert[x] + temp.ToString());
+                        temp = temp - 1;
                         mustMoveRowAndCol.Add(revert[x + 1] + temp.ToString());
                     }
                     //checks for a checker on the left side
