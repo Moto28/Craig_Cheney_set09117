@@ -11,18 +11,13 @@ namespace CheckersDA.MoveMechs
         private List<string> mustPickRowAndCol = new List<string>();
         private List<string> mustMoveRowAndCol = new List<string>();
         private Dictionary<int, string> revert = new Dictionary<int, string>();
-        private int tempRow;
-        private int tempCol;
-        int counter = 0;
-        public bool forceMove;
+
 
         public ForceMove()
         {
             mustPickRowAndCol = MustPickRowAndCol;
             mustMoveRowAndCol = MustMoveRowAndCol;
             revert = Revert;
-            tempRow = TempRow;
-            tempCol = TempCol;
         }
 
         public List<string> MustPickRowAndCol
@@ -60,28 +55,6 @@ namespace CheckersDA.MoveMechs
             }
 
         }
-        public int TempRow
-        {
-            get
-            {
-                return tempRow;
-            }
-            set
-            {
-                tempRow = value;
-            }
-        }
-        public int TempCol
-        {
-            get
-            {
-                return tempCol;
-            }
-            set
-            {
-                tempCol = value;
-            }
-        }
 
         public void CreateRevert()
         {
@@ -111,7 +84,7 @@ namespace CheckersDA.MoveMechs
                 for (int y = 2; y <= 9; y++)
                 {
                     //checks left
-                    if (gameBg[x, y].ToString() == "X" && gameBg[x - 1, y - 1].ToString() == "O" && gameBg[x - 2, y - 2].ToString() == "\0" || gameBg[x, y].ToString() == "X" && gameBg[x - 1, y - 1].ToString() == "O" && gameBg[x - 2, y - 2].ToString() == "X")
+                    if (gameBg[x, y].ToString() == "X" && gameBg[x - 1, y - 1].ToString() == "O" && gameBg[x - 2, y - 2].ToString() == "\0")
                     {
                         Console.WriteLine("{0}{1} TO {2}{3}", revert[x].ToUpper(), y - 1, revert[x - 1].ToUpper(), y - 2);
                         mustPickRowAndCol.Add(revert[x] + y.ToString());
@@ -120,7 +93,7 @@ namespace CheckersDA.MoveMechs
                         mustMoveRowAndCol.Add(revert[x - 1] + temp.ToString());
                     }
                     //checks right
-                    else if (gameBg[x, y].ToString() == "X" && gameBg[x - 1, y + 1].ToString() == "O" && gameBg[x - 2, y + 2].ToString() == "\0" || gameBg[x, y].ToString() == "X" && gameBg[x - 1, y + 1].ToString() == "O" && gameBg[x - 2, y + 2].ToString() == "X")
+                    else if (gameBg[x, y].ToString() == "X" && gameBg[x - 1, y + 1].ToString() == "O" && gameBg[x - 2, y + 2].ToString() == "\0")
                     {
                         Console.WriteLine("{0}{1} TO {2}{3}", revert[x].ToUpper(), y - 1, revert[x - 1].ToUpper(), y);
                         mustPickRowAndCol.Add(revert[x] + y.ToString());

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CheckersDA.MoveMechs;
 
 namespace CheckersDA
 {
@@ -14,7 +10,7 @@ namespace CheckersDA
         abstract public string GetPlayerChecker();
 
         //gets and store the players score
-        abstract public int GetPlayerScore();
+        abstract public int GetMoveScore(CollisionDect collisionDect);
 
         //gets and store the players score turn time
         abstract public int SetPlayerTimer();

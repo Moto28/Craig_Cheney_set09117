@@ -11,9 +11,49 @@ namespace CheckersDA.MoveMechs
     class CollisionDect
     {
 
-        string player;
-        public bool moveComplete;
-        public bool checkerTaken;
+        private string player;
+        private bool moveComplete;
+        private bool checkerTaken;
+        public CollisionDect()
+        {
+            player = Player;
+            moveComplete = MoveComplete;
+            checkerTaken = CheckerTaken;
+        }
+
+        public string Player
+        {
+            get
+            {
+                return player;
+            }
+            set
+            {
+                player = value;
+            }
+        }
+        public bool MoveComplete
+        {
+            get
+            {
+                return moveComplete;
+            }
+            set
+            {
+                moveComplete = value;
+            }
+        }
+        public bool CheckerTaken
+        {
+            get
+            {
+                return checkerTaken;
+            }
+            set
+            {
+                checkerTaken = value;
+            }
+        }
 
 
         public void CheckAndUpdate(char[,] gameBg, int row, int col, int moveRow, int moveCol, PlayerOne playerOne, PlayerTwo playerTwo)
@@ -25,7 +65,7 @@ namespace CheckersDA.MoveMechs
 
             if (playerOne.PlayerChecker == "X" && playerOne.IsItMyTurn == true)
             {
-
+                //checks if the player has selected the wrong checker
                 if (gameBg[row, col].ToString() == "O")
                 {
                     Console.WriteLine("you can only move your assigned checker e.g. Player one can only move X's on the board");
@@ -36,6 +76,16 @@ namespace CheckersDA.MoveMechs
                 {
                     Console.WriteLine("\nSorry thats not a legal move press enter to try again");
                     Console.ReadKey();
+                }
+                if (moveRow == 2 && gameBg[moveRow, moveCol] == '\0' || moveRow == 9 && gameBg[moveRow, moveCol] == '\0')
+                {
+                    gameBg[moveRow, moveCol] = 'K';
+                    WriteFullLinePlayerOne('K'.ToString());
+                }
+                else if (moveRow == 9 && gameBg[moveRow, moveCol] == '\0' || moveRow == 9 && gameBg[moveRow, moveCol] == '\0')
+                {
+                    gameBg[moveRow, moveCol] = 'K';
+                    WriteFullLinePlayerOne('K'.ToString());
                 }
                 //checks if the selected row is less than moveRow as the checker can only move one row at a time and the move is not backwards
                 if (row - moveRow == 1 && row > moveRow)
@@ -49,7 +99,6 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow - 1, moveCol - 1] = Convert.ToChar(player);
                         checkerTaken = true;
                         playerOne.GetPlayerTurnCount();
-
 
                     }
                     // checks if move is right
@@ -148,6 +197,31 @@ namespace CheckersDA.MoveMechs
             {
                 Console.WriteLine("\n you must select a tile with an X for player 1 and O for player 2");
             }
+        }
+
+        public void WriteFullLinePlayerOne(string value)
+        {
+            //
+            // This method writes an entire line to the console with the string.
+            //           
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine(value.PadRight(Console.WindowWidth - 1)); // <-- see note
+                                                                        //
+                                                                        // Reset the color.
+                                                                        //
+            Console.ResetColor();
+        }
+        public void WriteFullLinePlayerTwo(string value)
+        {
+            //
+            // This method writes an entire line to the console with the string.
+            //          
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(value.PadRight(Console.WindowWidth - 1)); // <-- see note
+                                                                        //
+                                                                        // Reset the color.
+                                                                        //
+            Console.ResetColor();
         }
     }
 }

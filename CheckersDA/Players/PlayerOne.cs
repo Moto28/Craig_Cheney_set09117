@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CheckersDA.MoveMechs;
 
 namespace CheckersDA.Players
 {
@@ -119,13 +116,26 @@ namespace CheckersDA.Players
             return playerChecker;
         }
         //gets and store the players score
-        override public int GetPlayerScore()
+        override public int GetMoveScore(CollisionDect collisionDect)
         {
+            while (isItMyTurn == true)
+            {
+                for (int score = 60; score >= 0; score--)
+                {
+                    System.Threading.Thread.Sleep(1000);
+                    if (collisionDect.MoveComplete == true)
+                    {
+                        score = playerScore;
+                    }
+                }
+            }
+
             return playerScore;
         }
         //gets and store the players score turn time
         override public int SetPlayerTimer()
         {
+
             return playerTimer;
         }
         //gets and store the players when its the players turn
@@ -145,6 +155,5 @@ namespace CheckersDA.Players
             isItMyTurn = false;
             return isItMyTurn;
         }
-
     }
 }
