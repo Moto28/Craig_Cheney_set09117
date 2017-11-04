@@ -56,63 +56,66 @@ namespace CheckersDA.MoveMechs
         }
 
 
-        public void CheckAndUpdate(char[,] gameBg, int row, int col, int moveRow, int moveCol, PlayerOne playerOne, PlayerTwo playerTwo)
+        public void CheckAndUpdate(string[,] gameBg, int row, int col, int moveRow, int moveCol, PlayerOne playerOne, PlayerTwo playerTwo)
         {
             //resets move complete when method is restarted
             moveComplete = false;
             //take row and col passed in to check corrisponding location in array and sets the player as that location in array 
-            player = gameBg[row, col].ToString();
-
-            if (playerOne.PlayerChecker == "X" && playerOne.IsItMyTurn == true)
+            player = gameBg[row, col];
+            //**************Player One Movement**************
+            if (player == "X " && playerOne.IsItMyTurn == true)
             {
                 //checks if the player has selected the wrong checker
-                if (gameBg[row, col].ToString() == "O")
+                if (gameBg[row, col] == "O " | gameBg[row, col] == "kO")
                 {
-                    Console.WriteLine("you can only move your assigned checker e.g. Player one can only move X's on the board");
+                    Console.WriteLine("you can only move your assigned checker e.g. Player one can only move X's or kX on the board");
                     Console.ReadKey();
                 }
                 //checks if the selected row and col in array is not the same and the move row and col and if the array has a N stored at that location
-                if (gameBg[row, col].ToString() == player && gameBg[moveRow, moveCol].ToString() == player | gameBg[moveRow, moveCol] == ' ')
+                if (gameBg[row, col] == player && gameBg[moveRow, moveCol] == player || gameBg[row, col] == player && gameBg[moveRow, moveCol] == "N")
                 {
                     Console.WriteLine("\nSorry thats not a legal move press enter to try again");
                     Console.ReadKey();
                 }
-                //if (moveRow == 2 && gameBg[moveRow, moveCol] == '\0' || moveRow == 9 && gameBg[moveRow, moveCol] == '\0')
-                //{
-                //    gameBg[moveRow, moveCol] = 'K';                  
-                //}
-                //else if (moveRow == 9 && gameBg[moveRow, moveCol] == '\0' || moveRow == 9 && gameBg[moveRow, moveCol] == '\0')
-                //{
-                //    gameBg[moveRow, moveCol] = 'K';
-                //}
                 //checks if the selected row is less than moveRow as the checker can only move one row at a time and the move is not backwards
                 if (row - moveRow == 1 && row > moveRow)
                 {
+
                     //checks if move is left
-                    if (moveCol < col && gameBg[row, col].ToString() == player && gameBg[moveRow, moveCol].ToString() == "O" && gameBg[moveRow - 1, moveCol - 1].ToString() != "O")
+                    if (moveCol < col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "O " && gameBg[moveRow - 1, moveCol - 1] != "O ")
                     {
 
-                        gameBg[row, col] = '\0';
-                        gameBg[moveRow, moveCol] = '\0';
-                        gameBg[moveRow - 1, moveCol - 1] = Convert.ToChar(player);
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow - 1, moveCol - 1] = player;
                         checkerTaken = true;
                         playerOne.GetPlayerTurnCount();
 
                     }
-                    // checks if move is right
-                    else if (moveCol > col && gameBg[row, col].ToString() == player && gameBg[moveRow, moveCol].ToString() == "O" && gameBg[moveRow - 1, moveCol + 1].ToString() != "O")
+                    else if (moveRow == 2 && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "\0 ")
                     {
-                        gameBg[row, col] = '\0';
-                        gameBg[moveRow, moveCol] = '\0';
-                        gameBg[moveRow - 1, moveCol + 1] = Convert.ToChar(player);
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "kX";
+
+                    }
+                    else if (moveRow == 9 && gameBg[moveRow, moveCol] == "\0 " || moveRow == 9 && gameBg[moveRow, moveCol] == "\0 ")
+                    {
+                        gameBg[moveRow, moveCol] = "kO";
+                    }
+                    // checks if move is right
+                    else if (moveCol > col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "O " && gameBg[moveRow - 1, moveCol + 1] != "O ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow - 1, moveCol + 1] = player;
                         checkerTaken = true;
                         playerOne.GetPlayerTurnCount();
                     }
                     // checks if the postion the player is moving to is a null character in the array
-                    else if (gameBg[row, col].ToString() == player && gameBg[moveRow, moveCol].ToString() == "\0")
+                    else if (gameBg[row, col] == player && gameBg[moveRow, moveCol] == "\0 ")
                     {
-                        gameBg[row, col] = '\0';
-                        gameBg[moveRow, moveCol] = Convert.ToChar(player);
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = player;
                         moveComplete = true;
                         checkerTaken = false;
                         playerOne.GetPlayerTurnCount();
@@ -132,16 +135,17 @@ namespace CheckersDA.MoveMechs
                 }
 
             }
-            else if (playerTwo.PlayerChecker == "O" && playerTwo.IsItMyTurn == true)
+            //**************Player Two Movement**************
+            else if (player == "O " && playerTwo.IsItMyTurn == true)
             {
-                if (player == "X")
+                if (player == "X ")
                 {
                     Console.WriteLine("you can only move your assigned checker e.g. Player two can only move O's on the board");
                     Console.ReadKey();
 
                 }
                 //checks if the selected row and col in array is not the same and the move row and col and if the array has a N stored at that location
-                if (gameBg[row, col].ToString() == player && gameBg[moveRow, moveCol].ToString() == player | gameBg[moveRow, moveCol] == 'N')
+                if (gameBg[row, col] == player && gameBg[moveRow, moveCol] == player | gameBg[moveRow, moveCol] == "N")
                 {
                     Console.WriteLine("\nSorry thats not a legal move press enter to try again");
                     Console.ReadKey();
@@ -151,30 +155,30 @@ namespace CheckersDA.MoveMechs
                 if (moveRow - row == 1 && row < moveRow)
                 {
                     //checks if move is left
-                    if (moveCol < col && gameBg[row, col].ToString() == player && gameBg[moveRow, moveCol].ToString() == "X" && gameBg[moveRow + 1, moveCol - 1].ToString() != "X")
+                    if (moveCol < col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "X " && gameBg[moveRow + 1, moveCol - 1] != "X ")
                     {
-                        gameBg[row, col] = '\0';
-                        gameBg[moveRow, moveCol] = '\0';
-                        gameBg[moveRow + 1, moveCol - 1] = Convert.ToChar(player);
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow + 1, moveCol - 1] = player;
                         moveComplete = false;
                         checkerTaken = true;
                         playerTwo.GetPlayerTurnCount();
                     }
                     // checks if move is right
-                    else if (moveCol > col && gameBg[row, col].ToString() == player && gameBg[moveRow, moveCol].ToString() == "X" && gameBg[moveRow + 1, moveCol + 1].ToString() != "X")
+                    else if (moveCol > col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "X " && gameBg[moveRow + 1, moveCol + 1] != "X ")
                     {
-                        gameBg[row, col] = '\0';
-                        gameBg[moveRow, moveCol] = '\0';
-                        gameBg[moveRow + 1, moveCol + 1] = Convert.ToChar(player);
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow + 1, moveCol + 1] = player;
                         moveComplete = false;
                         checkerTaken = true;
                         playerTwo.GetPlayerTurnCount();
                     }
                     // checks if the postion the player is moving to is a null character in the array
-                    else if (gameBg[row, col].ToString() == player && gameBg[moveRow, moveCol].ToString() == "\0")
+                    else if (gameBg[row, col] == player && gameBg[moveRow, moveCol] == "\0 ")
                     {
-                        gameBg[row, col] = '\0';
-                        gameBg[moveRow, moveCol] = Convert.ToChar(player);
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = player;
                         moveComplete = true;
                         checkerTaken = false;
                         playerTwo.GetPlayerTurnCount();
@@ -192,9 +196,239 @@ namespace CheckersDA.MoveMechs
                     Console.ReadKey();
                 }
             }
-            else
+            //**************Player One King Movement**************
+            else if (player == "kX" && playerOne.IsItMyTurn == true)
             {
-                Console.WriteLine("\n you must select a tile with an X for player 1 and O for player 2");
+                //checks if the player has selected the wrong checker
+                if (gameBg[row, col] == "O " | gameBg[row, col] == "kO")
+                {
+                    Console.WriteLine("you can only move your assigned checker e.g. Player one can only move X's or kX on the board");
+                    Console.ReadKey();
+                }
+                //checks if the selected row and col in array is not the same and the move row and col and if the array has a N stored at that location
+                if (gameBg[row, col] == player && gameBg[moveRow, moveCol] == player || gameBg[row, col] == player && gameBg[moveRow, moveCol] == "N")
+                {
+                    Console.WriteLine("\nSorry thats not a legal move press enter to try again");
+                    Console.ReadKey();
+                }
+                //checks if the checker is moving down the board 
+                if (moveRow - row == 1)
+                {
+                    //checks if move is left
+                    if (moveCol < col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "O " && gameBg[moveRow - 1, moveCol - 1] != "O ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow + 1, moveCol - 1] = player;
+                        checkerTaken = true;
+                    }
+                    else if (moveCol < col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "kO" && gameBg[moveRow - 1, moveCol - 1] != "O ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow + 1, moveCol - 1] = player;
+                        checkerTaken = true;
+                    }
+                    else if (moveCol < col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "\0 ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow, moveCol] = player;
+                        checkerTaken = true;
+                    }
+                    //checks if move is right
+                    if (moveCol > col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "O " && gameBg[moveRow - 1, moveCol + 1] != "O ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow + 1, moveCol + 1] = player;
+                        checkerTaken = true;
+                    }
+                    else if (moveCol > col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "kO " && gameBg[moveRow - 1, moveCol + 1] != "O ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow + 1, moveCol + 1] = player;
+                        checkerTaken = true;
+                    }
+                    else if (moveCol > col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "\0 ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow, moveCol] = player;
+                        checkerTaken = true;
+                    }
+
+                }
+                //checks if the checker is moving down the board 
+                else if (row - moveRow == 1)
+                {
+                    //checks if move is left
+                    if (moveCol < col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "O " && gameBg[moveRow + 1, moveCol - 1] != "O ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow + 1, moveCol - 1] = player;
+                        moveComplete = false;
+                        checkerTaken = true;
+                    }
+                    else if (moveCol < col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "kO" && gameBg[moveRow + 1, moveCol - 1] != "O ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow + 1, moveCol - 1] = player;
+                        moveComplete = false;
+                        checkerTaken = true;
+                    }
+                    else if (moveCol < col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "\0 ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow, moveCol] = player;
+                        checkerTaken = true;
+                    }
+                    //checks if move is right
+                    if (moveCol > col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "O " && gameBg[moveRow - 1, moveCol + 1] != "O ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow - 1, moveCol + 1] = player;
+                        checkerTaken = true;
+                    }
+                    else if (moveCol > col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "kO " && gameBg[moveRow - 1, moveCol + 1] != "O ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow - 1, moveCol + 1] = player;
+                        checkerTaken = true;
+                    }
+                    else if (moveCol > col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "\0 ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow, moveCol] = player;
+                        checkerTaken = true;
+                    }
+                }
+            }
+            //**************Player Two King Movement***************
+            else if (player == "kO" && playerTwo.IsItMyTurn == true)
+            {
+                //checks if the player has selected the wrong checker
+                if (gameBg[row, col] == "X " | gameBg[row, col] == "kX")
+                {
+                    Console.WriteLine("you can only move your assigned checker e.g. Player one can only move X's or kX on the board");
+                    Console.ReadKey();
+                }
+                //checks if the selected row and col in array is not the same and the move row and col and if the array has a N stored at that location
+                if (gameBg[row, col] == player && gameBg[moveRow, moveCol] == player || gameBg[row, col] == player && gameBg[moveRow, moveCol] == "N")
+                {
+                    Console.WriteLine("\nSorry thats not a legal move press enter to try again");
+                    Console.ReadKey();
+                }
+                //checks if the checker is moving down the board 
+                if (moveRow - row == 1)
+                {
+                    //checks if move is left
+                    if (moveCol < col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "X " && gameBg[moveRow - 1, moveCol - 1] != "X ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow + 1, moveCol - 1] = player;
+                        checkerTaken = true;
+                    }
+                    else if (moveCol < col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "kX" && gameBg[moveRow - 1, moveCol - 1] != "O ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow + 1, moveCol - 1] = player;
+                        checkerTaken = true;
+                    }
+                    else if (moveCol < col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "\0 ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow, moveCol] = player;
+                        checkerTaken = true;
+                    }
+                    //checks if move is right
+                    if (moveCol > col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "X " && gameBg[moveRow - 1, moveCol + 1] != "X ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow + 1, moveCol + 1] = player;
+                        checkerTaken = true;
+                    }
+                    else if (moveCol > col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "kX " && gameBg[moveRow - 1, moveCol + 1] != "X ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow + 1, moveCol + 1] = player;
+                        checkerTaken = true;
+                    }
+                    else if (moveCol > col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "\0 ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow, moveCol] = player;
+                        checkerTaken = true;
+                    }
+
+                }
+                //checks if the checker is moving down the board 
+                else if (row - moveRow == 1)
+                {
+                    //checks if move is left
+                    if (moveCol < col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "X " && gameBg[moveRow + 1, moveCol - 1] != "X ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow - 1, moveCol - 1] = player;
+                        moveComplete = false;
+                        checkerTaken = true;
+                    }
+                    else if (moveCol < col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "kX" && gameBg[moveRow + 1, moveCol - 1] != "X ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow - 1, moveCol - 1] = player;
+                        moveComplete = false;
+                        checkerTaken = true;
+                    }
+                    else if (moveCol < col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "\0 ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow, moveCol] = player;
+                        checkerTaken = true;
+                    }
+                    //checks if move is right
+                    if (moveCol > col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "X " && gameBg[moveRow - 1, moveCol + 1] != "X ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow - 1, moveCol + 1] = player;
+                        checkerTaken = true;
+                    }
+                    else if (moveCol > col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "kX " && gameBg[moveRow - 1, moveCol + 1] != "X ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow - 1, moveCol + 1] = player;
+                        checkerTaken = true;
+                    }
+                    else if (moveCol > col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "\0 ")
+                    {
+                        gameBg[row, col] = "\0 ";
+                        gameBg[moveRow, moveCol] = "\0 ";
+                        gameBg[moveRow, moveCol] = player;
+                        checkerTaken = true;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("\n you must select a tile with an X for player 1 and O for player 2");
+                }
             }
         }
     }

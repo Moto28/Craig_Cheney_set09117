@@ -13,7 +13,7 @@ namespace CheckersDA
 {
     class Program
     {
-        static char[,] gameBg = new char[12, 12];
+        static string[,] gameBg = new string[12, 12];
         static bool win;
         static char pickRow;
         static char pickCol;
@@ -33,9 +33,6 @@ namespace CheckersDA
             PlayerTwo playerTwo = new PlayerTwo();
 
             Console.Title = "Checkers";
-
-
-
 
             switch (menu.SwitchMenuSel)
             {
@@ -69,11 +66,15 @@ namespace CheckersDA
                     Console.WriteLine("                                                    you have chosen to quit");
                     Environment.Exit(0);
                     break;
+                default:
+                    Console.WriteLine("invalid menu selection");
+                    break;
             }
 
             //creates a while loop that draws the board until the win condition is met. it then takes user input to passes it to IsInputValid then CollisionDect if the input is valid passes move to next player 
             while (!win)
             {
+
                 game.Draw(gameBg, playerOne, playerTwo);
 
                 if (playerOne.IsItMyTurn == true)
@@ -82,16 +83,14 @@ namespace CheckersDA
                     valid.MoveIsValid = false;
                     move.ForceJumpUp(gameBg);
                     playerOne.SetPlayerTimer();
+
                     if (detection.CheckerTaken == true && move.MustMoveRowAndCol.Count == 0 || detection.CheckerTaken == true && move.MustPickRowAndCol.Count == 0)
                     {
-                        if (playerOne.IsItMyTurn == true)
-                        {
-                            detection.MoveComplete = true;
-                            detection.CheckerTaken = false;
-                            playerOne.YourTurn();
-                            playerTwo.MyTurn();
-                            game.Draw(gameBg, playerOne, playerTwo);
-                        }
+                        detection.MoveComplete = true;
+                        detection.CheckerTaken = false;
+                        playerOne.YourTurn();
+                        playerTwo.MyTurn();
+                        game.Draw(gameBg, playerOne, playerTwo);
                     }
                     else
                     {
@@ -144,7 +143,6 @@ namespace CheckersDA
                         if (move.MustMoveRowAndCol.Count > 0)
                         {
                             int convertedMoveCol = Convert.ToInt16(moveCol.ToString());
-
 
                             if (move.MustMoveRowAndCol.Contains(moveRow.ToString() + convertedMoveCol.ToString()) == true)
                             {

@@ -186,7 +186,7 @@ namespace CheckersDA.MoveConvertor
 
 
 
-        public void IsItValidFirstMove(char[,] gameBg, char row, char col, PlayerOne playerOne, PlayerTwo playerTwo)
+        public void IsItValidFirstMove(string[,] gameBg, char row, char col, PlayerOne playerOne, PlayerTwo playerTwo)
         {
             if (convertor.Count == 0)
             {

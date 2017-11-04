@@ -8,6 +8,7 @@ namespace CheckersDA.Players
         // creates varibles and makes them private
         private string playerName;
         private string playerChecker;
+        private int playerCheckerCount = 0;
         private int playerScore;
         private int playerTimer;
         private int playerTurnCount;
@@ -19,6 +20,7 @@ namespace CheckersDA.Players
             //creates refrences to private varibales to allow access outside class
             playerName = PlayerName;
             playerChecker = PlayerChecker;
+            playerCheckerCount = PlayerCheckerCount;
             playerScore = PlayerScore;
             playerTimer = PlayerTimer;
             playerTurnCount = PlayerTurnCount;
@@ -40,12 +42,24 @@ namespace CheckersDA.Players
         {
             get
             {
-                playerChecker = "X";
+                playerChecker = "X ";
                 return playerChecker;
             }
             set
             {
                 playerChecker = value;
+            }
+        }
+        public int PlayerCheckerCount
+        {
+            get
+            {
+
+                return playerCheckerCount;
+            }
+            set
+            {
+                playerCheckerCount = value;
             }
         }
         public int PlayerScore
@@ -100,7 +114,7 @@ namespace CheckersDA.Players
         {
             Console.WriteLine("\nPLAYER ONE ENTER YOUR NAME");
             playerName = Console.ReadLine();
-            if (playerName.Length <= 4)
+            if (playerName.Length <= 3)
             {
                 Console.WriteLine("\nyour name must be more than 3 characters");
                 GetPlayerName();
@@ -154,6 +168,19 @@ namespace CheckersDA.Players
         {
             isItMyTurn = false;
             return isItMyTurn;
+        }
+
+        public override int GetPlayerCheckerCount(char[,] gameBg)
+        {
+            foreach (char item in gameBg)
+            {
+                if (item.ToString() == "X")
+                {
+                    playerCheckerCount++;
+                    Console.WriteLine("{0}{1}", item.ToString(), PlayerCheckerCount);
+                }
+            }
+            return playerCheckerCount;
         }
     }
 }

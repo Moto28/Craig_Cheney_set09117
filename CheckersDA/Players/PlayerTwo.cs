@@ -8,6 +8,7 @@ namespace CheckersDA.Players
         // creates varibles and makes them private
         private string playerName;
         private string playerChecker;
+        private int playerCheckerCount;
         private int playerScore;
         private int playerTimer;
         private int playerTurnCount;
@@ -19,6 +20,7 @@ namespace CheckersDA.Players
             //creates refrences to private vairbales to allow access outside class
             playerName = PlayerName;
             playerChecker = PlayerChecker;
+            playerCheckerCount = PlayerCheckerCount;
             playerScore = PlayerScore;
             playerTimer = PlayerTimer;
             playerTurnCount = PlayerTurnCount;
@@ -40,12 +42,24 @@ namespace CheckersDA.Players
         {
             get
             {
-                playerChecker = "O";
+                playerChecker = "O ";
                 return playerChecker;
             }
             set
             {
                 playerChecker = value;
+            }
+        }
+        public int PlayerCheckerCount
+        {
+            get
+            {
+
+                return playerCheckerCount;
+            }
+            set
+            {
+                playerCheckerCount = value;
             }
         }
         public int PlayerScore
@@ -99,7 +113,7 @@ namespace CheckersDA.Players
         {
             Console.WriteLine("\nPLAYER TWO ENTER YOUR NAME");
             playerName = Console.ReadLine();
-            if (playerName.Length <= 4)
+            if (playerName.Length <= 3)
             {
                 Console.WriteLine("\nyour name must be more than 3 characters, try again");
                 GetPlayerName();
@@ -149,6 +163,19 @@ namespace CheckersDA.Players
         {
             isItMyTurn = false;
             return isItMyTurn;
+        }
+
+        public override int GetPlayerCheckerCount(char[,] gameBg)
+        {
+            foreach (var item in gameBg)
+            {
+                if (item.ToString() == "X")
+                {
+                    PlayerCheckerCount++;
+                }
+
+            }
+            return PlayerCheckerCount;
         }
     }
 }
