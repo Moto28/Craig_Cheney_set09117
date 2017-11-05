@@ -158,7 +158,6 @@ namespace CheckersDA.Players
             playerTurnCount++;
             return playerTurnCount;
         }
-
         public override bool MyTurn()
         {
             isItMyTurn = true;

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CheckersDA.ViewModels;
 using CheckersDA.MoveMechs;
 using CheckersDA.MoveConvertor;
@@ -13,7 +9,7 @@ namespace CheckersDA
 {
     class Program
     {
-        static string[,] gameBg = new string[12, 12];
+        static string[,] gameBg = new string[14, 14];
         static bool win;
         static char pickRow;
         static char pickCol;
@@ -74,7 +70,6 @@ namespace CheckersDA
             //creates a while loop that draws the board until the win condition is met. it then takes user input to passes it to IsInputValid then CollisionDect if the input is valid passes move to next player 
             while (!win)
             {
-
                 game.Draw(gameBg, playerOne, playerTwo);
 
                 if (playerOne.IsItMyTurn == true)
@@ -84,9 +79,8 @@ namespace CheckersDA
                     move.ForceJumpUp(gameBg);
                     playerOne.SetPlayerTimer();
 
-                    if (detection.CheckerTaken == true && move.MustMoveRowAndCol.Count == 0 || detection.CheckerTaken == true && move.MustPickRowAndCol.Count == 0)
+                    if (detection.CheckerTaken == true && detection.AnotherMove == false || detection.MoveComplete == true && detection.AnotherMove == false)
                     {
-                        detection.MoveComplete = true;
                         detection.CheckerTaken = false;
                         playerOne.YourTurn();
                         playerTwo.MyTurn();
@@ -108,7 +102,6 @@ namespace CheckersDA
                         if (move.MustPickRowAndCol.Count > 0)
                         {
                             int convertedPickCol = Convert.ToInt16(pickCol.ToString());
-                            convertedPickCol++;
 
                             if (move.MustPickRowAndCol.Contains(pickRow.ToString() + convertedPickCol.ToString()) == true)
                             {
@@ -168,33 +161,21 @@ namespace CheckersDA
                     {
                         detection.MoveComplete = false;
                     }
-                    if (detection.MoveComplete == true)
-                    {
-                        if (playerOne.IsItMyTurn == true)
-                        {
-                            playerOne.YourTurn();
-                            playerTwo.MyTurn();
-                        }
-                    }
-
                 }
-                //player two turn logic**********************************************************************************************************
-                else if (playerTwo.IsItMyTurn == true)
+                //*******************************************************************************************************************************
+                if (playerTwo.IsItMyTurn == true)
                 {
                     valid.PickIsValid = false;
                     valid.MoveIsValid = false;
-                    game.Draw(gameBg, playerOne, playerTwo);
                     move.ForceJumpDown(gameBg);
-                    if (detection.CheckerTaken == true && move.MustMoveRowAndCol.Count == 0 || detection.CheckerTaken == true && move.MustPickRowAndCol.Count == 0)
+                    playerOne.SetPlayerTimer();
+
+                    if (detection.CheckerTaken == true && detection.AnotherMove == false || detection.MoveComplete == true && detection.AnotherMove == false)
                     {
-                        if (playerTwo.IsItMyTurn == true)
-                        {
-                            detection.MoveComplete = true;
-                            detection.CheckerTaken = false;
-                            playerOne.YourTurn();
-                            playerTwo.MyTurn();
-                            game.Draw(gameBg, playerOne, playerTwo);
-                        }
+                        detection.CheckerTaken = false;
+                        playerTwo.YourTurn();
+                        playerOne.MyTurn();
+                        game.Draw(gameBg, playerOne, playerTwo);
                     }
                     else
                     {
@@ -205,10 +186,10 @@ namespace CheckersDA
                         valid.IsItValidFirstMove(gameBg, pickRow, pickCol, playerOne, playerTwo);
                     }
 
-
-
                     if (valid.PickIsValid == true)
                     {
+                        detection.MoveComplete = false;
+
                         if (move.MustPickRowAndCol.Count > 0)
                         {
                             int convertedPickCol = Convert.ToInt16(pickCol.ToString());
@@ -220,13 +201,11 @@ namespace CheckersDA
                                 Console.WriteLine("\nEnter the Column you want to move to", playerTwo.PlayerName);
                                 moveCol = Console.ReadKey().KeyChar;
                                 valid.IsItValidSecondMove(moveRow, moveCol, valid.PickIsValid);
-
                             }
                             else
                             {
                                 Console.WriteLine("\nyou must must pick one of the moves in the list above");
                                 Console.ReadKey();
-                                detection.MoveComplete = false;
                             }
 
                         }
@@ -236,11 +215,12 @@ namespace CheckersDA
                             moveRow = Console.ReadKey().KeyChar;
                             Console.WriteLine("\nEnter the Column you want to move to", playerTwo.PlayerName);
                             moveCol = Console.ReadKey().KeyChar;
-                            detection.MoveComplete = false;
                             valid.IsItValidSecondMove(moveRow, moveCol, valid.PickIsValid);
-
                         }
-
+                    }
+                    else
+                    {
+                        detection.MoveComplete = false;
                     }
                     if (valid.MoveIsValid == true)
                     {
@@ -268,16 +248,9 @@ namespace CheckersDA
                             detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
                         }
                     }
-                    if (detection.MoveComplete == true)
+                    else
                     {
-                        if (detection.CheckerTaken == false)
-                        {
-                            if (playerTwo.IsItMyTurn == true)
-                            {
-                                playerTwo.YourTurn();
-                                playerOne.MyTurn();
-                            }
-                        }
+                        detection.MoveComplete = false;
                     }
                 }
             }
