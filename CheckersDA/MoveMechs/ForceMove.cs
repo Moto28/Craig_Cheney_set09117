@@ -31,7 +31,6 @@ namespace CheckersDA.MoveMechs
                 mustPickRowAndCol = value;
             }
         }
-
         public List<string> MustMoveRowAndCol
         {
             get
@@ -69,7 +68,6 @@ namespace CheckersDA.MoveMechs
 
         }
 
-
         public void ForceJumpUp(string[,] gameBg)
         {
             if (revert.Count == 0)
@@ -84,7 +82,7 @@ namespace CheckersDA.MoveMechs
                 for (int y = 2; y <= 9; y++)
                 {
                     //checks up an left
-                    if (gameBg[x, y] == "X " && gameBg[x - 1, y - 1] == "O " && gameBg[x - 2, y - 2] == "\0 " || gameBg[x, y] == "kX" && gameBg[x - 1, y - 1] == "O " && gameBg[x - 2, y - 2] == "\0 ")
+                    if ((gameBg[x, y] == "X " || gameBg[x, y] == "kX") && (gameBg[x - 1, y - 1] == "O " || gameBg[x - 1, y - 1] == "kO") && gameBg[x - 2, y - 2] == "\0 ")
                     {
                         Console.WriteLine("{0}{1} TO {2}{3}", revert[x].ToUpper(), y - 1, revert[x - 1].ToUpper(), y - 2);
                         int temp = y - 1;
@@ -93,7 +91,7 @@ namespace CheckersDA.MoveMechs
                         mustMoveRowAndCol.Add(revert[x - 1] + temp);
                     }
                     //checks up and right
-                    if (gameBg[x, y] == "X " && gameBg[x - 1, y + 1] == "O " && gameBg[x - 2, y + 2] == "\0 " || gameBg[x, y] == "kX" && gameBg[x - 1, y + 1] == "O " && gameBg[x - 2, y + 2] == "\0 ")
+                    if ((gameBg[x, y] == "X " || gameBg[x, y] == "kX") && (gameBg[x - 1, y + 1] == "O " || gameBg[x - 1, y - 1] == "kO") && gameBg[x - 2, y + 2] == "\0 ")
                     {
                         Console.WriteLine("{0}{1} TO {2}{3}", revert[x].ToUpper(), y - 1, revert[x - 1].ToUpper(), y);
                         int temp = y - 1;
@@ -101,7 +99,7 @@ namespace CheckersDA.MoveMechs
                         mustMoveRowAndCol.Add(revert[x - 1] + y);
                     }
                     //checks down and left
-                    if (gameBg[x, y] == "kX" && gameBg[x + 1, y - 1] == "O " && gameBg[x + 2, y - 2] == "\0 ")
+                    if (gameBg[x, y] == "kX" && (gameBg[x + 1, y - 1] == "O " || gameBg[x + 1, y - 1] == "kO ") && gameBg[x + 2, y - 2] == "\0 ")
                     {
                         Console.WriteLine("{0}{1} TO {2}{3}", revert[x].ToUpper(), y - 1, revert[x + 1].ToUpper(), y - 2);
                         int temp = y - 1;
@@ -110,7 +108,7 @@ namespace CheckersDA.MoveMechs
                         mustMoveRowAndCol.Add(revert[x + 1] + temp);
                     }
                     //checks down and right
-                    if (gameBg[x, y] == "kX" && gameBg[x + 1, y + 1] == "O " && gameBg[x + 2, y + 2] == "\0 ")
+                    if (gameBg[x, y] == "kX" && (gameBg[x + 1, y + 1] == "O " || gameBg[x + 1, y + 1] == "kO") && gameBg[x + 2, y + 2] == "\0 ")
                     {
                         Console.WriteLine("{0}{1} TO {2}{3}", revert[x].ToUpper(), y - 1, revert[x + 1].ToUpper(), y);
                         int temp = y - 1;
@@ -134,7 +132,7 @@ namespace CheckersDA.MoveMechs
                 for (int y = 2; y <= 9; y++)
                 {
                     //checks down and up 
-                    if (gameBg[x, y] == "O " && gameBg[x + 1, y - 1] == "X " && gameBg[x + 2, y - 2] == "\0 " || gameBg[x, y] == "kO" && gameBg[x + 1, y - 1] == "X " && gameBg[x + 2, y - 2] == "\0 ")
+                    if ((gameBg[x, y] == "O " || gameBg[x, y] == "kO") && (gameBg[x + 1, y - 1] == "X " || gameBg[x + 1, y - 1] == "kX") && gameBg[x + 2, y - 2] == "\0 ")
                     {
                         Console.WriteLine("{0}{1} TO {2}{3}", revert[x].ToUpper(), y - 1, revert[x + 1].ToUpper(), y - 2);
                         int temp = y - 1;
@@ -143,7 +141,7 @@ namespace CheckersDA.MoveMechs
                         mustMoveRowAndCol.Add(revert[x + 1] + temp);
                     }
                     //checks down and right 
-                    if (gameBg[x, y] == "O " && gameBg[x + 1, y + 1] == "X " && gameBg[x + 2, y + 2] == "\0 " || gameBg[x, y] == "kO" && gameBg[x + 1, y + 1] == "X " && gameBg[x + 2, y + 2] == "\0 ")
+                    if ((gameBg[x, y] == "O " || gameBg[x, y] == "kO") && (gameBg[x + 1, y + 1] == "X " || gameBg[x + 1, y + 1] == "kX") && gameBg[x + 2, y + 2] == "\0 ")
                     {
                         Console.WriteLine("{0}{1} TO {2}{3}", revert[x].ToUpper(), y - 1, revert[x + 1].ToUpper(), y);
                         int temp = y - 1;
@@ -151,7 +149,7 @@ namespace CheckersDA.MoveMechs
                         mustMoveRowAndCol.Add(revert[x + 1] + y);
                     }
                     //checks up and left
-                    if (gameBg[x, y] == "kO" && gameBg[x - 1, y - 1] == "X " && gameBg[x - 2, y - 2] == "\0 ")
+                    if (gameBg[x, y] == "kO" && (gameBg[x - 1, y - 1] == "X " || gameBg[x - 1, y - 1] == "kX") && gameBg[x - 2, y - 2] == "\0 ")
                     {
                         Console.WriteLine("{0}{1} TO {2}{3}", revert[x].ToUpper(), y - 1, revert[x - 1].ToUpper(), y - 2);
                         int temp = y - 1;
@@ -160,24 +158,13 @@ namespace CheckersDA.MoveMechs
                         mustMoveRowAndCol.Add(revert[x - 1] + temp);
                     }
                     //checks up and right
-                    if (gameBg[x, y] == "kO" && gameBg[x - 1, y + 1] == "X " && gameBg[x - 2, y + 2] == "\0 ")
+                    if (gameBg[x, y] == "kO" && (gameBg[x - 1, y + 1] == "X " || gameBg[x - 1, y + 1] == "kX") && gameBg[x - 2, y + 2] == "\0 ")
                     {
                         Console.WriteLine("{0}{1} TO {2}{3}", revert[x].ToUpper(), y - 1, revert[x - 1].ToUpper(), y);
                         int temp = y - 1;
                         mustPickRowAndCol.Add(revert[x] + temp);
                         mustMoveRowAndCol.Add(revert[x - 1] + y);
                     }
-                }
-            }
-        }
-        public void SecondMove(string[,] gameBg, int moveRow, int moveCol)
-        {
-            for (int x = moveRow; x >= moveRow - 1; moveRow++)
-            {
-                for (int y = moveCol - 1; y <= 9; y++)
-                {
-                    Console.WriteLine("{0}{1}", moveRow, y);
-                    Console.ReadKey();
                 }
             }
         }

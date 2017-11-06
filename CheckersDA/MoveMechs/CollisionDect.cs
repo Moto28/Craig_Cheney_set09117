@@ -92,14 +92,14 @@ namespace CheckersDA.MoveMechs
                 {
 
                     //checks if move is left
-                    if (moveCol < col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "O " && gameBg[moveRow - 1, moveCol - 1] != "O ")
+                    if (moveCol < col && gameBg[row, col] == player && (gameBg[moveRow, moveCol] == "O " || gameBg[moveRow, moveCol] == "kO") && gameBg[moveRow - 1, moveCol - 1] != "O ")
                     {
 
                         gameBg[row, col] = "\0 ";
                         gameBg[moveRow, moveCol] = "\0 ";
                         gameBg[moveRow - 1, moveCol - 1] = player;
                         checkerTaken = true;
-                        if (gameBg[moveRow - 1, moveCol - 1] == player && gameBg[moveRow - 2, moveCol - 2] == "O " && gameBg[moveRow - 3, moveCol - 3] == "\0 ")
+                        if (gameBg[moveRow - 1, moveCol - 1] == player && (gameBg[moveRow - 2, moveCol - 2] == "O " || gameBg[moveRow - 2, moveCol - 2] == "kO") && gameBg[moveRow - 3, moveCol - 3] == "\0 " && gameBg[moveRow - 4, moveCol - 4] != "N ")
                         {
                             anotherMove = true;
                         }
@@ -115,13 +115,13 @@ namespace CheckersDA.MoveMechs
                         anotherMove = false;
                     }
                     // checks if move is right
-                    else if (moveCol > col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "O " && gameBg[moveRow - 1, moveCol + 1] != "O ")
+                    else if (moveCol > col && gameBg[row, col] == player && (gameBg[moveRow, moveCol] == "O " || gameBg[moveRow, moveCol] == "kO") && gameBg[moveRow - 1, moveCol + 1] != "O ")
                     {
                         gameBg[row, col] = "\0 ";
                         gameBg[moveRow, moveCol] = "\0 ";
                         gameBg[moveRow - 1, moveCol + 1] = player;
                         checkerTaken = true;
-                        if (gameBg[moveRow - 1, moveCol + 1] == player && gameBg[moveRow - 2, moveCol + 2] == "O " && gameBg[moveRow - 3, moveCol + 3] == "\0 ")
+                        if (gameBg[moveRow - 1, moveCol + 1] == player && (gameBg[moveRow - 2, moveCol + 2] == "O " || gameBg[moveRow - 2, moveCol + 2] == "kO") && gameBg[moveRow - 3, moveCol + 3] == "\0 " && gameBg[moveRow - 4, moveCol + 4] != "N")
                         {
                             anotherMove = true;
                         }
@@ -174,13 +174,13 @@ namespace CheckersDA.MoveMechs
                 if (moveRow - row == 1 && row < moveRow)
                 {
                     //checks if move is left
-                    if (moveCol < col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "X " && gameBg[moveRow + 1, moveCol - 1] != "X ")
+                    if (moveCol < col && gameBg[row, col] == player && (gameBg[moveRow, moveCol] == "X " || gameBg[moveRow, moveCol] == "kX") && gameBg[moveRow + 1, moveCol - 1] != "X ")
                     {
                         gameBg[row, col] = "\0 ";
                         gameBg[moveRow, moveCol] = "\0 ";
                         gameBg[moveRow + 1, moveCol - 1] = player;
                         checkerTaken = true;
-                        if (gameBg[moveRow + 1, moveCol + 1] == player && gameBg[moveRow + 2, moveCol + 2] == "X " && gameBg[moveRow + 3, moveCol + 3] == "\0 ")
+                        if (gameBg[moveRow + 1, moveCol - 1] == player && (gameBg[moveRow + 2, moveCol + 2] == "X " || gameBg[moveRow + 2, moveCol + 2] == "kX") && gameBg[moveRow + 3, moveCol + 3] == "\0 " && gameBg[moveRow + 4, moveCol + 4] != "N")
                         {
                             anotherMove = true;
                         }
@@ -195,13 +195,13 @@ namespace CheckersDA.MoveMechs
                         anotherMove = false;
                     }
                     // checks if move is right
-                    else if (moveCol > col && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "X " && gameBg[moveRow + 1, moveCol + 1] != "X ")
+                    else if (moveCol > col && gameBg[row, col] == player && (gameBg[moveRow, moveCol] == "X " || gameBg[moveRow, moveCol] == "kX") && gameBg[moveRow + 1, moveCol + 1] != "X ")
                     {
                         gameBg[row, col] = "\0 ";
                         gameBg[moveRow, moveCol] = "\0 ";
                         gameBg[moveRow + 1, moveCol + 1] = player;
                         checkerTaken = true;
-                        if (gameBg[moveRow + 1, moveCol - 1] == player && gameBg[moveRow + 2, moveCol - 2] == "O " && gameBg[moveRow + 3, moveCol - 3] == "\0 ")
+                        if (gameBg[moveRow + 1, moveCol - 1] == player && (gameBg[moveRow + 2, moveCol - 2] == "X " || gameBg[moveRow + 2, moveCol - 2] == "kX") && gameBg[moveRow + 3, moveCol - 3] == "\0 " && gameBg[moveRow + 4, moveCol - 4] != "N")
                         {
                             anotherMove = true;
                         }
@@ -259,7 +259,7 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow + 1, moveCol - 1] = player;
                         checkerTaken = true;
 
-                        if (gameBg[moveRow + 1, moveCol + 1] == player && (gameBg[moveRow + 2, moveCol + 2] == "O " || gameBg[moveRow + 2, moveCol + 2] == "kO") && gameBg[moveRow + 3, moveCol + 3] == "\0 ")
+                        if (gameBg[moveRow + 1, moveCol + 1] == player && (gameBg[moveRow + 2, moveCol + 2] == "O " || gameBg[moveRow + 2, moveCol + 2] == "kO") && gameBg[moveRow + 3, moveCol + 3] == "\0 " && gameBg[moveRow + 4, moveCol + 4] == "N")
                         {
                             anotherMove = true;
                         }
@@ -284,7 +284,7 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow, moveCol] = "\0 ";
                         gameBg[moveRow + 1, moveCol + 1] = player;
                         checkerTaken = true;
-                        if (gameBg[moveRow + 1, moveCol - 1] == player && (gameBg[moveRow + 2, moveCol - 2] == "O " || gameBg[moveRow + 2, moveCol - 2] == "kO") && gameBg[moveRow + 3, moveCol - 3] != "\0 ")
+                        if (gameBg[moveRow + 1, moveCol - 1] == player && (gameBg[moveRow + 2, moveCol - 2] == "O " || gameBg[moveRow + 2, moveCol - 2] == "kO") && gameBg[moveRow + 3, moveCol - 3] != "\0 " && gameBg[moveRow + 4, moveCol - 4] != "N")
                         {
                             anotherMove = true;
                         }
@@ -313,7 +313,7 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow, moveCol] = "\0 ";
                         gameBg[moveRow - 1, moveCol - 1] = player;
                         checkerTaken = true;
-                        if (gameBg[moveRow - 1, moveCol - 1] == player && (gameBg[moveRow - 2, moveCol - 2] == "O " || gameBg[moveRow - 2, moveCol - 2] == "kO") && gameBg[moveRow - 3, moveCol - 3] == "\0 ")
+                        if (gameBg[moveRow - 1, moveCol - 1] == player && (gameBg[moveRow - 2, moveCol - 2] == "O " || gameBg[moveRow - 2, moveCol - 2] == "kO") && gameBg[moveRow - 3, moveCol - 3] == "\0 " && gameBg[moveRow - 4, moveCol - 4] != "N")
                         {
                             anotherMove = true;
                         }
@@ -336,7 +336,7 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow, moveCol] = "\0 ";
                         gameBg[moveRow - 1, moveCol + 1] = player;
                         checkerTaken = true;
-                        if (gameBg[moveRow - 1, moveCol + 1] == player && (gameBg[moveRow - 2, moveCol + 2] == "O " || gameBg[moveRow - 2, moveCol + 2] == "kO") && gameBg[moveRow - 3, moveCol + 3] == "\0 ")
+                        if (gameBg[moveRow - 1, moveCol + 1] == player && (gameBg[moveRow - 2, moveCol + 2] == "O " || gameBg[moveRow - 2, moveCol + 2] == "kO") && gameBg[moveRow - 3, moveCol + 3] == "\0 " && gameBg[moveRow - 4, moveCol + 4] != "N")
                         {
                             anotherMove = true;
                         }
@@ -380,7 +380,7 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow + 1, moveCol - 1] = player;
                         checkerTaken = true;
 
-                        if (gameBg[moveRow + 1, moveCol + 1] == player && (gameBg[moveRow + 2, moveCol + 2] == "X " || gameBg[moveRow + 2, moveCol + 2] == "kX") && gameBg[moveRow + 3, moveCol + 3] == "\0 ")
+                        if (gameBg[moveRow + 1, moveCol + 1] == player && (gameBg[moveRow + 2, moveCol + 2] == "X " || gameBg[moveRow + 2, moveCol + 2] == "kX") && gameBg[moveRow + 3, moveCol + 3] == "\0 " && gameBg[moveRow + 4, moveCol + 4] != "N")
                         {
                             anotherMove = true;
                         }
@@ -405,7 +405,7 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow, moveCol] = "\0 ";
                         gameBg[moveRow + 1, moveCol + 1] = player;
                         checkerTaken = true;
-                        if (gameBg[moveRow + 1, moveCol - 1] == player && (gameBg[moveRow + 2, moveCol - 2] == "X " || gameBg[moveRow + 2, moveCol - 2] == "kX") && gameBg[moveRow + 3, moveCol - 3] == "\0 ")
+                        if (gameBg[moveRow + 1, moveCol - 1] == player && (gameBg[moveRow + 2, moveCol - 2] == "X " || gameBg[moveRow + 2, moveCol - 2] == "kX") && gameBg[moveRow + 3, moveCol - 3] == "\0 " && gameBg[moveRow + 4, moveCol - 4] == "N")
                         {
                             anotherMove = true;
                         }
@@ -434,7 +434,7 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow, moveCol] = "\0 ";
                         gameBg[moveRow - 1, moveCol - 1] = player;
                         checkerTaken = true;
-                        if (gameBg[moveRow - 1, moveCol - 1] == player && (gameBg[moveRow - 2, moveCol - 2] == "X " || gameBg[moveRow - 2, moveCol - 2] == "kX") && gameBg[moveRow - 3, moveCol - 3] == "\0 ")
+                        if (gameBg[moveRow - 1, moveCol - 1] == player && (gameBg[moveRow - 2, moveCol - 2] == "X " || gameBg[moveRow - 2, moveCol - 2] == "kX") && gameBg[moveRow - 3, moveCol - 3] == "\0 " && gameBg[moveRow - 4, moveCol - 4] != "N")
                         {
                             anotherMove = true;
                         }
@@ -457,7 +457,7 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow, moveCol] = "\0 ";
                         gameBg[moveRow - 1, moveCol + 1] = player;
                         checkerTaken = true;
-                        if (gameBg[moveRow - 1, moveCol + 1] == player && (gameBg[moveRow - 2, moveCol + 2] == "X " || gameBg[moveRow - 2, moveCol + 2] == "kX") && gameBg[moveRow - 3, moveCol + 3] == "\0 ")
+                        if (gameBg[moveRow - 1, moveCol + 1] == player && (gameBg[moveRow - 2, moveCol + 2] == "X " || gameBg[moveRow - 2, moveCol + 2] == "kX") && gameBg[moveRow - 3, moveCol + 3] == "\0 " && gameBg[moveRow - 4, moveCol + 4] == "N")
                         {
                             anotherMove = true;
                         }
