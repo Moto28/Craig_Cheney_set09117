@@ -27,6 +27,7 @@ namespace CheckersDA
             IsInputValid valid = new IsInputValid();
             PlayerOne playerOne = new PlayerOne();
             PlayerTwo playerTwo = new PlayerTwo();
+            UndoMove undo = new UndoMove();
 
             Console.Title = "Checkers";
 
@@ -88,13 +89,16 @@ namespace CheckersDA
                     }
                     else
                     {
+                        if (detection.MoveComplete == true)
+                        {
+                            undo.UndoPlayerMove(gameBg, detection.Player, detection.Opponent, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol);
+                        }
                         Console.WriteLine("\n\n{0} Enter the Row of the Checker you want to Move", playerOne.PlayerName.ToUpper());
                         pickRow = Console.ReadKey().KeyChar;
                         Console.WriteLine("\nEnter the Column of the Checker you want to Move");
                         pickCol = Console.ReadKey().KeyChar;
                         valid.IsItValidFirstMove(gameBg, pickRow, pickCol, playerOne, playerTwo);
                     }
-
                     if (valid.PickIsValid == true)
                     {
                         detection.MoveComplete = false;
@@ -127,10 +131,6 @@ namespace CheckersDA
                             valid.IsItValidSecondMove(moveRow, moveCol, valid.PickIsValid);
                         }
                     }
-                    else
-                    {
-                        detection.MoveComplete = false;
-                    }
                     if (valid.MoveIsValid == true)
                     {
                         if (move.MustMoveRowAndCol.Count > 0)
@@ -141,7 +141,9 @@ namespace CheckersDA
                             {
                                 Console.WriteLine("\n\nyou have elected to move\n    {0}{1}  To  {2}{3}", pickRow.ToString().ToUpper(), pickCol, moveRow.ToString().ToUpper(), moveCol);
                                 Console.ReadKey();
+                                undo.UndoStack.Push(pickRow.ToString().ToUpper() + "." + pickCol + "," + moveRow.ToString().ToUpper() + "." + moveCol);
                                 detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
+                                game.Draw(gameBg, playerOne, playerTwo);
                             }
                             else
                             {
@@ -154,13 +156,19 @@ namespace CheckersDA
                         {
                             Console.WriteLine("\n\nyou have elected to move\n    {0}{1}  To  {2}{3}", pickRow.ToString().ToUpper(), pickCol, moveRow.ToString().ToUpper(), moveCol);
                             Console.ReadKey();
+                            undo.UndoStack.Push(pickRow.ToString().ToUpper() + "." + pickCol + "," + moveRow.ToString().ToUpper() + "." + moveCol);
                             detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
+                            game.Draw(gameBg, playerOne, playerTwo);
                         }
                     }
                     else
                     {
                         detection.MoveComplete = false;
                     }
+                }
+                if (detection.MoveComplete == true && detection.AnotherMove == false)
+                {
+                    undo.UndoPlayerMove(gameBg, detection.Player, detection.Opponent, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol);
                 }
                 //*******************************************************************************************************************************
                 if (playerTwo.IsItMyTurn == true)
@@ -248,9 +256,9 @@ namespace CheckersDA
                             detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
                         }
                     }
-                    else
+                    if (detection.MoveComplete == true && detection.AnotherMove == false)
                     {
-                        detection.MoveComplete = false;
+                        undo.UndoPlayerMove(gameBg, detection.Player, detection.Opponent, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol);
                     }
                 }
             }

@@ -12,17 +12,18 @@ namespace CheckersDA.MoveMechs
     {
 
         private string player;
+        private string opponent;
         private bool moveComplete;
         private bool checkerTaken;
         private bool anotherMove;
         public CollisionDect()
         {
             player = Player;
+            opponent = Opponent;
             moveComplete = MoveComplete;
             checkerTaken = CheckerTaken;
             anotherMove = AnotherMove;
         }
-
         public string Player
         {
             get
@@ -32,6 +33,17 @@ namespace CheckersDA.MoveMechs
             set
             {
                 player = value;
+            }
+        }
+        public string Opponent
+        {
+            get
+            {
+                return opponent;
+            }
+            set
+            {
+                opponent = value;
             }
         }
         public bool MoveComplete
@@ -67,11 +79,11 @@ namespace CheckersDA.MoveMechs
                 anotherMove = value;
             }
         }
-
         public void CheckAndUpdate(string[,] gameBg, int row, int col, int moveRow, int moveCol, PlayerOne playerOne, PlayerTwo playerTwo)
         {
             //take row and col passed in to check corrisponding location in array and sets the player as that location in array 
             player = gameBg[row, col];
+            opponent = gameBg[moveRow, moveCol];
             //**************Player One Movement**************
             if (player == "X " && playerOne.IsItMyTurn == true)
             {
@@ -143,14 +155,12 @@ namespace CheckersDA.MoveMechs
                     {
                         Console.WriteLine("\n Another Checker Is Blocking Your Move");
                         Console.ReadKey();
-
                     }
                 }
                 else
                 {
                     Console.WriteLine("\nyou can only move forward once per shot, and you can't move backwards");
                     Console.ReadKey();
-
                 }
 
             }

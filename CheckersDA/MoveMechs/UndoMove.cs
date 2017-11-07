@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CheckersDA.MoveConvertor;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,44 +9,45 @@ namespace CheckersDA.MoveMechs
 {
     class UndoMove
     {
-        private Queue<string> undoQueue = new Queue<string>();
+        private Stack<string> undoStack = new Stack<string>();
         public UndoMove()
         {
-            undoQueue = UndoQueue;
+            undoStack = UndoStack;
         }
 
-        public Queue<string> UndoQueue
+        public Stack<string> UndoStack
         {
             get
             {
-                return undoQueue;
+                return undoStack;
             }
             set
             {
-                undoQueue = value;
+                undoStack = value;
             }
         }
 
-
-        public void UndoPlayerMove(char[,] gameBg, int row, int col, int moveRow, int moveCol)
+        public void UndoPlayerMove(string[,] gameBg, string player, string opponent, int convRow, int convCol, int newConvRow, int newConvCol)
         {
-            Console.WriteLine("do you want to undo your move?: Press Y for yes and N for no");
+            Console.WriteLine("Do you want to undo your move ?, y = Yes  n = No");
             char switchMenuSel = Console.ReadKey().KeyChar;
 
             switch (switchMenuSel)
             {
-                case 'Y':
-
+                case 'y':
+                    Console.WriteLine("{0}{1}", convRow, convCol);
+                    Console.ReadKey();
+                    gameBg[convRow, convCol] = player;
+                    gameBg[newConvRow, newConvCol] = opponent;
                     break;
-                case 'N':
+                case 'n':
 
                     break;
                 default:
                     Console.WriteLine("You Must Select a Y for yes or N for no to continue");
+                    UndoPlayerMove(gameBg, player, opponent, convRow, convCol, newConvRow, newConvCol);
                     break;
-
             }
-
         }
     }
 }
