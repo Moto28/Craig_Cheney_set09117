@@ -10,11 +10,28 @@ using CheckersDA.Players;
 
 namespace CheckersDA.ViewModels
 {
+
     class GameBoard
     {
+        private string[,] gameBg = new string[14, 14];
+
+        public GameBoard()
+        {
+            gameBg = GameBg;
+        }
+        public string[,] GameBg
+        {
+            get
+            {
+                return gameBg;
+            }
+            set
+            {
+                gameBg = value;
+            }
+        }
         public void Draw(string[,] gameBg, PlayerOne playerOne, PlayerTwo playerTwo)
         {
-            //playerOne.GetPlayerCheckerCount(gameBg);
 
             Console.Clear();
             Console.WriteLine("                     1           2           3           4           5           6           7          8");
@@ -44,6 +61,8 @@ namespace CheckersDA.ViewModels
             Console.WriteLine("          A  |     {0}     |     {1}      |     {2}    |     {3}      |     {4}    |      {5}     |    {6}     |      {7}     | A", gameBg[9, 2], gameBg[9, 3], gameBg[9, 4], gameBg[9, 5], gameBg[9, 6], gameBg[9, 7], gameBg[9, 8], gameBg[9, 9]);
             Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|");
             Console.WriteLine("                     1           2           3           4           5           6           7          8");
+
+
         }
     }
 }

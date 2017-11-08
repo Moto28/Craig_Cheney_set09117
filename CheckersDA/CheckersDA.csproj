@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game\GameLogic.cs" />
     <Compile Include="MoveConvertor\IsInputValid.cs" />
     <Compile Include="MoveMechs\CollisionDect.cs" />
     <Compile Include="MoveMechs\ForceMove.cs" />

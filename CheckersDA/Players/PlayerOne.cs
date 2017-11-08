@@ -110,7 +110,7 @@ namespace CheckersDA.Players
 
 
         //gets and store the player name
-        override public string GetPlayerName()
+        override public void GetPlayerName()
         {
             Console.WriteLine("\nPLAYER ONE ENTER YOUR NAME");
             playerName = Console.ReadLine();
@@ -120,9 +120,6 @@ namespace CheckersDA.Players
                 GetPlayerName();
                 Console.Clear();
             }
-
-            return playerName;
-
         }
         //gets and store the players checker
         override public string GetPlayerChecker()

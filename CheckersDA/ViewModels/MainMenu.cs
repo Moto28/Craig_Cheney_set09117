@@ -1,14 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CheckersDA.Players;
+using System;
+using CheckersDA.Game;
+
 
 namespace CheckersDA.ViewModels
 {
     class MainMenu
     {
-        private string menuSel;
+        PlayerOne playerOne = new PlayerOne();
+        PlayerTwo playerTwo = new PlayerTwo();
+        GameBackGround backGround = new GameBackGround();
+        GameBoard game = new GameBoard();
+
+
+        private int menuSel;
         private int switchMenuSel;
 
         public MainMenu()
@@ -16,12 +21,10 @@ namespace CheckersDA.ViewModels
             menuSel = MenuSel;
             switchMenuSel = SwitchMenuSel;
         }
-        public string MenuSel
+        public int MenuSel
         {
             get
             {
-                Menu();
-                menuSel = Console.ReadLine();
                 return menuSel;
             }
             set
@@ -33,7 +36,6 @@ namespace CheckersDA.ViewModels
         {
             get
             {
-                switchMenuSel = Convert.ToInt16(menuSel);
                 return switchMenuSel;
             }
             set
@@ -42,7 +44,7 @@ namespace CheckersDA.ViewModels
             }
         }
 
-        public void Menu()
+        public void Menu(string[,] gameBg)
         {
             Console.Title = "Checkers";
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -50,6 +52,7 @@ namespace CheckersDA.ViewModels
             var width = Console.LargestWindowWidth - 10;
             Console.WindowHeight = height;
             Console.WindowWidth = width;
+            Console.Title = "Checkers";
             Console.WriteLine("\n\n\n\n\n\n\n         *******************************************COMMAND LINE CHECKERS*****************************************      ");
             Console.WriteLine("         *********************************************************************************************************      ");
             Console.WriteLine("         *************************************************MAIN MENU***********************************************      ");
@@ -60,7 +63,9 @@ namespace CheckersDA.ViewModels
             Console.WriteLine("         *********************************************PRESS 5 TO QUIT*********************************************      ");
             Console.WriteLine("         *********************************************************************************************************      ");
             Console.WriteLine("         *********************************************************************************************************      ");
+            Console.WriteLine("\nPlease enter your menu selection:\n");
 
+            menuSel = int.Parse(Console.ReadLine());
         }
     }
 }

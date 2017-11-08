@@ -4,7 +4,7 @@ namespace CheckersDA
 {
     abstract class Player
     {
-        abstract public string GetPlayerName();
+        abstract public void GetPlayerName();
 
         //gets and store the players checker
         abstract public string GetPlayerChecker();
