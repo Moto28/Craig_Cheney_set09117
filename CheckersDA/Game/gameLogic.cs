@@ -110,7 +110,7 @@ namespace CheckersDA.Game
                 {
                     if (detection.MoveComplete == true)
                     {
-                        undo.UndoPlayerMove(gameBg, detection.Player, detection.Opponent, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol);
+                        undo.UndoPlayerMove(gameBg, detection.Player, detection.Opponent, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
                     }
                     Console.WriteLine("\n\n{0} Enter the Row of the Checker you want to Move", playerOne.PlayerName.ToUpper());
                     pickRow = Console.ReadKey().KeyChar;
@@ -187,7 +187,7 @@ namespace CheckersDA.Game
             }
             if (detection.MoveComplete == true && detection.AnotherMove == false)
             {
-                undo.UndoPlayerMove(gameBg, detection.Player, detection.Opponent, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol);
+                undo.UndoPlayerMove(gameBg, detection.Player, detection.Opponent, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
             }
             //*******************************************************************************************************************************
             if (playerTwo.IsItMyTurn == true)
@@ -279,7 +279,7 @@ namespace CheckersDA.Game
                 }
                 if (detection.MoveComplete == true && detection.AnotherMove == false)
                 {
-                    undo.UndoPlayerMove(gameBg, detection.Player, detection.Opponent, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol);
+                    undo.UndoPlayerMove(gameBg, detection.Player, detection.Opponent, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
                 }
             }
         }
