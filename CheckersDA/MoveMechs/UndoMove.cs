@@ -34,8 +34,6 @@ namespace CheckersDA.MoveMechs
             switch (undoMenuSel)
             {
                 case 'y':
-                    Console.WriteLine("{0}{1}", convRow, convCol);
-                    Console.ReadKey();
                     gameBg[convRow, convCol] = player;
                     gameBg[newConvRow, newConvCol] = opponent;
                     game.Draw(gameBg, playerOne, playerTwo);
@@ -57,8 +55,6 @@ namespace CheckersDA.MoveMechs
                             UndoPlayerMove(gameBg, player, opponent, convRow, convCol, newConvRow, newConvCol, playerOne, playerTwo);
                             break;
                     }
-
-
                     break;
                 case 'n':
 
