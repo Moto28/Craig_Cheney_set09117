@@ -91,6 +91,7 @@ namespace CheckersDA.Game
             IsItWin(gameBg, playerOne, playerTwo);
             watchReplay.AddToQueue(gameBg);
 
+
             if (playerOne.IsItMyTurn == true)
             {
                 game.Draw(gameBg, playerOne, playerTwo);
@@ -100,7 +101,7 @@ namespace CheckersDA.Game
 
                 if (detection.AnotherMove == false && playerOne.PlayerTurnCount != 0)
                 {
-                    undo.UndoPlayerMove(gameBg, detection.Player, detection.Opponent, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo, detection);
+                    undo.UndoPlayerMove(gameBg, playerOne, playerTwo);
 
                 }
 
@@ -168,9 +169,11 @@ namespace CheckersDA.Game
                         {
                             Console.WriteLine("\n\nyou have elected to move\n    {0}{1}  To  {2}{3}", pickRow.ToString().ToUpper(), pickCol, moveRow.ToString().ToUpper(), moveCol);
                             Console.ReadKey();
+                            undo.AddToUndoStack(gameBg);
                             detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
                             playerOne.GetPlayerTurnCount();
                             watchReplay.AddToQueue(gameBg);
+                            undo.AddToRedoStack(gameBg);
                             game.Draw(gameBg, playerOne, playerTwo);
                         }
                         else
@@ -184,9 +187,11 @@ namespace CheckersDA.Game
                     {
                         Console.WriteLine("\n\nyou have elected to move\n    {0}{1}  To  {2}{3}", pickRow.ToString().ToUpper(), pickCol, moveRow.ToString().ToUpper(), moveCol);
                         Console.ReadKey();
+                        undo.AddToUndoStack(gameBg);
                         detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
                         playerOne.GetPlayerTurnCount();
                         watchReplay.AddToQueue(gameBg);
+                        undo.AddToRedoStack(gameBg);
                         game.Draw(gameBg, playerOne, playerTwo);
                     }
                 }
@@ -207,7 +212,7 @@ namespace CheckersDA.Game
 
                 if (detection.AnotherMove == false && playerTwo.PlayerTurnCount != 0)
                 {
-                    undo.UndoPlayerMove(gameBg, detection.Player, detection.Opponent, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo, detection);
+                    undo.UndoPlayerMove(gameBg, playerOne, playerTwo);
                 }
 
                 if (detection.CheckerTaken == true && detection.AnotherMove == false || detection.MoveComplete == true && detection.AnotherMove == false)
@@ -275,8 +280,10 @@ namespace CheckersDA.Game
                         {
                             Console.WriteLine("\n\nyou have elected to move\n    {0}{1}  To  {2}{3}", pickRow.ToString().ToUpper(), pickCol, moveRow.ToString().ToUpper(), moveCol);
                             Console.ReadKey();
+                            undo.AddToUndoStack(gameBg);
                             detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
                             watchReplay.AddToQueue(gameBg);
+                            undo.AddToRedoStack(gameBg);
                             game.Draw(gameBg, playerOne, playerTwo);
                         }
                         else
@@ -290,8 +297,10 @@ namespace CheckersDA.Game
                     {
                         Console.WriteLine("\n\nyou have elected to move\n    {0}{1}  To  {2}{3}", pickRow.ToString().ToUpper(), pickCol, moveRow.ToString().ToUpper(), moveCol);
                         Console.ReadKey();
+                        undo.AddToUndoStack(gameBg);
                         detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
                         watchReplay.AddToQueue(gameBg);
+                        undo.AddToRedoStack(gameBg);
                         game.Draw(gameBg, playerOne, playerTwo);
                     }
                 }

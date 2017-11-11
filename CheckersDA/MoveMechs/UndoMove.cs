@@ -9,12 +9,15 @@ namespace CheckersDA.MoveMechs
     {
 
         GameBoard game = new GameBoard();
-        private Stack<string> undoStack = new Stack<string>();
+        private Stack<string[,]> undoStack = new Stack<string[,]>();
+        private Stack<string[,]> redoStack = new Stack<string[,]>();
+
         public UndoMove()
         {
             undoStack = UndoStack;
+            redoStack = RedoStack;
         }
-        public Stack<string> UndoStack
+        public Stack<string[,]> UndoStack
         {
             get
             {
@@ -23,6 +26,17 @@ namespace CheckersDA.MoveMechs
             set
             {
                 undoStack = value;
+            }
+        }
+        public Stack<string[,]> RedoStack
+        {
+            get
+            {
+                return redoStack;
+            }
+            set
+            {
+                redoStack = value;
             }
         }
 
@@ -38,7 +52,7 @@ namespace CheckersDA.MoveMechs
         /// <param name="newConvCol"></param>
         /// <param name="playerOne"></param>
         /// <param name="playerTwo"></param>
-        public void UndoPlayerMove(string[,] gameBg, string player, string opponent, int convRow, int convCol, int newConvRow, int newConvCol, PlayerOne playerOne, PlayerTwo playerTwo, CollisionDect detect)
+        public void UndoPlayerMove(string[,] gameBg, PlayerOne playerOne, PlayerTwo playerTwo)
         {
             Console.WriteLine("Do you want to undo your move ?, y = Yes  n = No");
 
@@ -48,97 +62,45 @@ namespace CheckersDA.MoveMechs
             switch (undoMenuSel)
             {
                 case 'y':
-                    //if yes player is restored to last point on map
-                    gameBg[convRow, convCol] = player;
-                    gameBg[newConvRow, newConvCol] = opponent;
-                    //checks if up
-                    if (convRow > newConvRow)
+                    if (undoStack.Count > 0)
                     {
-                        //checks if left
-                        if (convCol > newConvCol)
-                        {
-                            gameBg[newConvRow - 1, newConvCol - 1] = "\0 ";
-                        }
-                        //checks if right
-                        else if (newConvCol > convCol)
-                        {
-                            gameBg[newConvRow - 1, newConvCol + 1] = "\0 ";
-                        }
+                        game.Draw(undoStack.Pop(), playerOne, playerTwo);
+                        Console.ReadKey();
                     }
-                    //checks if down
-                    else if (newConvRow > convRow)
-                    {
-                        //checks if left
-                        if (convCol > newConvCol)
-                        {
-                            gameBg[newConvRow + 1, newConvCol - 1] = "\0 ";
-                        }
-                        //checks if right
-                        else if (newConvCol > convCol)
-                        {
-                            gameBg[newConvRow + 1, newConvCol + 1] = "\0 ";
-                        }
-                    }
-                    game.Draw(gameBg, playerOne, playerTwo);
-                    detect.AnotherMove = true;
-                    detect.MoveComplete = false;
-
-                    Console.WriteLine("Do you want to redo your move ?, y = Yes  n = No");
+                    Console.WriteLine("Would you like to Redo your move?, y = Yes  n = No");
                     char redoMenuSel = Console.ReadKey().KeyChar;
 
                     switch (redoMenuSel)
                     {
                         case 'y':
-                            gameBg[convRow, convCol] = "\0 ";
-                            gameBg[newConvRow, newConvCol] = "\0 ";
-                            //checks if move is up
-                            if (convRow > newConvRow)
-                            {
 
-                                //checks if left
-                                if (convCol > newConvCol)
-                                {
-                                    gameBg[newConvRow - 1, newConvCol - 1] = player;
-                                }
-                                //checks if right
-                                else if (newConvCol > convCol)
-                                {
-                                    gameBg[newConvRow - 1, newConvCol + 1] = player;
-                                }
-                            }
-                            //checks if down
-                            else if (newConvRow > convRow)
-                            {
-                                //checks if left
-                                if (convCol > newConvCol)
-                                {
-                                    gameBg[newConvRow + 1, newConvCol - 1] = player;
-                                }
-                                //checks if right
-                                else if (newConvCol > convCol)
-                                {
-                                    gameBg[newConvRow + 1, newConvCol + 1] = player;
-                                }
-                            }
-                            game.Draw(gameBg, playerOne, playerTwo);
                             break;
                         case 'n':
-
                             break;
                         default:
                             Console.WriteLine("You Must Select a Y for yes or N for no to continue");
-                            UndoPlayerMove(gameBg, player, opponent, convRow, convCol, newConvRow, newConvCol, playerOne, playerTwo, detect);
+                            UndoPlayerMove(gameBg, playerOne, playerTwo);
                             break;
                     }
                     break;
                 case 'n':
-
                     break;
                 default:
                     Console.WriteLine("You Must Select a Y for yes or N for no to continue");
-                    UndoPlayerMove(gameBg, player, opponent, convRow, convCol, newConvRow, newConvCol, playerOne, playerTwo, detect);
+                    UndoPlayerMove(gameBg, playerOne, playerTwo);
                     break;
             }
+
+        }
+        public void AddToUndoStack(string[,] gameBg)
+        {
+            string[,] arrayClone = gameBg.Clone() as string[,];
+            UndoStack.Push(arrayClone);
+        }
+        public void AddToRedoStack(string[,] gameBg)
+        {
+            string[,] arrayClone = gameBg.Clone() as string[,];
+            RedoStack.Push(arrayClone);
         }
     }
 }
