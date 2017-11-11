@@ -163,17 +163,5 @@ namespace CheckersDA.Players
             return isItMyTurn;
         }
 
-        public override int GetPlayerCheckerCount(char[,] gameBg)
-        {
-            foreach (var item in gameBg)
-            {
-                if (item.ToString() == "X")
-                {
-                    PlayerCheckerCount++;
-                }
-
-            }
-            return PlayerCheckerCount;
-        }
     }
 }

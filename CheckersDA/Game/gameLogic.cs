@@ -89,6 +89,8 @@ namespace CheckersDA.Game
 
         public void Logic(string[,] gameBg, PlayerOne playerOne, PlayerTwo playerTwo)
         {
+            IsItWin(gameBg, playerOne, playerTwo);
+
             if (playerOne.IsItMyTurn == true)
             {
                 game.Draw(gameBg, playerOne, playerTwo);
@@ -168,7 +170,7 @@ namespace CheckersDA.Game
                             Console.ReadKey();
                             detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
                             playerOne.GetPlayerTurnCount();
-                            watchReplay.ReplayQueue.Enqueue(valid.ConvRow.ToString() + "." + valid.ConvCol + "," + valid.NewConvRow + "." + valid.NewConvCol);
+                            watchReplay.ReplayQueue.Enqueue(gameBg);
                             game.Draw(gameBg, playerOne, playerTwo);
                         }
                         else
@@ -184,7 +186,7 @@ namespace CheckersDA.Game
                         Console.ReadKey();
                         detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
                         playerOne.GetPlayerTurnCount();
-                        watchReplay.ReplayQueue.Enqueue(valid.ConvRow.ToString() + "." + valid.ConvCol + "," + valid.NewConvRow + "." + valid.NewConvCol);
+                        watchReplay.ReplayQueue.Enqueue(gameBg);
                         game.Draw(gameBg, playerOne, playerTwo);
                     }
                 }
@@ -274,7 +276,7 @@ namespace CheckersDA.Game
                             Console.WriteLine("\n\nyou have elected to move\n    {0}{1}  To  {2}{3}", pickRow.ToString().ToUpper(), pickCol, moveRow.ToString().ToUpper(), moveCol);
                             Console.ReadKey();
                             detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
-                            watchReplay.ReplayQueue.Enqueue(valid.ConvRow.ToString() + "." + valid.ConvCol + "," + valid.NewConvRow + "." + valid.NewConvCol);
+                            watchReplay.ReplayQueue.Enqueue(gameBg);
                             game.Draw(gameBg, playerOne, playerTwo);
                         }
                         else
@@ -289,10 +291,39 @@ namespace CheckersDA.Game
                         Console.WriteLine("\n\nyou have elected to move\n    {0}{1}  To  {2}{3}", pickRow.ToString().ToUpper(), pickCol, moveRow.ToString().ToUpper(), moveCol);
                         Console.ReadKey();
                         detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
-                        watchReplay.ReplayQueue.Enqueue(valid.ConvRow.ToString() + "." + valid.ConvCol + "," + valid.NewConvRow + "." + valid.NewConvCol);
+                        watchReplay.ReplayQueue.Enqueue(gameBg);
                         game.Draw(gameBg, playerOne, playerTwo);
                     }
                 }
+            }
+        }
+        public void IsItWin(string[,] gameBg, PlayerOne playerOne, PlayerTwo playerTwo)
+        {
+            playerOne.PlayerCheckerCount = 0;
+            playerTwo.PlayerCheckerCount = 0;
+
+            foreach (var checker in gameBg)
+            {
+                if (checker == "X " || checker == "kX")
+                {
+                    playerOne.PlayerCheckerCount++;
+                    Console.WriteLine("{0}", playerOne.PlayerCheckerCount);
+                }
+                else if (checker == "O " || checker == "kO")
+                {
+                    playerTwo.PlayerCheckerCount++;
+                    Console.WriteLine("{0}", playerTwo.PlayerCheckerCount);
+                }
+            }
+            if (playerOne.PlayerCheckerCount == 0)
+            {
+                Console.WriteLine("Player One wins");
+                win = true;
+            }
+            else if (playerTwo.PlayerCheckerCount == 0)
+            {
+                Console.WriteLine("Player Two wins");
+                win = true;
             }
         }
     }

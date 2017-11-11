@@ -33,7 +33,11 @@ namespace CheckersDA.ViewModels
         public void Draw(string[,] gameBg, PlayerOne playerOne, PlayerTwo playerTwo)
         {
 
+            Console.SetWindowSize(200, 45);
+
             Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine();
             Console.WriteLine("                     1           2           3           4           5           6           7          8");
             Console.WriteLine("              ________________________________________________________________________________________________");
             Console.WriteLine("             |            |           |           |           |           |           |           |           |");
@@ -42,7 +46,7 @@ namespace CheckersDA.ViewModels
             Console.WriteLine("             |            |           |           |           |           |           |           |           |                 Move Count: {0}     ", "placeholder");
             Console.WriteLine("          G  |     {0}     |     {1}      |     {2}    |       {3}    |     {4}    |      {5}     |     {6}    |      {7}     | G", gameBg[3, 2], gameBg[3, 3], gameBg[3, 4], gameBg[3, 5], gameBg[3, 6], gameBg[3, 7], gameBg[3, 8], gameBg[3, 9]);
             Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|                 Checker: {0} ", playerOne.PlayerChecker);
-            Console.WriteLine("             |            |           |           |           |           |           |           |           |                 Checker Count:{0}", "placeholder");
+            Console.WriteLine("             |            |           |           |           |           |           |           |           |                 Checker Count:{0}", playerOne.PlayerCheckerCount);
             Console.WriteLine("          F  |     {0}       |     {1}    |      {2}     |     {3}    |      {4}     |     {5}    |     {6}      |     {7}    | F", gameBg[4, 2], gameBg[4, 3], gameBg[4, 4], gameBg[4, 5], gameBg[4, 6], gameBg[4, 7], gameBg[4, 8], gameBg[4, 9]);
             Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|");
             Console.WriteLine("             |            |           |           |           |           |           |           |           |");
@@ -61,9 +65,8 @@ namespace CheckersDA.ViewModels
             Console.WriteLine("          A  |     {0}     |     {1}      |     {2}    |     {3}      |     {4}    |      {5}     |    {6}     |      {7}     | A", gameBg[9, 2], gameBg[9, 3], gameBg[9, 4], gameBg[9, 5], gameBg[9, 6], gameBg[9, 7], gameBg[9, 8], gameBg[9, 9]);
             Console.WriteLine("             |____________|___________|___________|___________|___________|___________|___________|___________|");
             Console.WriteLine("                     1           2           3           4           5           6           7          8");
-
-
         }
+
     }
 }
 

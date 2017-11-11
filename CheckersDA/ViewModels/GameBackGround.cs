@@ -16,7 +16,7 @@ namespace CheckersDA.ViewModels
                 {
                     if ((y % 2 == 0 && x % 2 != 0) || (y % 2 != 0 && x % 2 == 0))
                     {
-                        gameBg[x, y] = "O ";
+                        gameBg[x, y] = "\0 ";
                     }
                 }
             }
@@ -67,7 +67,7 @@ namespace CheckersDA.ViewModels
             }
 
             gameBg[6, 5] = "O ";
-            gameBg[4, 3] = "O ";
+
             gameBg[3, 8] = "\0 ";
         }
 

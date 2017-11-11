@@ -48,21 +48,32 @@ namespace CheckersDA.ViewModels
         {
             Console.Title = "Checkers";
             Console.ForegroundColor = ConsoleColor.Blue;
-            var height = Console.LargestWindowHeight - 10;
-            var width = Console.LargestWindowWidth - 10;
+            var height = Console.LargestWindowHeight / 2;
+            var width = Console.LargestWindowWidth / 2;
             Console.WindowHeight = height;
             Console.WindowWidth = width;
             Console.Title = "Checkers";
-            Console.WriteLine("\n\n\n\n\n\n\n         *******************************************COMMAND LINE CHECKERS*****************************************      ");
-            Console.WriteLine("         *********************************************************************************************************      ");
-            Console.WriteLine("         *************************************************MAIN MENU***********************************************      ");
-            Console.WriteLine("         *************************************PRESS 1 FOR A 1 PLAYER GAME*****************************************      ");
-            Console.WriteLine("         *************************************PRESS 2 FOR A 2 PLAYER GAME*****************************************      ");
-            Console.WriteLine("         *********************************************PRESS 3 TO QUIT*********************************************      ");
-            Console.WriteLine("         *********************************************************************************************************      ");
-            Console.WriteLine("         *********************************************************************************************************      ");
-            Console.WriteLine("\nPlease enter your menu selection:\n");
+            string mainMenu = @"   
 
+
+
+
+
+
+
+
+
+                                                                 
+                           |▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬|
+                           |(¯`·._.·(¯`·._.(¯`·._.Command LineCheckers._.·´¯)·._.·´¯)·._.·´¯)|
+                           | \/ /\/ /\_/ /\/ /\/|  1. One Player Game  | \/ /\/ /\_/ /\/ /\/ |
+                           |___/\ \/\___/\ \/\__|  2. Two Player Game  |___/\ \/\___/\ \/\___|
+                           |   \/\ \/   \/\ \/  |    3. Quit Game      |   \/\ \/   \/\ \/   |
+                           |▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬|
+                                     Enter Your Selection and Press Enter to Continue                    
+                                                                    ";
+
+            Console.WriteLine(mainMenu);
 
             try
             {
