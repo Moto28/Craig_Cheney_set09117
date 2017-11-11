@@ -58,14 +58,23 @@ namespace CheckersDA.ViewModels
             Console.WriteLine("         *************************************************MAIN MENU***********************************************      ");
             Console.WriteLine("         *************************************PRESS 1 FOR A 1 PLAYER GAME*****************************************      ");
             Console.WriteLine("         *************************************PRESS 2 FOR A 2 PLAYER GAME*****************************************      ");
-            Console.WriteLine("         *************************************PRESS 3 TO LOAD A SAVED GAME****************************************      ");
-            Console.WriteLine("         ********************************* PRESS 4 TO WATCH A REPLAY OF A GAME************************************      ");
-            Console.WriteLine("         *********************************************PRESS 5 TO QUIT*********************************************      ");
+            Console.WriteLine("         *********************************************PRESS 3 TO QUIT*********************************************      ");
             Console.WriteLine("         *********************************************************************************************************      ");
             Console.WriteLine("         *********************************************************************************************************      ");
             Console.WriteLine("\nPlease enter your menu selection:\n");
 
-            menuSel = int.Parse(Console.ReadLine());
+
+            try
+            {
+                menuSel = int.Parse(Console.ReadLine());
+            }
+            catch (Exception e)
+            {
+                e.Message.ToString();
+                Console.Clear();
+                Menu(gameBg);
+            }
+
         }
     }
 }

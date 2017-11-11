@@ -38,31 +38,14 @@ namespace CheckersDA
                     Console.Clear();
                     break;
                 case 3:
-                    Console.WriteLine("                                                    you have selected to load a game");
-                    Console.ReadKey();
-                    Console.Clear();
-                    break;
-                case 4:
-                    Console.WriteLine("                                                    you have selected to watch a previously played game");
-                    Console.ReadKey();
-                    Console.Clear();
-                    break;
-                case 5:
                     Console.WriteLine("                                                    you have chosen to quit");
                     Environment.Exit(0);
                     break;
-                default:
-                    Console.WriteLine("invalid menu selection");
-                    break;
             }
-
-
-
 
             //creates a while loop that draws the board until the win condition is met. it then takes user input to passes it to IsInputValid then CollisionDect if the input is valid passes move to next player 
             while (logic.Win != true)
             {
-                game.Draw(game.GameBg, playerOne, playerTwo);
                 logic.Logic(game.GameBg, playerOne, playerTwo);
             }
         }

@@ -83,7 +83,9 @@ namespace CheckersDA.MoveMechs
         {
             //take row and col passed in to check corrisponding location in array and sets the player as that location in array 
             player = gameBg[row, col];
+            //take moveRow and moveCol passed in to check corrisponding location in array and sets the opponent as that location in array 
             opponent = gameBg[moveRow, moveCol];
+
             //**************Player One Movement**************
             if (player == "X " && playerOne.IsItMyTurn == true)
             {
@@ -114,10 +116,12 @@ namespace CheckersDA.MoveMechs
                         if (gameBg[moveRow - 1, moveCol - 1] == player && (gameBg[moveRow - 2, moveCol - 2] == "O " || gameBg[moveRow - 2, moveCol - 2] == "kO") && gameBg[moveRow - 3, moveCol - 3] == "\0 " && gameBg[moveRow - 4, moveCol - 4] != "N ")
                         {
                             anotherMove = true;
+                            moveComplete = true;
                         }
                         else
                         {
                             anotherMove = false;
+                            moveComplete = true;
                         }
                     }
                     else if (moveRow == 2 && gameBg[row, col] == player && gameBg[moveRow, moveCol] == "\0 ")
@@ -125,6 +129,7 @@ namespace CheckersDA.MoveMechs
                         gameBg[row, col] = "\0 ";
                         gameBg[moveRow, moveCol] = "kX";
                         anotherMove = false;
+                        moveComplete = true;
                     }
                     // checks if move is right
                     else if (moveCol > col && gameBg[row, col] == player && (gameBg[moveRow, moveCol] == "O " || gameBg[moveRow, moveCol] == "kO") && gameBg[moveRow - 1, moveCol + 1] != "O ")
@@ -140,6 +145,7 @@ namespace CheckersDA.MoveMechs
                         else
                         {
                             anotherMove = false;
+                            moveComplete = true;
                         }
                     }
                     // checks if the postion the player is moving to is a null character in the array
@@ -167,7 +173,7 @@ namespace CheckersDA.MoveMechs
             //**************Player Two Movement**************
             else if (player == "O " && playerTwo.IsItMyTurn == true)
             {
-                if (player == "X ")
+                if (player == "X " || player == "kX")
                 {
                     Console.WriteLine("you can only move your assigned checker e.g. Player two can only move O's on the board");
                     Console.ReadKey();
@@ -197,6 +203,7 @@ namespace CheckersDA.MoveMechs
                         else
                         {
                             anotherMove = false;
+                            moveComplete = true;
                         }
                     }
                     else if (moveRow == 9 && gameBg[moveRow, moveCol] == "\0 " || moveRow == 9 && gameBg[moveRow, moveCol] == "\0 ")
@@ -218,6 +225,7 @@ namespace CheckersDA.MoveMechs
                         else
                         {
                             anotherMove = false;
+                            moveComplete = true;
                         }
                     }
                     // checks if the postion the player is moving to is a null character in the array

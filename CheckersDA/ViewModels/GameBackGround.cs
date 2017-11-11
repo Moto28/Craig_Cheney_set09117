@@ -65,6 +65,11 @@ namespace CheckersDA.ViewModels
                     gameBg[x, y] = "N";
                 }
             }
+
+            gameBg[6, 5] = "O ";
+            gameBg[4, 3] = "O ";
+            gameBg[3, 8] = "\0 ";
         }
+
     }
 }

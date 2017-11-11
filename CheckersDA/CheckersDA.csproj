@@ -47,6 +47,7 @@
     <Compile Include="MoveMechs\CollisionDect.cs" />
     <Compile Include="MoveMechs\ForceMove.cs" />
     <Compile Include="MoveMechs\UndoMove.cs" />
+    <Compile Include="MoveMechs\WatchReplay.cs" />
     <Compile Include="Players\Player.cs" />
     <Compile Include="Players\PlayerOne.cs" />
     <Compile Include="Players\PlayerTwo.cs" />
