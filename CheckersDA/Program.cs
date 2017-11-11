@@ -13,14 +13,14 @@ namespace CheckersDA
         {
             MainMenu menu = new MainMenu();
             Win isItWin = new Win();
-            WatchReplay watchReplay = new WatchReplay();
             GameBoard game = new GameBoard();
             GameLogic logic = new GameLogic();
             PlayerOne playerOne = new PlayerOne();
             PlayerTwo playerTwo = new PlayerTwo();
             GameBackGround background = new GameBackGround();
+            WatchReplay watch = new WatchReplay();
 
-            while (menu.MenuSel != 5)
+            while (menu.MenuSel != 4)
             {
                 menu.Menu(game.GameBg);
 
@@ -43,6 +43,10 @@ namespace CheckersDA
                         Console.Clear();
                         break;
                     case 3:
+                        Console.WriteLine("                                                    you have chosen to watch the replay of the last game");
+                        watch.Replay(game, playerOne, playerTwo);
+                        break;
+                    case 4:
                         Console.WriteLine("                                                    you have chosen to quit");
                         Environment.Exit(0);
                         break;
@@ -51,7 +55,7 @@ namespace CheckersDA
                 //creates a while loop that draws the board until the win condition is met. it then takes user input to passes it to IsInputValid then CollisionDect if the input is valid passes move to next player 
                 while (logic.Win != true)
                 {
-                    logic.Logic(game.GameBg, playerOne, playerTwo);
+                    logic.Logic(game.GameBg, playerOne, playerTwo, watch);
                 }
 
                 if (logic.Win == true)
@@ -60,10 +64,8 @@ namespace CheckersDA
                     isItWin.Winner();
                 }
                 Console.Clear();
-                //menu.Menu(game.GameBg);
 
-                watchReplay.Replay(game, playerOne, playerTwo);
-                Console.Clear();
+
             }
         }
 

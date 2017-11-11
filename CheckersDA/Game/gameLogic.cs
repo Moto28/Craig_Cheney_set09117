@@ -14,7 +14,6 @@ namespace CheckersDA.Game
         CollisionDect detection = new CollisionDect();
         IsInputValid valid = new IsInputValid();
         UndoMove undo = new UndoMove();
-        WatchReplay watchReplay = new WatchReplay();
 
         private bool win;
         private char pickRow;
@@ -87,9 +86,10 @@ namespace CheckersDA.Game
             }
         }
 
-        public void Logic(string[,] gameBg, PlayerOne playerOne, PlayerTwo playerTwo)
+        public void Logic(string[,] gameBg, PlayerOne playerOne, PlayerTwo playerTwo, WatchReplay watchReplay)
         {
             IsItWin(gameBg, playerOne, playerTwo);
+            watchReplay.AddToQueue(gameBg);
 
             if (playerOne.IsItMyTurn == true)
             {
@@ -170,7 +170,7 @@ namespace CheckersDA.Game
                             Console.ReadKey();
                             detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
                             playerOne.GetPlayerTurnCount();
-                            watchReplay.ReplayQueue.Enqueue(gameBg);
+                            watchReplay.AddToQueue(gameBg);
                             game.Draw(gameBg, playerOne, playerTwo);
                         }
                         else
@@ -186,7 +186,7 @@ namespace CheckersDA.Game
                         Console.ReadKey();
                         detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
                         playerOne.GetPlayerTurnCount();
-                        watchReplay.ReplayQueue.Enqueue(gameBg);
+                        watchReplay.AddToQueue(gameBg);
                         game.Draw(gameBg, playerOne, playerTwo);
                     }
                 }
@@ -276,7 +276,7 @@ namespace CheckersDA.Game
                             Console.WriteLine("\n\nyou have elected to move\n    {0}{1}  To  {2}{3}", pickRow.ToString().ToUpper(), pickCol, moveRow.ToString().ToUpper(), moveCol);
                             Console.ReadKey();
                             detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
-                            watchReplay.ReplayQueue.Enqueue(gameBg);
+                            watchReplay.AddToQueue(gameBg);
                             game.Draw(gameBg, playerOne, playerTwo);
                         }
                         else
@@ -291,7 +291,7 @@ namespace CheckersDA.Game
                         Console.WriteLine("\n\nyou have elected to move\n    {0}{1}  To  {2}{3}", pickRow.ToString().ToUpper(), pickCol, moveRow.ToString().ToUpper(), moveCol);
                         Console.ReadKey();
                         detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, playerTwo);
-                        watchReplay.ReplayQueue.Enqueue(gameBg);
+                        watchReplay.AddToQueue(gameBg);
                         game.Draw(gameBg, playerOne, playerTwo);
                     }
                 }

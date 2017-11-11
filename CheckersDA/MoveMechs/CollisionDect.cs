@@ -206,10 +206,12 @@ namespace CheckersDA.MoveMechs
                             moveComplete = true;
                         }
                     }
-                    else if (moveRow == 9 && gameBg[moveRow, moveCol] == "\0 " || moveRow == 9 && gameBg[moveRow, moveCol] == "\0 ")
+                    else if (moveRow == 9 && gameBg[moveRow, moveCol] != "X " || moveRow == 9 && gameBg[moveRow, moveCol] == "kX ")
                     {
+                        gameBg[row, col] = "\0 ";
                         gameBg[moveRow, moveCol] = "kO";
                         anotherMove = false;
+                        moveComplete = true;
                     }
                     // checks if move is right
                     else if (moveCol > col && gameBg[row, col] == player && (gameBg[moveRow, moveCol] == "X " || gameBg[moveRow, moveCol] == "kX") && gameBg[moveRow + 1, moveCol + 1] != "X ")

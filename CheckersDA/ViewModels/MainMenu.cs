@@ -7,12 +7,6 @@ namespace CheckersDA.ViewModels
 {
     class MainMenu
     {
-        PlayerOne playerOne = new PlayerOne();
-        PlayerTwo playerTwo = new PlayerTwo();
-        GameBackGround backGround = new GameBackGround();
-        GameBoard game = new GameBoard();
-
-
         private int menuSel;
         private int switchMenuSel;
 
@@ -65,10 +59,11 @@ namespace CheckersDA.ViewModels
 
                                                                  
                            |▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬|
-                           |(¯`·._.·(¯`·._.(¯`·._.Command LineCheckers._.·´¯)·._.·´¯)·._.·´¯)|
+                           |(¯`·._.·(¯`·._.(¯`·._.Command Line Checkers._.·´¯)·._.·´¯)·._.´¯)|
                            | \/ /\/ /\_/ /\/ /\/|  1. One Player Game  | \/ /\/ /\_/ /\/ /\/ |
                            |___/\ \/\___/\ \/\__|  2. Two Player Game  |___/\ \/\___/\ \/\___|
-                           |   \/\ \/   \/\ \/  |    3. Quit Game      |   \/\ \/   \/\ \/   |
+                           |   \/\ \/   \/\ \/  |  3.Replay Last Game  |   \/\ \/   \/\ \/   |
+                           |___/\ \/\___/\ \/\__|     4. Quit Game      |___/\ \/\___/\ \/\__|
                            |▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬|
                                      Enter Your Selection and Press Enter to Continue                    
                                                                     ";
@@ -81,9 +76,8 @@ namespace CheckersDA.ViewModels
             }
             catch (Exception e)
             {
-                e.Message.ToString();
-                Console.Clear();
-                Menu(gameBg);
+                Console.WriteLine(e.Message.ToString());
+                Console.ReadKey();
             }
 
         }

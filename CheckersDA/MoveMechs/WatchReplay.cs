@@ -27,12 +27,18 @@ namespace CheckersDA.MoveMechs
             }
         }
 
+        public void AddToQueue(string[,] gameBg)
+        {
+            string[,] arrayClone = gameBg.Clone() as string[,];
+            replayQueue.Enqueue(arrayClone);
+        }
+
         public void Replay(GameBoard game, PlayerOne playerOne, PlayerTwo playerTwo)
         {
-            ////////////////add code to 
-            while (replayQueue.Count >= 0)
+            while (replayQueue.Count > 0)
             {
                 game.Draw(replayQueue.Dequeue(), playerOne, playerTwo);
+                Console.ReadKey();
             }
         }
     }
