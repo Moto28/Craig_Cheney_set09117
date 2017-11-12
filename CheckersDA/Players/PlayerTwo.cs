@@ -121,31 +121,16 @@ namespace CheckersDA.Players
             }
         }
         //gets and store the players checker
-        override public string GetPlayerChecker()
+        override public void GetPlayerChecker()
         {
-            return playerChecker;
+            playerChecker = "O ";
         }
         //gets and store the players score
-        override public int GetMoveScore(CollisionDect collisionDect)
+        override public void GetMoveScore()
         {
-            while (isItMyTurn == true)
-            {
-                for (int score = 60; score >= 0; score--)
-                {
-                    System.Threading.Thread.Sleep(1000);
-                    if (collisionDect.MoveComplete == true)
-                    {
-                        score = playerScore;
-                    }
-                }
-            }
-            return playerScore;
+
         }
-        //gets and store the players score turn time
-        override public int SetPlayerTimer()
-        {
-            return playerScore;
-        }
+
         //gets and store the players when its the players turn
         override public int GetPlayerTurnCount()
         {

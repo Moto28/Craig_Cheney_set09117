@@ -17,6 +17,7 @@ namespace CheckersDA
             GameLogic logic = new GameLogic();
             PlayerOne playerOne = new PlayerOne();
             PlayerTwo playerTwo = new PlayerTwo();
+            AiPlayer aiPlayer = new AiPlayer();
             GameBackGround background = new GameBackGround();
             WatchReplay watch = new WatchReplay();
 
@@ -31,7 +32,19 @@ namespace CheckersDA
                         Console.WriteLine("\n\n\n\n\n                                            you have selected a 1 player game");
                         background.Objects(game.GameBg);
                         playerOne.GetPlayerName();
-                        game.Draw(game.GameBg, playerOne, playerTwo);
+                        aiPlayer.GetPlayerName();
+                        game.Draw(game.GameBg, playerOne, aiPlayer);
+                        Console.Clear();
+                        while (logic.Win != true)
+                        {
+                            logic.Logic(game.GameBg, playerOne, aiPlayer, watch);
+                        }
+
+                        if (logic.Win == true)
+                        {
+                            Console.Clear();
+                            isItWin.Winner();
+                        }
                         Console.Clear();
                         break;
                     case 2:
@@ -40,6 +53,17 @@ namespace CheckersDA
                         background.Objects(game.GameBg);
                         playerOne.GetPlayerName();
                         playerTwo.GetPlayerName();
+                        Console.Clear();
+                        while (logic.Win != true)
+                        {
+                            logic.Logic(game.GameBg, playerOne, playerTwo, watch);
+                        }
+
+                        if (logic.Win == true)
+                        {
+                            Console.Clear();
+                            isItWin.Winner();
+                        }
                         Console.Clear();
                         break;
                     case 3:
@@ -53,17 +77,7 @@ namespace CheckersDA
                 }
 
                 //creates a while loop that draws the board until the win condition is met. it then takes user input to passes it to IsInputValid then CollisionDect if the input is valid passes move to next player 
-                while (logic.Win != true)
-                {
-                    logic.Logic(game.GameBg, playerOne, playerTwo, watch);
-                }
 
-                if (logic.Win == true)
-                {
-                    Console.Clear();
-                    isItWin.Winner();
-                }
-                Console.Clear();
 
 
             }

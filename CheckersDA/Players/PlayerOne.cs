@@ -109,7 +109,9 @@ namespace CheckersDA.Players
         }
 
 
-        //gets and store the player name
+        /// <summary>
+        /// gets and stores play name
+        /// </summary>
         override public void GetPlayerName()
         {
             Console.WriteLine("\nPLAYER ONE ENTER YOUR NAME");
@@ -121,35 +123,25 @@ namespace CheckersDA.Players
                 Console.Clear();
             }
         }
-        //gets and store the players checker
-        override public string GetPlayerChecker()
-        {
-            return playerChecker;
-        }
-        //gets and store the players score
-        override public int GetMoveScore(CollisionDect collisionDect)
-        {
-            while (isItMyTurn == true)
-            {
-                for (int score = 60; score >= 0; score--)
-                {
-                    System.Threading.Thread.Sleep(1000);
-                    if (collisionDect.MoveComplete == true)
-                    {
-                        score = playerScore;
-                    }
-                }
-            }
-
-            return playerScore;
-        }
-        //gets and store the players score turn time
-        override public int SetPlayerTimer()
+        /// <summary>
+        /// gets and stores playerChecker
+        /// </summary>  
+        override public void GetPlayerChecker()
         {
 
-            return playerTimer;
         }
-        //gets and store the players when its the players turn
+        /// <summary>
+        ///  //gets and store the players score
+        /// </summary>     
+        override public void GetMoveScore()
+        {
+
+        }
+
+        /// <summary>
+        /// sets players turn to false
+        /// </summary>
+        /// <returns></returns>
         override public int GetPlayerTurnCount()
         {
             playerTurnCount++;
