@@ -99,12 +99,6 @@ namespace CheckersDA.Game
                 valid.PickIsValid = false;
                 valid.MoveIsValid = false;
 
-                if (detection.AnotherMove == false && playerOne.PlayerTurnCount != 0)
-                {
-                    undo.UndoPlayerMove(gameBg, playerOne, playerTwo);
-
-                }
-
                 if (detection.CheckerTaken == true && detection.AnotherMove == false || detection.MoveComplete == true && detection.AnotherMove == false)
                 {
                     detection.CheckerTaken = false;
@@ -175,6 +169,11 @@ namespace CheckersDA.Game
                             watchReplay.AddToQueue(gameBg);
                             undo.AddToRedoStack(gameBg);
                             game.Draw(gameBg, playerOne, playerTwo);
+                            if (detection.AnotherMove == false && playerOne.PlayerTurnCount != 0)
+                            {
+                                undo.UndoPlayerMove(gameBg, playerOne, playerTwo);
+
+                            }
                         }
                         else
                         {
@@ -193,6 +192,11 @@ namespace CheckersDA.Game
                         watchReplay.AddToQueue(gameBg);
                         undo.AddToRedoStack(gameBg);
                         game.Draw(gameBg, playerOne, playerTwo);
+                        if (detection.AnotherMove == false && playerOne.PlayerTurnCount != 0)
+                        {
+                            undo.UndoPlayerMove(gameBg, playerOne, playerTwo);
+
+                        }
                     }
                 }
                 else
@@ -285,6 +289,11 @@ namespace CheckersDA.Game
                             watchReplay.AddToQueue(gameBg);
                             undo.AddToRedoStack(gameBg);
                             game.Draw(gameBg, playerOne, playerTwo);
+                            if (detection.AnotherMove == false && playerOne.PlayerTurnCount != 0)
+                            {
+                                undo.UndoPlayerMove(gameBg, playerOne, playerTwo);
+
+                            }
                         }
                         else
                         {
@@ -302,6 +311,11 @@ namespace CheckersDA.Game
                         watchReplay.AddToQueue(gameBg);
                         undo.AddToRedoStack(gameBg);
                         game.Draw(gameBg, playerOne, playerTwo);
+                        if (detection.AnotherMove == false && playerOne.PlayerTurnCount != 0)
+                        {
+                            undo.UndoPlayerMove(gameBg, playerOne, playerTwo);
+
+                        }
                     }
                 }
             }
@@ -320,22 +334,16 @@ namespace CheckersDA.Game
                 valid.PickIsValid = false;
                 valid.MoveIsValid = false;
 
-                if (detection.AnotherMove == false && playerOne.PlayerTurnCount != 0)
-                {
-                    undo.UndoPlayerMove(gameBg, playerOne, aiPlayer);
-
-                }
-
                 if (detection.CheckerTaken == true && detection.AnotherMove == false || detection.MoveComplete == true && detection.AnotherMove == false)
                 {
                     detection.CheckerTaken = false;
                     playerOne.YourTurn();
                     aiPlayer.MyTurn();
                     game.Draw(gameBg, playerOne, aiPlayer);
-
                 }
                 else
                 {
+
                     Console.Clear();
                     game.Draw(gameBg, playerOne, aiPlayer);
                     move.ForceJumpUp(gameBg);
@@ -396,6 +404,11 @@ namespace CheckersDA.Game
                             watchReplay.AddToQueue(gameBg);
                             undo.AddToRedoStack(gameBg);
                             game.Draw(gameBg, playerOne, aiPlayer);
+                            if (detection.AnotherMove == false && playerOne.PlayerTurnCount != 0)
+                            {
+                                undo.UndoPlayerMove(gameBg, playerOne, aiPlayer);
+
+                            }
                         }
                         else
                         {
@@ -414,110 +427,31 @@ namespace CheckersDA.Game
                         watchReplay.AddToQueue(gameBg);
                         undo.AddToRedoStack(gameBg);
                         game.Draw(gameBg, playerOne, aiPlayer);
+                        if (detection.AnotherMove == false && playerOne.PlayerTurnCount != 0)
+                        {
+                            undo.UndoPlayerMove(gameBg, playerOne, aiPlayer);
+
+                        }
                     }
                 }
                 else
                 {
                     detection.MoveComplete = false;
                 }
-
             }
             //**************Player Two movement*****************************************************************************************************************
             else if (aiPlayer.IsItMyTurn == true)
             {
+                aiPlayer.AvailableMoves(gameBg);
+                aiPlayer.PickMove();
+                aiPlayer.CovertMove();
+                aiPlayer.MakeMove(gameBg);
                 game.Draw(gameBg, playerOne, aiPlayer);
-
-                valid.PickIsValid = false;
-                valid.MoveIsValid = false;
-
-
-                if (detection.AnotherMove == false && aiPlayer.PlayerTurnCount != 0)
-                {
-                    undo.UndoPlayerMove(gameBg, playerOne, aiPlayer);
-                }
-
-                if (detection.CheckerTaken == true && detection.AnotherMove == false || detection.MoveComplete == true && detection.AnotherMove == false)
-                {
-                    detection.CheckerTaken = false;
-                    aiPlayer.YourTurn();
-                    playerOne.MyTurn();
-                    game.Draw(gameBg, playerOne, aiPlayer);
-                }
-                else
-                {
-                    Console.Clear();
-                    game.Draw(gameBg, playerOne, aiPlayer);
-                    move.ForceJumpDown(gameBg);
-                    Console.WriteLine("\n\n{0}'s turn", aiPlayer.PlayerName.ToUpper());
-                    valid.IsItValidFirstMove(gameBg, pickRow, pickCol, playerOne, aiPlayer);
-                }
-
-                if (aiPlayer.IsItMyTurn == true && valid.PickIsValid == true)
-                {
-                    detection.MoveComplete = false;
-
-                    if (move.MustPickRowAndCol.Count > 0)
-                    {
-                        int convertedPickCol = Convert.ToInt16(pickCol.ToString());
-
-                        if (move.MustPickRowAndCol.Contains(pickRow.ToString() + convertedPickCol.ToString()) == true)
-                        {
-                            Console.WriteLine("\n\n{0}'s turn", aiPlayer.PlayerName.ToUpper());
-                            valid.IsItValidSecondMove(moveRow, moveCol, valid.PickIsValid);
-                        }
-                        else
-                        {
-                            Console.WriteLine("\nyou must must pick one of the moves in the list above");
-                            Console.ReadKey();
-                        }
-
-                    }
-                    else
-                    {
-                        Console.WriteLine("\n\n{0}'s turn", aiPlayer.PlayerName.ToUpper());
-                        valid.IsItValidSecondMove(moveRow, moveCol, valid.PickIsValid);
-                    }
-                }
-                else
-                {
-                    detection.MoveComplete = false;
-                }
-                if (aiPlayer.IsItMyTurn == true && valid.MoveIsValid == true)
-                {
-                    if (move.MustMoveRowAndCol.Count > 0)
-                    {
-                        int convertedMoveCol = Convert.ToInt16(moveCol.ToString());
-
-                        if (move.MustMoveRowAndCol.Contains(moveRow.ToString() + convertedMoveCol.ToString()) == true)
-                        {
-                            Console.WriteLine("\n\nyou have elected to move\n    {0}{1}  To  {2}{3}", pickRow.ToString().ToUpper(), pickCol, moveRow.ToString().ToUpper(), moveCol);
-                            Console.ReadKey();
-                            undo.AddToUndoStack(gameBg);
-                            detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, aiPlayer);
-                            watchReplay.AddToQueue(gameBg);
-                            undo.AddToRedoStack(gameBg);
-                            game.Draw(gameBg, playerOne, aiPlayer);
-                        }
-                        else
-                        {
-                            Console.WriteLine("you must select one of the moves above");
-                            Console.ReadKey();
-                            detection.MoveComplete = false;
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("\n\nyou have elected to move\n    {0}{1}  To  {2}{3}", pickRow.ToString().ToUpper(), pickCol, moveRow.ToString().ToUpper(), moveCol);
-                        Console.ReadKey();
-                        undo.AddToUndoStack(gameBg);
-                        detection.CheckAndUpdate(gameBg, valid.ConvRow, valid.ConvCol, valid.NewConvRow, valid.NewConvCol, playerOne, aiPlayer);
-                        watchReplay.AddToQueue(gameBg);
-                        undo.AddToRedoStack(gameBg);
-                        game.Draw(gameBg, playerOne, aiPlayer);
-                    }
-                }
+                aiPlayer.IsItMyTurn = false;
+                playerOne.IsItMyTurn = true;
             }
         }
+
         public void IsItWin(string[,] gameBg, PlayerOne playerOne, PlayerTwo playerTwo)
         {
             playerOne.PlayerCheckerCount = 0;
@@ -528,12 +462,10 @@ namespace CheckersDA.Game
                 if (checker == "X " || checker == "kX")
                 {
                     playerOne.PlayerCheckerCount++;
-                    Console.WriteLine("{0}", playerOne.PlayerCheckerCount);
                 }
                 else if (checker == "O " || checker == "kO")
                 {
                     playerTwo.PlayerCheckerCount++;
-                    Console.WriteLine("{0}", playerTwo.PlayerCheckerCount);
                 }
             }
             if (playerOne.PlayerCheckerCount == 0)

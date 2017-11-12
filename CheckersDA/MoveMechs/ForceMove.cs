@@ -76,11 +76,12 @@ namespace CheckersDA.MoveMechs
             }
             mustPickRowAndCol.Clear();
             mustMoveRowAndCol.Clear();
-            //checkers on map
+            //checkers on map            
             for (int x = 9; x >= 2; x--)
             {
                 for (int y = 2; y <= 9; y++)
                 {
+
                     //checks up an left
                     if ((gameBg[x, y] == "X " || gameBg[x, y] == "kX") && (gameBg[x - 1, y - 1] == "O " || gameBg[x - 1, y - 1] == "kO") && gameBg[x - 2, y - 2] == "\0 ")
                     {
