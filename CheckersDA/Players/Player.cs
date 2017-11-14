@@ -4,7 +4,6 @@ namespace CheckersDA
 {
     abstract class Player
     {
-        abstract public void GetPlayerName();
 
         abstract public void GetMoveScore();
 

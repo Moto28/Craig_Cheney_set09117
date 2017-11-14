@@ -194,8 +194,11 @@ namespace CheckersDA.Game
                             watchReplay.AddToQueue(gameBg);
                             //adds gameBg to redo stack
                             undo.AddToRedoStack(gameBg);
+                            //adds one to turn count
+                            playerOne.GetPlayerTurnCount();
                             //redraws the gameboard
                             game.Draw(gameBg, playerOne, playerTwo);
+
 
                             //if the players move is complete and asks if they want to undo thier move
                             if (detection.AnotherMove == false && playerOne.PlayerTurnCount != 0)
@@ -224,8 +227,11 @@ namespace CheckersDA.Game
                         watchReplay.AddToQueue(gameBg);
                         //adds gameBg to redo stack
                         undo.AddToRedoStack(gameBg);
+                        //adds one to turn count
+                        playerOne.GetPlayerTurnCount();
                         //redraws the gameboard
                         game.Draw(gameBg, playerOne, playerTwo);
+
 
                         //if the players move is complete and asks if they want to undo thier move
                         if (detection.AnotherMove == false && playerOne.PlayerTurnCount != 0)
@@ -331,8 +337,12 @@ namespace CheckersDA.Game
                             watchReplay.AddToQueue(gameBg);
                             //adds gameBg to redo stack
                             undo.AddToRedoStack(gameBg);
+                            //adds one to turn count
+                            playerTwo.GetPlayerTurnCount();
                             //redraws the gameboard
                             game.Draw(gameBg, playerOne, playerTwo);
+
+                            //checks if move completed and asks if they want to undo thier move
                             if (detection.AnotherMove == false && playerOne.PlayerTurnCount != 0)
                             {
                                 undo.UndoPlayerMove(gameBg, playerOne, playerTwo);
@@ -358,6 +368,8 @@ namespace CheckersDA.Game
                         watchReplay.AddToQueue(gameBg);
                         //adds gameBg to redo stack
                         undo.AddToRedoStack(gameBg);
+                        //adds one to turn count
+                        playerTwo.GetPlayerTurnCount();
                         //redraws the gameboard
                         game.Draw(gameBg, playerOne, playerTwo);
 

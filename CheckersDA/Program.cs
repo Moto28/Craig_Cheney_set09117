@@ -13,6 +13,7 @@ namespace CheckersDA
         {
             #region instantiates classes needed 
             MainMenu menu = new MainMenu();
+            SplashScreen splash = new SplashScreen();
             Win isItWin = new Win();
             GameBoard game = new GameBoard();
             GameLogic logic = new GameLogic();
@@ -22,6 +23,8 @@ namespace CheckersDA
             GameBackGround background = new GameBackGround();
             WatchReplay watch = new WatchReplay();
             #endregion
+
+            splash.DrawSplashScreen();
 
             #region draws menu and allows user to exit, pick game mode or watch replay 
             while (menu.MenuSel != 4)
@@ -59,7 +62,7 @@ namespace CheckersDA
                         Console.WriteLine("                                                     you have selected a 2 player game");
                         background.Objects(game.GameBg);
                         playerOne.GetPlayerName();
-                        playerTwo.GetPlayerName();
+                        playerTwo.GetPlayerName(playerOne);
                         Console.Clear();
                         while (logic.Win != true)
                         {

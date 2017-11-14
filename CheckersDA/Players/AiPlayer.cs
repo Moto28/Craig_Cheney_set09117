@@ -24,7 +24,7 @@ namespace CheckersDA.Players
         #endregion
 
         #region constructors
-        override public void GetPlayerName()
+        public void GetPlayerName()
         {
             aiMove = AiMove;
             score0 = Score0;

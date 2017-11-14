@@ -50,7 +50,7 @@ namespace CheckersDA.ViewModels
         {
             Console.Title = "Checkers";
             //changes text colour
-            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.White;
             //gets the largest height and width /2 and sets as window size
             var height = Console.LargestWindowHeight / 2;
             var width = Console.LargestWindowWidth / 2;

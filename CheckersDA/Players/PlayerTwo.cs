@@ -115,15 +115,16 @@ namespace CheckersDA.Players
 
 
         #region gets and stores player name
-        override public void GetPlayerName()
+        public void GetPlayerName(PlayerOne playerOne)
         {
             Console.WriteLine("\nPLAYER TWO ENTER YOUR NAME");
             playerName = Console.ReadLine();
             //checks the player is more than 3 chars long
-            if (playerName.Length <= 3)
+
+            if (playerName.Length <= 3 || PlayerName == playerOne.PlayerName)
             {
-                Console.WriteLine("\nyour name must be more than 3 characters, try again");
-                GetPlayerName();
+                Console.WriteLine("\nyour name must be more than 3 characters and player name can't match, try again");
+                GetPlayerName(playerOne);
                 Console.Clear();
             }
         }

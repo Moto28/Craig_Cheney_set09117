@@ -65,8 +65,16 @@ namespace CheckersDA.MoveMechs
                     //if the player presses y and the undo stack contains an elements the gamebaord is redrawen
                     if (undoStack.Count > 0)
                     {
+                        //checks if its player one or player twos turn
+                        if (playerOne.IsItMyTurn == true)
+                        {
+                            playerOne.PlayerTurnCount--;
+                        }
+                        else
+                        {
+                            playerTwo.PlayerTurnCount--;
+                        }
                         game.Draw(undoStack.Pop(), playerOne, playerTwo);
-                        Console.ReadKey();
                     }
                     // the user is then asked if they would like to redo the move the have just done
                     Console.WriteLine("Would you like to Redo your move?, y = Yes  n = No");
@@ -75,6 +83,15 @@ namespace CheckersDA.MoveMechs
                     switch (redoMenuSel)
                     {
                         case 'y':
+                            //checks if its player one or player twos turn
+                            if (playerOne.IsItMyTurn == true)
+                            {
+                                playerOne.PlayerTurnCount++;
+                            }
+                            else
+                            {
+                                playerTwo.PlayerTurnCount++;
+                            }
                             //if the redo move is selected is redraws the board back the way it was before te move
                             game.Draw(redoStack.Pop(), playerOne, playerTwo);
                             break;

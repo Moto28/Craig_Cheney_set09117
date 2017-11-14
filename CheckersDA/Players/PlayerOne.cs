@@ -113,7 +113,7 @@ namespace CheckersDA.Players
         #endregion
 
         #region gets and stores player name
-        override public void GetPlayerName()
+        public void GetPlayerName()
         {
             Console.WriteLine("\nPLAYER ONE ENTER YOUR NAME");
             playerName = Console.ReadLine();

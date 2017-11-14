@@ -57,6 +57,7 @@
     <Compile Include="ViewModels\GameBackGround.cs" />
     <Compile Include="ViewModels\GameBoard.cs" />
     <Compile Include="ViewModels\MainMenu.cs" />
+    <Compile Include="ViewModels\SplashScreen.cs" />
     <Compile Include="ViewModels\Win.cs" />
   </ItemGroup>
   <ItemGroup>
