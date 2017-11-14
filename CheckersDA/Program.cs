@@ -3,6 +3,7 @@ using CheckersDA.ViewModels;
 using CheckersDA.MoveMechs;
 using CheckersDA.Game;
 using CheckersDA.Players;
+using System.Collections.Generic;
 
 namespace CheckersDA
 {
@@ -11,6 +12,7 @@ namespace CheckersDA
 
         static void Main(string[] args)
         {
+
             #region instantiates classes needed 
             MainMenu menu = new MainMenu();
             SplashScreen splash = new SplashScreen();
@@ -22,7 +24,10 @@ namespace CheckersDA
             AiPlayer aiPlayer = new AiPlayer();
             GameBackGround background = new GameBackGround();
             WatchReplay watch = new WatchReplay();
+            LeaderBoard leaderBoard = new LeaderBoard();
             #endregion
+
+
 
             splash.DrawSplashScreen();
 
@@ -55,6 +60,17 @@ namespace CheckersDA
                             Console.Clear();
                             isItWin.Winner();
                         }
+                        //add player score to leaderboard
+                        if (playerOne.PlayerScore > playerTwo.PlayerScore)
+                        {
+                            string score = playerOne.PlayerName + ": " + playerOne.PlayerScore;
+                            leaderBoard.Leadboard.Add(score);
+                        }
+                        else if (playerTwo.PlayerScore > playerOne.PlayerScore)
+                        {
+                            string score = playerTwo.PlayerName + ": " + playerTwo.PlayerScore;
+                            leaderBoard.Leadboard.Add(score);
+                        }
                         Console.Clear();
                         break;
                     case 2:
@@ -82,6 +98,9 @@ namespace CheckersDA
                         watch.Replay(game, playerOne, playerTwo);
                         break;
                     case 4:
+                        leaderBoard.SortedLeaderboard();
+                        break;
+                    case 5:
                         Console.WriteLine("                                                    you have chosen to quit");
                         Environment.Exit(0);
                         break;

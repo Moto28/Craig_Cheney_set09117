@@ -8,7 +8,7 @@ namespace CheckersDA.MoveMechs
 {
     class ForceMove
     {
-        #region instantiate's objects used by the class
+        #region creates private varibles
         private List<string> mustPickRowAndCol = new List<string>();
         private List<string> mustMoveRowAndCol = new List<string>();
         private Dictionary<int, string> revert = new Dictionary<int, string>();

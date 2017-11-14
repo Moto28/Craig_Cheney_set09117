@@ -74,8 +74,9 @@ namespace CheckersDA.ViewModels
                            |(¯`·._.·(¯`·._.(¯`·._.Command Line Checkers._.·´¯)·._.·´¯)·._.´¯)|
                            | \/ /\/ /\_/ /\/ /\/|  1. One Player Game  | \/ /\/ /\_/ /\/ /\/ |
                            |___/\ \/\___/\ \/\__|  2. Two Player Game  |___/\ \/\___/\ \/\___|
-                           |   \/\ \/   \/\ \/  |  3.Replay Last Game  |   \/\ \/   \/\ \/   |
-                           |___/\ \/\___/\ \/\__|     4. Quit Game      |___/\ \/\___/\ \/\__|
+                           |   \/\ \/   \/\ \/  |  3. Replay Last Game |   \/\ \/   \/\ \/   |
+                           |___/\ \/\___/\ \/\__|  4. Leaderboard      |___/\ \/\___/\ \/\___|
+                           |___/\ \/\___/\ \/\__|  5. Quit Game        |___/\ \/\___/\ \/\___|
                            |▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬|
                                      Enter Your Selection and Press Enter to Continue                    
                                                                     ";
