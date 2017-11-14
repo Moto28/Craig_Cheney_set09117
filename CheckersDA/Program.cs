@@ -3,7 +3,6 @@ using CheckersDA.ViewModels;
 using CheckersDA.MoveMechs;
 using CheckersDA.Game;
 using CheckersDA.Players;
-using System.Collections.Generic;
 
 namespace CheckersDA
 {

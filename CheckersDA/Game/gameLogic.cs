@@ -119,7 +119,6 @@ namespace CheckersDA.Game
                     playerOne.YourTurn();
                     playerTwo.MyTurn();
                     game.Draw(gameBg, playerOne, playerTwo);
-
                 }
                 else
                 {
@@ -410,7 +409,6 @@ namespace CheckersDA.Game
                     playerOne.YourTurn();
                     aiPlayer.MyTurn();
                     game.Draw(gameBg, playerOne, aiPlayer);
-
                 }
                 else
                 {
@@ -534,8 +532,15 @@ namespace CheckersDA.Game
             //**************ai player movement*****************************************************************************************************************
             else if (aiPlayer.IsItMyTurn == true)
             {
+                if (detection.CheckerTaken == true && detection.AnotherMove == false || detection.MoveComplete == true && detection.AnotherMove == false)
+                {
+                    detection.CheckerTaken = false;
+                    aiPlayer.YourTurn();
+                    playerOne.MyTurn();
+                    game.Draw(gameBg, playerOne, aiPlayer);
+                }
                 //ai checks if it can move any checkers
-                aiPlayer.AvailableMoves(gameBg);
+                aiPlayer.AvailableMoves(gameBg, detection);
                 //randomly picks a move from one of it lists
                 aiPlayer.PickMove();
                 //converts the move to row and col format

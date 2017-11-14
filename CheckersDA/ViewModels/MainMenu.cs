@@ -1,6 +1,4 @@
-﻿using CheckersDA.Players;
-using System;
-using CheckersDA.Game;
+﻿using System;
 
 
 namespace CheckersDA.ViewModels
@@ -92,6 +90,7 @@ namespace CheckersDA.ViewModels
             {
                 Console.WriteLine(e.Message.ToString());
                 Console.ReadKey();
+                Console.Clear();
             }
 
         }

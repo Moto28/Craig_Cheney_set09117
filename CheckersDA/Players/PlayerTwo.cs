@@ -1,5 +1,4 @@
 ﻿using System;
-using CheckersDA.MoveMechs;
 
 namespace CheckersDA.Players
 {

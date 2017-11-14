@@ -1,5 +1,4 @@
 ﻿using System;
-using CheckersDA.MoveMechs;
 
 namespace CheckersDA.Players
 {
@@ -126,7 +125,6 @@ namespace CheckersDA.Players
             }
         }
         #endregion
-
 
         #region gets player turn count
         override public int GetPlayerTurnCount()

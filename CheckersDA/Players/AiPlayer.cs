@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CheckersDA.MoveMechs;
-using CheckersDA.MoveConvertor;
 
 namespace CheckersDA.Players
 {
@@ -154,7 +150,7 @@ namespace CheckersDA.Players
         #endregion
 
         #region checks for moves the AI player can make
-        public void AvailableMoves(string[,] gameBg)
+        public void AvailableMoves(string[,] gameBg, CollisionDect dect)
         {
             //clears list each time function is used
             Score0.Clear();
@@ -172,6 +168,7 @@ namespace CheckersDA.Players
                     {
                         int tempX = x + 1;
                         int tempY = y - 1;
+                        dect.AnotherMove = false;
                         score0.Add(x.ToString() + "," + y.ToString() + "-" + tempX.ToString() + "," + tempY.ToString());
 
                     }
@@ -180,6 +177,7 @@ namespace CheckersDA.Players
                     {
                         int tempX = x + 1;
                         int tempY = y + 1;
+                        dect.AnotherMove = false;
                         score0.Add(x.ToString() + "," + y.ToString() + "-" + tempX.ToString() + "," + tempY.ToString());
 
                     }
@@ -188,6 +186,7 @@ namespace CheckersDA.Players
                     {
                         int tempX = x + 1;
                         int tempY = y - 1;
+                        dect.AnotherMove = false;
                         score1.Add(x.ToString() + "," + y.ToString() + "-" + tempX.ToString() + "," + tempY.ToString());
                     }
                     //finds moves for O or kO looks looks for a space DOWN and RIGHT and a space DOWN and LEFT        
@@ -195,6 +194,7 @@ namespace CheckersDA.Players
                     {
                         int tempX = x + 1;
                         int tempY = y + 1;
+                        dect.AnotherMove = false;
                         score1.Add(x.ToString() + "," + y.ToString() + "-" + tempX.ToString() + "," + tempY.ToString());
                     }
                     //finds moves for O or kO looks looks for a space DOWN and RIGHT and a space DOWN and RIGHT        
@@ -202,6 +202,7 @@ namespace CheckersDA.Players
                     {
                         int tempX = x + 1;
                         int tempY = y - 1;
+                        dect.AnotherMove = false;
                         score1.Add(x.ToString() + "," + y.ToString() + "-" + tempX.ToString() + "," + tempY.ToString());
                     }
                     //finds moves for O or kO looks looks for a space DOWN and LEFT and a space DOWN and LEFT        
@@ -209,6 +210,7 @@ namespace CheckersDA.Players
                     {
                         int tempX = x + 1;
                         int tempY = y + 1;
+                        dect.AnotherMove = false;
                         score1.Add(x.ToString() + "," + y.ToString() + "-" + tempX.ToString() + "," + tempY.ToString());
                     }
                     //finds moves for O or kO looks looks for a space DOWN and RIGHT and a space DOWN and RIGHT        
@@ -216,6 +218,7 @@ namespace CheckersDA.Players
                     {
                         int tempX = x + 1;
                         int tempY = y - 1;
+                        dect.CheckerTaken = true;
                         score2.Add(x.ToString() + "," + y.ToString() + "-" + tempX.ToString() + "," + tempY.ToString());
                     }
                     //finds moves for O or kO looks looks for a space DOWN and LEFT and a space DOWN and LEFT        
@@ -223,6 +226,7 @@ namespace CheckersDA.Players
                     {
                         int tempX = x + 1;
                         int tempY = y + 1;
+                        dect.CheckerTaken = true;
                         score2.Add(x.ToString() + "," + y.ToString() + "-" + tempX.ToString() + "," + tempY.ToString());
                     }
                     //finds moves for O or kO looks looks for a space DOWN and RIGHT and a space DOWN and RIGHT        
@@ -230,6 +234,7 @@ namespace CheckersDA.Players
                     {
                         int tempX = x + 1;
                         int tempY = y - 1;
+                        dect.CheckerTaken = true;
                         score3.Add(x.ToString() + "," + y.ToString() + "-" + tempX.ToString() + "," + tempY.ToString());
                     }
                     //finds moves for O or kO looks looks for a space DOWN and LEFT and a space DOWN and LEFT        
@@ -237,6 +242,7 @@ namespace CheckersDA.Players
                     {
                         int tempX = x + 1;
                         int tempY = y + 1;
+                        dect.CheckerTaken = true;
                         score3.Add(x.ToString() + "," + y.ToString() + "-" + tempX.ToString() + "," + tempY.ToString());
                     }
                     //checks for O and kO checks if the row is 9 so checker changes to king down and RIGHT for space 
@@ -244,6 +250,7 @@ namespace CheckersDA.Players
                     {
                         int tempX = x + 1;
                         int tempY = y - 1;
+                        dect.AnotherMove = false;
                         score4.Add(x.ToString() + "," + y.ToString() + "-" + tempX.ToString() + "," + tempY.ToString());
                     }
                     //checks for O and kO checks if the row is 9 so checker changes to king down and LEFT for space 
@@ -251,6 +258,7 @@ namespace CheckersDA.Players
                     {
                         int tempX = x + 1;
                         int tempY = y + 1;
+                        dect.AnotherMove = false;
                         score4.Add(x.ToString() + "," + y.ToString() + "-" + tempX.ToString() + "," + tempY.ToString());
                     }
                 }
@@ -272,7 +280,7 @@ namespace CheckersDA.Players
             if (Score4.Count >= 1)
             {
                 //checks each item in list
-                foreach (var move in score3)
+                foreach (var move in score4)
                 {
                     //adds move to array
                     pickMove[i] = move;
@@ -302,7 +310,7 @@ namespace CheckersDA.Players
             else if (Score2.Count >= 1)
             {
                 //checks each item in list
-                foreach (var move in score3)
+                foreach (var move in score2)
                 {
                     //adds move to array
                     pickMove[i] = move;
@@ -317,7 +325,7 @@ namespace CheckersDA.Players
             else if (Score1.Count >= 1)
             {
                 //checks each item in list
-                foreach (var move in score3)
+                foreach (var move in score1)
                 {
                     //adds move to array
                     pickMove[i] = move;
@@ -332,7 +340,7 @@ namespace CheckersDA.Players
             else if (Score0.Count >= 1)
             {
                 //checks each item in list
-                foreach (var move in score3)
+                foreach (var move in score0)
                 {
                     //adds move to array
                     pickMove[i] = move;

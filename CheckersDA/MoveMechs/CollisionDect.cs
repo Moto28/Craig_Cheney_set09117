@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CheckersDA.Players;
-using CheckersDA.ViewModels;
 
 namespace CheckersDA.MoveMechs
 {

@@ -1,6 +1,4 @@
-﻿using CheckersDA.MoveMechs;
-
-namespace CheckersDA
+﻿namespace CheckersDA
 {
     abstract class Player
     {
