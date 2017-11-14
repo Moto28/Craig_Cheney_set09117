@@ -5,19 +5,20 @@ namespace CheckersDA.Players
 {
     class PlayerTwo : Player
     {
-        // creates varibles and makes them private
+        #region creates private varibles
         private string playerName;
         private string playerChecker;
-        private int playerCheckerCount;
+        private int playerCheckerCount = 0;
         private int playerScore;
         private int playerTimer;
         private int playerTurnCount;
-        private bool isItMyTurn;
+        private bool isItMyTurn = true;
+        #endregion
 
-        //constructor
+        #region constructor
         public PlayerTwo()
         {
-            //creates refrences to private vairbales to allow access outside class
+            //creates refrences to private varibales to allow access outside class
             playerName = PlayerName;
             playerChecker = PlayerChecker;
             playerCheckerCount = PlayerCheckerCount;
@@ -26,6 +27,9 @@ namespace CheckersDA.Players
             playerTurnCount = PlayerTurnCount;
             isItMyTurn = IsItMyTurn;
         }
+        #endregion
+
+        #region getters and setters
 
         public string PlayerName
         {
@@ -107,12 +111,15 @@ namespace CheckersDA.Players
             }
         }
 
+        #endregion
 
-        //gets and store the player name
+
+        #region gets and stores player name
         override public void GetPlayerName()
         {
             Console.WriteLine("\nPLAYER TWO ENTER YOUR NAME");
             playerName = Console.ReadLine();
+            //checks the player is more than 3 chars long
             if (playerName.Length <= 3)
             {
                 Console.WriteLine("\nyour name must be more than 3 characters, try again");
@@ -120,33 +127,38 @@ namespace CheckersDA.Players
                 Console.Clear();
             }
         }
-        //gets and store the players checker
-        override public void GetPlayerChecker()
-        {
-            playerChecker = "O ";
-        }
-        //gets and store the players score
+        #endregion
+
         override public void GetMoveScore()
         {
 
         }
 
-        //gets and store the players when its the players turn
+        #region gets player turn count
         override public int GetPlayerTurnCount()
         {
             playerTurnCount++;
             return playerTurnCount;
         }
+        #endregion
+
+        #region sets player turn
         public override bool MyTurn()
         {
+            //sets turn to true
             isItMyTurn = true;
             return isItMyTurn;
         }
+        #endregion
+
+        #region sets player turn
         public override bool YourTurn()
         {
+            //sets turn to false
             isItMyTurn = false;
             return isItMyTurn;
         }
+        #endregion
 
     }
 }

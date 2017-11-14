@@ -13,12 +13,18 @@ namespace CheckersDA.ViewModels
 
     class GameBoard
     {
+        #region creates private varibles 
         private string[,] gameBg = new string[14, 14];
+        #endregion
 
+        #region constructors
         public GameBoard()
         {
             gameBg = GameBg;
         }
+        #endregion
+
+        #region getters and setters
         public string[,] GameBg
         {
             get
@@ -30,9 +36,13 @@ namespace CheckersDA.ViewModels
                 gameBg = value;
             }
         }
+        #endregion
+
+        #region draws the game board with the array used for a background for objects
         public void Draw(string[,] gameBg, PlayerOne playerOne, PlayerTwo playerTwo)
         {
             Console.Clear();
+            //sets window size
             Console.SetWindowSize(200, 45);
             Console.WriteLine("        1    2    3    4    5    6    7    8          ");
             Console.WriteLine("           _____     _____     _____     _____");
@@ -63,6 +73,7 @@ namespace CheckersDA.ViewModels
             Console.WriteLine("        1    2    3    4    5    6    7    8");
 
         }
+        #endregion
     }
 }
 

@@ -8,6 +8,7 @@ namespace CheckersDA.ViewModels
 {
     class Win
     {
+        #region draws win screen
         public void Winner()
         {
             //stores the winners screen
@@ -52,5 +53,6 @@ namespace CheckersDA.ViewModels
             Console.WriteLine(winnerScreen);
             Console.ReadKey();
         }
+        #endregion
     }
 }

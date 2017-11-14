@@ -10,6 +10,7 @@ namespace CheckersDA.Players
 {
     class AiPlayer : PlayerTwo
     {
+        #region creates private varibles
         private List<string> score0 = new List<string>();
         private List<string> score1 = new List<string>();
         private List<string> score2 = new List<string>();
@@ -20,7 +21,9 @@ namespace CheckersDA.Players
         private int col;
         private int moveRow;
         private int moveCol;
+        #endregion
 
+        #region constructors
         override public void GetPlayerName()
         {
             aiMove = AiMove;
@@ -35,7 +38,9 @@ namespace CheckersDA.Players
             moveRow = MoveRow;
             moveCol = MoveCol;
         }
+        #endregion
 
+        #region getters and setters
         public List<string> Score0
         {
             get
@@ -146,9 +151,12 @@ namespace CheckersDA.Players
                 moveCol = value;
             }
         }
+        #endregion
 
+        #region checks for moves the AI player can make
         public void AvailableMoves(string[,] gameBg)
         {
+            //clears list each time function is used
             Score0.Clear();
             Score1.Clear();
             Score2.Clear();
@@ -248,72 +256,113 @@ namespace CheckersDA.Players
                 }
             }
         }
+        #endregion
+
+        #region picks from the chosen moves
         public void PickMove()
         {
+            //creates a array of size 10 
             string[] pickMove = new string[10];
+            // creates new random picker object
             Random random = new Random();
+
             int i = 0;
+
+            //checks list for values then randomly picks one 
             if (Score4.Count >= 1)
             {
+                //checks each item in list
                 foreach (var move in score3)
                 {
+                    //adds move to array
                     pickMove[i] = move;
                     i++;
                 }
+                // sets picker to choose between 0 and i
                 int rnd = random.Next(0, i);
+                //sets AI move to move picked from the list
                 aiMove = pickMove[rnd].ToString();
             }
-            if (Score3.Count >= 1)
+            //checks list for values then randomly picks one 
+            else if (Score3.Count >= 1)
             {
+                //checks each item in list
                 foreach (var move in score3)
                 {
+                    //adds move to array
                     pickMove[i] = move;
                     i++;
                 }
+                // sets picker to choose between 0 and i
                 int rnd = random.Next(0, i);
+                //sets AI move to move picked from the list
                 aiMove = pickMove[rnd].ToString();
             }
+            //checks list for values then randomly picks one 
             else if (Score2.Count >= 1)
             {
-                foreach (var move in score2)
+                //checks each item in list
+                foreach (var move in score3)
                 {
+                    //adds move to array
                     pickMove[i] = move;
                     i++;
                 }
+                // sets picker to choose between 0 and i
                 int rnd = random.Next(0, i);
+                //sets AI move to move picked from the list
                 aiMove = pickMove[rnd].ToString();
             }
+            //checks list for values then randomly picks one 
             else if (Score1.Count >= 1)
             {
-                foreach (var move in score1)
+                //checks each item in list
+                foreach (var move in score3)
                 {
+                    //adds move to array
                     pickMove[i] = move;
                     i++;
                 }
+                // sets picker to choose between 0 and i
                 int rnd = random.Next(0, i);
+                //sets AI move to move picked from the list
                 aiMove = pickMove[rnd].ToString();
             }
+            //checks list for values then randomly picks one 
             else if (Score0.Count >= 1)
             {
-                foreach (var move in score0)
+                //checks each item in list
+                foreach (var move in score3)
                 {
+                    //adds move to array
                     pickMove[i] = move;
                     i++;
                 }
+                // sets picker to choose between 0 and i
                 int rnd = random.Next(0, i);
+                //sets AI move to move picked from the list
                 aiMove = pickMove[rnd].ToString();
             }
         }
+        #endregion
+
+        #region converts move string into int's
         public void CovertMove()
         {
+            // sets out the separators
             string[] separators = { ",", "-" };
+            //creates array to put split sting into
             string[] words = aiMove.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
             Console.WriteLine("{0} now for the hard part\n {1} long", aiMove.ToString(), words.Length);
+            //converts from strings to int's
             row = Convert.ToInt16(words[0]);
             col = Convert.ToInt16(words[1]);
             moveRow = Convert.ToInt16(words[2]);
             moveCol = Convert.ToInt16(words[3]);
         }
+        #endregion
+
+        #region tells the AI how to update board
         public void MakeMove(string[,] gameBg)
         {
             //stores the type checkers to be moved
@@ -349,7 +398,7 @@ namespace CheckersDA.Players
                 }
             }
 
-
+            #endregion
         }
     }
 }

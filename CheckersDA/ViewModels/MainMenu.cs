@@ -7,14 +7,20 @@ namespace CheckersDA.ViewModels
 {
     class MainMenu
     {
+        #region creates private varibles
         private int menuSel;
         private int switchMenuSel;
+        #endregion
 
+        #region constructor
         public MainMenu()
         {
             menuSel = MenuSel;
             switchMenuSel = SwitchMenuSel;
         }
+        #endregion
+
+        #region getters and setters
         public int MenuSel
         {
             get
@@ -37,16 +43,22 @@ namespace CheckersDA.ViewModels
                 switchMenuSel = SwitchMenuSel;
             }
         }
+        #endregion
 
+        #region draws the menu
         public void Menu(string[,] gameBg)
         {
             Console.Title = "Checkers";
+            //changes text colour
             Console.ForegroundColor = ConsoleColor.Blue;
+            //gets the largest height and width /2 and sets as window size
             var height = Console.LargestWindowHeight / 2;
             var width = Console.LargestWindowWidth / 2;
             Console.WindowHeight = height;
             Console.WindowWidth = width;
+            //sets window name
             Console.Title = "Checkers";
+
             string mainMenu = @"   
 
 
@@ -72,6 +84,7 @@ namespace CheckersDA.ViewModels
 
             try
             {
+                //gets menu input
                 menuSel = int.Parse(Console.ReadLine());
             }
             catch (Exception e)
@@ -82,4 +95,5 @@ namespace CheckersDA.ViewModels
 
         }
     }
+    #endregion
 }

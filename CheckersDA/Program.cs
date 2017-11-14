@@ -11,6 +11,7 @@ namespace CheckersDA
 
         static void Main(string[] args)
         {
+            #region instantiates classes needed 
             MainMenu menu = new MainMenu();
             Win isItWin = new Win();
             GameBoard game = new GameBoard();
@@ -20,7 +21,9 @@ namespace CheckersDA
             AiPlayer aiPlayer = new AiPlayer();
             GameBackGround background = new GameBackGround();
             WatchReplay watch = new WatchReplay();
+            #endregion
 
+            #region draws menu and allows user to exit, pick game mode or watch replay 
             while (menu.MenuSel != 4)
             {
                 menu.Menu(game.GameBg);
@@ -30,16 +33,20 @@ namespace CheckersDA
                     case 1:
                         Console.Clear();
                         Console.WriteLine("\n\n\n\n\n                                            you have selected a 1 player game");
+                        //adds objects to array
                         background.Objects(game.GameBg);
+                        //gets players names
                         playerOne.GetPlayerName();
                         aiPlayer.GetPlayerName();
+                        //draws game board
                         game.Draw(game.GameBg, playerOne, aiPlayer);
                         Console.Clear();
+                        //loops through logic until win not true
                         while (logic.Win != true)
                         {
                             logic.Logic(game.GameBg, playerOne, aiPlayer, watch);
                         }
-
+                        //when logic is true draws win screen
                         if (logic.Win == true)
                         {
                             Console.Clear();
@@ -68,6 +75,7 @@ namespace CheckersDA
                         break;
                     case 3:
                         Console.WriteLine("                                                    you have chosen to watch the replay of the last game");
+                        //starts replay
                         watch.Replay(game, playerOne, playerTwo);
                         break;
                     case 4:
@@ -75,13 +83,8 @@ namespace CheckersDA
                         Environment.Exit(0);
                         break;
                 }
-
-                //creates a while loop that draws the board until the win condition is met. it then takes user input to passes it to IsInputValid then CollisionDect if the input is valid passes move to next player 
-
-
-
+                #endregion
             }
         }
-
     }
 }

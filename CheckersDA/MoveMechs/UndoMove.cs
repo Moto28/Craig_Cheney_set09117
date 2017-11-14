@@ -7,16 +7,26 @@ namespace CheckersDA.MoveMechs
 {
     class UndoMove
     {
-
+        #region instantiates objects needed by class
         GameBoard game = new GameBoard();
+        #endregion
+
+        #region creates private varibles
         private Stack<string[,]> undoStack = new Stack<string[,]>();
         private Stack<string[,]> redoStack = new Stack<string[,]>();
+        #endregion
+
+        #region constructor
 
         public UndoMove()
         {
             undoStack = UndoStack;
             redoStack = RedoStack;
         }
+
+        #endregion
+
+        #region getters and setters 
         public Stack<string[,]> UndoStack
         {
             get
@@ -39,19 +49,9 @@ namespace CheckersDA.MoveMechs
                 redoStack = value;
             }
         }
+        #endregion
 
-        /// <summary>
-        /// this method allows a player to undo thier move and redo it before handing the control to the other player
-        /// </summary>
-        /// <param name="gameBg"></param>
-        /// <param name="player"></param>
-        /// <param name="opponent"></param>
-        /// <param name="convRow"></param>
-        /// <param name="convCol"></param>
-        /// <param name="newConvRow"></param>
-        /// <param name="newConvCol"></param>
-        /// <param name="playerOne"></param>
-        /// <param name="playerTwo"></param>
+        #region control structure of undo and redo move
         public void UndoPlayerMove(string[,] gameBg, PlayerOne playerOne, PlayerTwo playerTwo)
         {
             Console.WriteLine("Do you want to undo your move ?, y = Yes  n = No");
@@ -62,18 +62,21 @@ namespace CheckersDA.MoveMechs
             switch (undoMenuSel)
             {
                 case 'y':
+                    //if the player presses y and the undo stack contains an elements the gamebaord is redrawen
                     if (undoStack.Count > 0)
                     {
                         game.Draw(undoStack.Pop(), playerOne, playerTwo);
                         Console.ReadKey();
                     }
+                    // the user is then asked if they would like to redo the move the have just done
                     Console.WriteLine("Would you like to Redo your move?, y = Yes  n = No");
                     char redoMenuSel = Console.ReadKey().KeyChar;
 
                     switch (redoMenuSel)
                     {
                         case 'y':
-
+                            //if the redo move is selected is redraws the board back the way it was before te move
+                            game.Draw(redoStack.Pop(), playerOne, playerTwo);
                             break;
                         case 'n':
                             break;
@@ -92,15 +95,24 @@ namespace CheckersDA.MoveMechs
             }
 
         }
+        #endregion
+
+        #region adds array to stack
         public void AddToUndoStack(string[,] gameBg)
         {
+            //clone a ref of gameBg array and adds to undo stack
             string[,] arrayClone = gameBg.Clone() as string[,];
             UndoStack.Push(arrayClone);
         }
+        #endregion
+
+        #region adds array to stack
         public void AddToRedoStack(string[,] gameBg)
         {
+            // clone a ref of gameBg array and adds to redo stack
             string[,] arrayClone = gameBg.Clone() as string[,];
             RedoStack.Push(arrayClone);
         }
+        #endregion
     }
 }
