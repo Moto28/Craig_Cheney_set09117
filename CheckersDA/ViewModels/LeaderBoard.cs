@@ -41,10 +41,10 @@ namespace CheckersDA.ViewModels
             {
                 Console.WriteLine("you need to play a game for your score to be stored, score are only there until you close the game");
             }
-
+            
             //displays each element in leaderboard list
             foreach (var score in leadboard)
-            {
+            {                
                 Console.WriteLine("{0}", score);
             }
             Console.ReadKey();
