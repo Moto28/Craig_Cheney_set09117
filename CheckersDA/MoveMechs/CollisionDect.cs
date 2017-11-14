@@ -120,6 +120,12 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow - 1, moveCol - 1] = player;
                         checkerTaken = true;
 
+                        //checks what check has been taken and adds the appropriate score
+                        if (gameBg[moveRow, moveCol] == "O ")
+                            playerOne.PlayerScore = +2;
+                        if (gameBg[moveRow, moveCol] == "kO")
+                            playerOne.PlayerScore = +4;
+
                         //checks if the player has another move they can make if they can't end thier turn if it can send the player back to the move input screen
                         if (gameBg[moveRow - 1, moveCol - 1] == player && (gameBg[moveRow - 2, moveCol - 2] == "O " || gameBg[moveRow - 2, moveCol - 2] == "kO") && gameBg[moveRow - 3, moveCol - 3] == "\0 " && gameBg[moveRow - 4, moveCol - 4] != "N ")
                         {
@@ -140,6 +146,8 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow, moveCol] = "kX";
                         anotherMove = false;
                         moveComplete = true;
+                        //adds to player score for getting a king
+                        playerOne.PlayerScore = +5;
                     }
                     // checks if move is right and space ahead contians a checkers or a king
                     else if (moveCol > col && gameBg[row, col] == player && (gameBg[moveRow, moveCol] == "O " || gameBg[moveRow, moveCol] == "kO") && gameBg[moveRow - 1, moveCol + 1] != "O ")
@@ -149,6 +157,11 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow, moveCol] = "\0 ";
                         gameBg[moveRow - 1, moveCol + 1] = player;
                         checkerTaken = true;
+                        //checks what check has been taken and adds the appropriate score
+                        if (gameBg[moveRow, moveCol] == "O ")
+                            playerOne.PlayerScore = +2;
+                        if (gameBg[moveRow, moveCol] == "kO")
+                            playerOne.PlayerScore = +4;
 
                         //checks if the player has another move they can make if they can't end thier turn if it can send the player back to the move input screen
                         if (gameBg[moveRow - 1, moveCol + 1] == player && (gameBg[moveRow - 2, moveCol + 2] == "O " || gameBg[moveRow - 2, moveCol + 2] == "kO") && gameBg[moveRow - 3, moveCol + 3] == "\0 " && gameBg[moveRow - 4, moveCol + 4] != "N")
@@ -169,6 +182,8 @@ namespace CheckersDA.MoveMechs
                         moveComplete = true;
                         checkerTaken = false;
                         anotherMove = false;
+                        //adds to player one score
+                        playerOne.PlayerScore++;
                     }
                     //displays error message
                     else
@@ -215,6 +230,11 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow, moveCol] = "\0 ";
                         gameBg[moveRow + 1, moveCol - 1] = player;
                         checkerTaken = true;
+                        //checks what check has been taken and adds the appropriate score
+                        if (gameBg[moveRow, moveCol] == "X ")
+                            playerTwo.PlayerScore = +2;
+                        if (gameBg[moveRow, moveCol] == "kX")
+                            playerTwo.PlayerScore = +4;
 
                         //checks if the player has another move they can make if they can't end thier turn if it can send the player back to the move input screen
                         if (gameBg[moveRow + 1, moveCol - 1] == player && (gameBg[moveRow + 2, moveCol + 2] == "X " || gameBg[moveRow + 2, moveCol + 2] == "kX") && gameBg[moveRow + 3, moveCol + 3] == "\0 " && gameBg[moveRow + 4, moveCol + 4] != "N")
@@ -235,6 +255,7 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow, moveCol] = "kO";
                         anotherMove = false;
                         moveComplete = true;
+                        playerTwo.PlayerScore = +5;
                     }
                     // checks if move is right and checker of king 
                     else if (moveCol > col && gameBg[row, col] == player && (gameBg[moveRow, moveCol] == "X " || gameBg[moveRow, moveCol] == "kX") && gameBg[moveRow + 1, moveCol + 1] != "X ")
@@ -244,6 +265,11 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow, moveCol] = "\0 ";
                         gameBg[moveRow + 1, moveCol + 1] = player;
                         checkerTaken = true;
+                        //checks what check has been taken and adds the appropriate score
+                        if (gameBg[moveRow, moveCol] == "X ")
+                            playerTwo.PlayerScore = +2;
+                        if (gameBg[moveRow, moveCol] == "kX")
+                            playerTwo.PlayerScore = +4;
 
                         //checks if the player has another move they can make if they can't end thier turn if it can send the player back to the move input screen
                         if (gameBg[moveRow + 1, moveCol - 1] == player && (gameBg[moveRow + 2, moveCol - 2] == "X " || gameBg[moveRow + 2, moveCol - 2] == "kX") && gameBg[moveRow + 3, moveCol - 3] == "\0 " && gameBg[moveRow + 4, moveCol - 4] != "N")
@@ -265,6 +291,7 @@ namespace CheckersDA.MoveMechs
                         moveComplete = true;
                         checkerTaken = false;
                         anotherMove = false;
+                        playerTwo.PlayerScore++;
                     }
                     //displays error message
                     else
@@ -311,6 +338,12 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow + 1, moveCol - 1] = player;
                         checkerTaken = true;
 
+                        //checks what check has been taken and adds the appropriate score
+                        if (gameBg[moveRow, moveCol] == "O ")
+                            playerOne.PlayerScore = +2;
+                        if (gameBg[moveRow, moveCol] == "kO")
+                            playerOne.PlayerScore = +4;
+
                         //checks if the player has another move they can make if they can't end thier turn if it can send the player back to the move input screen
                         if (gameBg[moveRow + 1, moveCol + 1] == player && (gameBg[moveRow + 2, moveCol + 2] == "O " || gameBg[moveRow + 2, moveCol + 2] == "kO") && gameBg[moveRow + 3, moveCol + 3] == "\0 " && gameBg[moveRow + 4, moveCol + 4] == "N")
                         {
@@ -330,6 +363,7 @@ namespace CheckersDA.MoveMechs
                         moveComplete = true;
                         checkerTaken = false;
                         anotherMove = false;
+                        playerOne.PlayerScore++;
                     }
                     //checks if move is right
                     if (moveCol > col && gameBg[row, col] == player && (gameBg[moveRow, moveCol] == "O " || gameBg[moveRow, moveCol] == "kO") && (gameBg[moveRow - 1, moveCol + 1] != "O " || gameBg[moveRow - 1, moveCol + 1] != "kO"))
@@ -339,6 +373,11 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow, moveCol] = "\0 ";
                         gameBg[moveRow + 1, moveCol + 1] = player;
                         checkerTaken = true;
+                        //checks what check has been taken and adds the appropriate score
+                        if (gameBg[moveRow, moveCol] == "O ")
+                            playerOne.PlayerScore = +2;
+                        if (gameBg[moveRow, moveCol] == "kO")
+                            playerOne.PlayerScore = +4;
 
                         //checks if the player has another move they can make if they can't end thier turn if it can send the player back to the move input screen
                         if (gameBg[moveRow + 1, moveCol - 1] == player && (gameBg[moveRow + 2, moveCol - 2] == "O " || gameBg[moveRow + 2, moveCol - 2] == "kO") && gameBg[moveRow + 3, moveCol - 3] != "\0 " && gameBg[moveRow + 4, moveCol - 4] != "N")
@@ -358,6 +397,7 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow, moveCol] = "\0 ";
                         gameBg[moveRow, moveCol] = player;
                         checkerTaken = true;
+                        playerOne.PlayerScore++;
                     }
 
                 }
@@ -372,6 +412,11 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow, moveCol] = "\0 ";
                         gameBg[moveRow - 1, moveCol - 1] = player;
                         checkerTaken = true;
+                        //checks what check has been taken and adds the appropriate score
+                        if (gameBg[moveRow, moveCol] == "O ")
+                            playerOne.PlayerScore = +2;
+                        if (gameBg[moveRow, moveCol] == "kO")
+                            playerOne.PlayerScore = +4;
 
                         //checks if the player has another move they can make if they can't end thier turn if it can send the player back to the move input screen
                         if (gameBg[moveRow - 1, moveCol - 1] == player && (gameBg[moveRow - 2, moveCol - 2] == "O " || gameBg[moveRow - 2, moveCol - 2] == "kO") && gameBg[moveRow - 3, moveCol - 3] == "\0 " && gameBg[moveRow - 4, moveCol - 4] != "N")
@@ -391,6 +436,7 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow, moveCol] = "\0 ";
                         gameBg[moveRow, moveCol] = player;
                         checkerTaken = true;
+                        playerOne.PlayerScore++;
                     }
                     //checks if move is right
                     if (moveCol > col && gameBg[row, col] == player && (gameBg[moveRow, moveCol] == "O " || gameBg[moveRow, moveCol] == "kO") && (gameBg[moveRow - 1, moveCol + 1] != "O " || gameBg[moveRow - 1, moveCol + 1] != "kO"))
@@ -400,6 +446,12 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow, moveCol] = "\0 ";
                         gameBg[moveRow - 1, moveCol + 1] = player;
                         checkerTaken = true;
+
+                        //checks what check has been taken and adds the appropriate score
+                        if (gameBg[moveRow, moveCol] == "O ")
+                            playerOne.PlayerScore = +2;
+                        if (gameBg[moveRow, moveCol] == "kO")
+                            playerOne.PlayerScore = +4;
 
                         //checks if the player has another move they can make if they can't end thier turn if it can send the player back to the move input screen
                         if (gameBg[moveRow - 1, moveCol + 1] == player && (gameBg[moveRow - 2, moveCol + 2] == "O " || gameBg[moveRow - 2, moveCol + 2] == "kO") && gameBg[moveRow - 3, moveCol + 3] == "\0 " && gameBg[moveRow - 4, moveCol + 4] != "N")
@@ -419,6 +471,7 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow, moveCol] = "\0 ";
                         gameBg[moveRow, moveCol] = player;
                         checkerTaken = true;
+                        playerOne.PlayerScore++;
                     }
                 }
             }
@@ -450,6 +503,11 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow, moveCol] = "\0 ";
                         gameBg[moveRow + 1, moveCol - 1] = player;
                         checkerTaken = true;
+                        //checks what check has been taken and adds the appropriate score
+                        if (gameBg[moveRow, moveCol] == "X ")
+                            playerTwo.PlayerScore = +2;
+                        if (gameBg[moveRow, moveCol] == "kX")
+                            playerTwo.PlayerScore = +4;
 
                         //checks if the player has another move they can make if they can't end thier turn if it can send the player back to the move input screen
                         if (gameBg[moveRow + 1, moveCol + 1] == player && (gameBg[moveRow + 2, moveCol + 2] == "X " || gameBg[moveRow + 2, moveCol + 2] == "kX") && gameBg[moveRow + 3, moveCol + 3] == "\0 " && gameBg[moveRow + 4, moveCol + 4] != "N")
@@ -470,6 +528,7 @@ namespace CheckersDA.MoveMechs
                         moveComplete = true;
                         checkerTaken = false;
                         anotherMove = false;
+                        playerTwo.PlayerScore++;
                     }
                     //checks if move is right
                     if (moveCol > col && gameBg[row, col] == player && (gameBg[moveRow, moveCol] == "X " || gameBg[moveRow, moveCol] == "kX") && (gameBg[moveRow - 1, moveCol + 1] != "X " || gameBg[moveRow - 1, moveCol + 1] != "kX"))
@@ -479,6 +538,12 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow, moveCol] = "\0 ";
                         gameBg[moveRow + 1, moveCol + 1] = player;
                         checkerTaken = true;
+
+                        //checks what check has been taken and adds the appropriate score
+                        if (gameBg[moveRow, moveCol] == "X ")
+                            playerTwo.PlayerScore = +2;
+                        if (gameBg[moveRow, moveCol] == "kX")
+                            playerTwo.PlayerScore = +4;
 
                         //checks if the player has another move they can make if they can't end thier turn if it can send the player back to the move input screen
                         if (gameBg[moveRow + 1, moveCol - 1] == player && (gameBg[moveRow + 2, moveCol - 2] == "X " || gameBg[moveRow + 2, moveCol - 2] == "kX") && gameBg[moveRow + 3, moveCol - 3] == "\0 " && gameBg[moveRow + 4, moveCol - 4] == "N")
@@ -498,6 +563,7 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow, moveCol] = "\0 ";
                         gameBg[moveRow, moveCol] = player;
                         checkerTaken = true;
+                        playerTwo.PlayerScore++;
                     }
 
                 }
@@ -512,6 +578,12 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow, moveCol] = "\0 ";
                         gameBg[moveRow - 1, moveCol - 1] = player;
                         checkerTaken = true;
+
+                        //checks what check has been taken and adds the appropriate score
+                        if (gameBg[moveRow, moveCol] == "X ")
+                            playerTwo.PlayerScore = +2;
+                        if (gameBg[moveRow, moveCol] == "kX")
+                            playerTwo.PlayerScore = +4;
 
                         //checks if the player has another move they can make if they can't end thier turn if it can send the player back to the move input screen
                         if (gameBg[moveRow - 1, moveCol - 1] == player && (gameBg[moveRow - 2, moveCol - 2] == "X " || gameBg[moveRow - 2, moveCol - 2] == "kX") && gameBg[moveRow - 3, moveCol - 3] == "\0 " && gameBg[moveRow - 4, moveCol - 4] != "N")
@@ -540,6 +612,12 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow - 1, moveCol + 1] = player;
                         checkerTaken = true;
 
+                        //checks what check has been taken and adds the appropriate score
+                        if (gameBg[moveRow, moveCol] == "X ")
+                            playerTwo.PlayerScore = +2;
+                        if (gameBg[moveRow, moveCol] == "kX")
+                            playerTwo.PlayerScore = +4;
+
                         //checks if the player has another move they can make if they can't end thier turn if it can send the player back to the move input screen
                         if (gameBg[moveRow - 1, moveCol + 1] == player && (gameBg[moveRow - 2, moveCol + 2] == "X " || gameBg[moveRow - 2, moveCol + 2] == "kX") && gameBg[moveRow - 3, moveCol + 3] == "\0 " && gameBg[moveRow - 4, moveCol + 4] == "N")
                         {
@@ -557,6 +635,7 @@ namespace CheckersDA.MoveMechs
                         gameBg[moveRow, moveCol] = "\0 ";
                         gameBg[moveRow, moveCol] = player;
                         checkerTaken = true;
+                        playerTwo.PlayerScore++;
                     }
                 }
                 else

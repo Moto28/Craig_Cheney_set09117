@@ -127,10 +127,6 @@ namespace CheckersDA.Players
         }
         #endregion
 
-        override public void GetMoveScore()
-        {
-
-        }
 
         #region gets player turn count
         override public int GetPlayerTurnCount()
@@ -141,7 +137,7 @@ namespace CheckersDA.Players
         #endregion
 
         #region sets player turn
-        public override bool MyTurn()
+        override public bool MyTurn()
         {
             //sets turn to true
             isItMyTurn = true;
@@ -150,7 +146,7 @@ namespace CheckersDA.Players
         #endregion
 
         #region sets player turn
-        public override bool YourTurn()
+        override public bool YourTurn()
         {
             //sets turn to false
             isItMyTurn = false;
