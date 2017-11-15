@@ -261,6 +261,23 @@ namespace CheckersDA.Players
                         dect.AnotherMove = false;
                         score4.Add(x.ToString() + "," + y.ToString() + "-" + tempX.ToString() + "," + tempY.ToString());
                     }
+                    //up movement for kings
+                    //finds moves f kO looks for a space UP and RIGHT and a space DOWN and RIGHT        
+                    if (gameBg[x, y] == "kO" && gameBg[x - 1, y + 1] == "kX" && (gameBg[x - 2, y + 2] == "\0 "))
+                    {
+                        int tempX = x + 1;
+                        int tempY = y - 1;
+                        dect.CheckerTaken = true;
+                        score4.Add(x.ToString() + "," + y.ToString() + "-" + tempX.ToString() + "," + tempY.ToString());
+                    }
+                    //finds moves for  kO looks for a space UP and LEFT and a space DOWN and LEFT        
+                    if (gameBg[x, y] == "kO" && gameBg[x - 1, y - 1] == "kX" && gameBg[x - 2, y - 2] == "\0 ")
+                    {
+                        int tempX = x + 1;
+                        int tempY = y + 1;
+                        dect.CheckerTaken = true;
+                        score4.Add(x.ToString() + "," + y.ToString() + "-" + tempX.ToString() + "," + tempY.ToString());
+                    }
                 }
             }
         }
