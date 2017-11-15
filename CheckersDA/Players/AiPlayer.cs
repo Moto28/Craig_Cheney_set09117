@@ -381,18 +381,22 @@ namespace CheckersDA.Players
             {   //checks if move is RIGHT and an empty space
                 if (col > moveCol && opponent == "\0 ")
                 {
+                    PlayerScore = +1;
                     gameBg[row, col] = "\0 ";
                     gameBg[moveRow, moveCol] = checker;
+
                 }
                 //checks if move is LEFT and an empty space
                 else if (moveCol > col && opponent == "\0 ")
                 {
+                    PlayerScore = +1;
                     gameBg[row, col] = "\0 ";
                     gameBg[moveRow, moveCol] = checker;
                 }
                 //checks if move is RIGHT and taking checker
                 else if (col > moveCol && (checker == "O " || checker == "kO"))
                 {
+                    PlayerScore = +2;
                     gameBg[row, col] = "\0 ";
                     gameBg[moveRow, moveCol] = "\0 ";
                     gameBg[moveRow + 1, moveCol - 1] = checker;
@@ -400,6 +404,7 @@ namespace CheckersDA.Players
                 //checks if move is LEFT and taking checker
                 else if (moveCol > col && (checker == "O " || checker == "kO"))
                 {
+                    PlayerScore = +2;
                     gameBg[row, col] = "\0 ";
                     gameBg[moveRow, moveCol] = "\0 ";
                     gameBg[moveRow + 1, moveCol + 1] = checker;

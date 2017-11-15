@@ -172,6 +172,7 @@ namespace CheckersDA.Game
                         valid.IsItValidSecondMove(moveRow, moveCol, valid.PickIsValid);
                     }
                 }
+
                 //checks if playerOne and moveIsValid  is true
                 if (playerOne.IsItMyTurn == true && valid.MoveIsValid == true)
                 {
@@ -193,10 +194,10 @@ namespace CheckersDA.Game
                             watchReplay.AddToQueue(gameBg);
                             //adds gameBg to redo stack
                             undo.AddToRedoStack(gameBg);
-                            //adds one to turn count
-                            playerOne.GetPlayerTurnCount();
                             //redraws the gameboard
                             game.Draw(gameBg, playerOne, playerTwo);
+                            // adds one to turn count
+                            playerOne.GetPlayerTurnCount();
 
 
                             //if the players move is complete and asks if they want to undo thier move
@@ -226,7 +227,7 @@ namespace CheckersDA.Game
                         watchReplay.AddToQueue(gameBg);
                         //adds gameBg to redo stack
                         undo.AddToRedoStack(gameBg);
-                        //adds one to turn count
+                        // adds one to turn count
                         playerOne.GetPlayerTurnCount();
                         //redraws the gameboard
                         game.Draw(gameBg, playerOne, playerTwo);
@@ -239,6 +240,8 @@ namespace CheckersDA.Game
 
                         }
                     }
+
+
                 }
                 else
                 {
@@ -515,7 +518,8 @@ namespace CheckersDA.Game
                         undo.AddToRedoStack(gameBg);
                         //redraws the gameboard
                         game.Draw(gameBg, playerOne, aiPlayer);
-
+                        //adds one to turn count
+                        playerOne.GetPlayerTurnCount();
                         //if the players move is complete and asks if they want to undo thier move
                         if (detection.AnotherMove == false && playerOne.PlayerTurnCount != 0)
                         {
@@ -549,6 +553,7 @@ namespace CheckersDA.Game
                 aiPlayer.MakeMove(gameBg);
                 //redraws the board
                 game.Draw(gameBg, playerOne, aiPlayer);
+                aiPlayer.GetPlayerTurnCount();
                 //ends ai players turn
                 aiPlayer.IsItMyTurn = false;
                 //starts playerOnes turn
