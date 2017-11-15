@@ -1,31 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace CheckersDA.ViewModels
 {
     class LeaderBoard
     {
         #region creates private varibles
-        private List<string> leadboard = new List<string>();
+        private List<string> leaderboard = new List<string>();
         #endregion
 
         #region constructor
         public LeaderBoard()
         {
-            leadboard = Leadboard;
+            leaderboard = Leaderboard;
         }
         #endregion
 
         #region getters and setters
-        public List<string> Leadboard
+        public List<string> Leaderboard
         {
             get
             {
-                return leadboard;
+                return leaderboard;
             }
             set
             {
-                leadboard = value;
+                leaderboard = value;
             }
         }
         #endregion
@@ -33,20 +34,32 @@ namespace CheckersDA.ViewModels
         #region displays sorted leaderboard
         public void SortedLeaderboard()
         {
-            //sorts leaderboard
-            leadboard.Sort();
+            string[] defaultScores = new string[] { " 50: Fenix", "45: Sean", "40: Lizzy", "35: Kayden", "100: Joe", "70: Kelly", "60: Scott", "55: Bussa", "80: Pickle Rick", "75: Craig", };
 
-            //if the leaderboard has no scores displays error message
-            if (leadboard.Count == 0)
-            {
-                Console.WriteLine("you need to play a game for your score to be stored, score are only there until you close the game");
-            }
-            
             //displays each element in leaderboard list
-            foreach (var score in leadboard)
-            {                
-                Console.WriteLine("{0}", score);
+            foreach (var score in defaultScores)
+            {
+                leaderboard.Add(score);
             }
+
+            //sorts the leaderboard based on the highest number
+            leaderboard.Sort((a, b) =>
+            {
+                var x = int.Parse(Regex.Replace(a, "[^0-9]", ""));
+                var y = int.Parse(Regex.Replace(b, "[^0-9]", ""));
+                if (x != y) return y - x;
+                return -1 * string.Compare(a, b);
+            });
+
+            //prints the leaderboard to screen
+            Console.Clear();
+            int i = 0;
+            foreach (var score in leaderboard)
+            {
+                i++;
+                Console.WriteLine("{0}: {1}", i, score);
+            }
+
             Console.ReadKey();
         }
         #endregion

@@ -24,6 +24,7 @@ namespace CheckersDA
             GameBackGround background = new GameBackGround();
             WatchReplay watch = new WatchReplay();
             LeaderBoard leaderBoard = new LeaderBoard();
+            GameRules rules = new GameRules();
             #endregion
 
 
@@ -62,21 +63,24 @@ namespace CheckersDA
                         //add player score to leaderboard
                         if (playerOne.PlayerScore > playerTwo.PlayerScore)
                         {
-                            string score = playerOne.PlayerName + ": " + playerOne.PlayerScore;
-                            leaderBoard.Leadboard.Add(score);
+                            string score = playerOne.PlayerScore + ": " + playerOne.PlayerName;
+                            leaderBoard.Leaderboard.Add(score);
                         }
                         else if (playerTwo.PlayerScore > playerOne.PlayerScore)
                         {
-                            string score = playerTwo.PlayerName + ": " + playerTwo.PlayerScore;
-                            leaderBoard.Leadboard.Add(score);
+                            string score = playerTwo.PlayerScore + ": " + playerTwo.PlayerName;
+                            leaderBoard.Leaderboard.Add(score);
                         }
                         Console.Clear();
                         break;
                     case 2:
                         Console.Clear();
                         Console.WriteLine("                                                     you have selected a 2 player game");
+                        //adds objects to game B array
                         background.Objects(game.GameBg);
+                        //gets playerone one
                         playerOne.GetPlayerName();
+                        //gets player two name 
                         playerTwo.GetPlayerName(playerOne);
                         Console.Clear();
                         while (logic.Win != true)
@@ -100,6 +104,10 @@ namespace CheckersDA
                         leaderBoard.SortedLeaderboard();
                         break;
                     case 5:
+                        rules.DisplayRules();
+                        Console.Clear();
+                        break;
+                    case 6:
                         Console.WriteLine("                                                    you have chosen to quit");
                         Environment.Exit(0);
                         break;
