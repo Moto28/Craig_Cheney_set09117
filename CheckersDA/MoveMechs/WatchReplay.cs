@@ -2,6 +2,7 @@
 using CheckersDA.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace CheckersDA.MoveMechs
 {
@@ -49,7 +50,9 @@ namespace CheckersDA.MoveMechs
             {
                 //redraw gameboard using queue until empty
                 game.Draw(replayQueue.Dequeue(), playerOne, playerTwo);
-                Console.ReadKey();
+                //adds 2 sec delay
+                int milliseconds = 2000;
+                Thread.Sleep(milliseconds);
             }
         }
     }
