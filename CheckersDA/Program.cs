@@ -32,7 +32,7 @@ namespace CheckersDA
             splash.DrawSplashScreen();
 
             #region draws menu and allows user to exit, pick game mode or watch replay 
-            while (menu.MenuSel != 4)
+            while (menu.MenuSel != 7)
             {
                 menu.Menu(game.GameBg);
 

@@ -61,6 +61,7 @@ namespace CheckersDA.ViewModels
             }
 
             Console.ReadKey();
+            Console.Clear();
         }
         #endregion
 
