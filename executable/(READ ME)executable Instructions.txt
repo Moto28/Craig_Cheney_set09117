@@ -1,0 +1,11 @@
+Create an executable for this solution.
+
+1.Ensure you have visual studio 2012 with at least .NET Framework 4.0
+2.Open the solution in visual studio'
+3.Build the solution.
+4.Open the solution in file explorer.
+5.Open the Bin folder.
+6.Open the Debug folder
+7.Copy and paste the CheckerDA.exe to your desktop.
+
+
